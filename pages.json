@@ -32,6 +32,12 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^u-(.*)":"@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
+		}
+	},
 	"tabBar": {
 		"borderStyle": "white",
 		"backgroundColor": "#fff",
