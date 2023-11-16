@@ -1,9 +1,17 @@
 <template>
 	<view class="content">
 		<NoticeBar />
+		<menuBar />
 <!-- 	<button @click="getData">获取接口数据</button>
 		<button @click="login">denglu</button> -->
-		<u-swiper :list="swiperList" @change="swiperChange" @click="swiperClick"></u-swiper>
+		<u-swiper :list="swiperList" @change="swiperChange" @click="swiperClick" indicator 
+		circular  
+		previousMargin="30"
+		nextMargin="30"
+		circular
+		:autoplay="false"
+		radius="5"
+		bgColor="#ffffff"></u-swiper>
 		
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -12,6 +20,7 @@
 
 <script>
 	import customTabBar from "@/components/tabbar/tabbar.vue";
+	import menuBar from "@/components/tabbar/menuBar.vue";
 	import NoticeBar from "@/components/notify/notifyBar.vue";
 	export default {
 		data() {
@@ -29,7 +38,8 @@
 		},
 		components:{
 			customTabBar,
-			NoticeBar
+			NoticeBar,
+			menuBar,
 		},
 		onLoad() {
 
@@ -54,8 +64,6 @@
 			// 轮播图change事件
 			swiperChange(){},
 			
-			// 轮播图点击事件
-			swiperClick(){},
 		}
 	}
 </script>
