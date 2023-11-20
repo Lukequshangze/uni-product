@@ -1,59 +1,37 @@
 <template>
+	<!-- 学生汇总 -->
 	<view class="content">
 		<NoticeBar />
 		<menuBar />
 		<u-swiper />
-<!-- 	<button @click="getData">获取接口数据</button>
-		<button @click="login">denglu</button> -->
-		<!-- table -->
-		<view class="claim-content" v-for="(item, index) in indexList" :key="index">
+		<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
 			<view class="claim-content-top">
 				<view class="claim-content-top-left">
-					<span>学生：</span>
-					<span>【{{ item.name }}】</span>
+					<span style="color: #d9001B">KK疯狂中nuts</span>
 				</view>
 				<view class="claim-content-top-right">
-					<span>申请加入班级</span>
+					<span>{{ item.time }}</span>
 				</view>
 			</view>
 			<view class="claim-content-bottom">
-				<view class="claim-content-bottom-left">
-					<span>{{item.time}}</span>
+				
+				<view class="">
+					带:2400
 				</view>
-				<view class="claim-content-bottom-right">
-					<span style="display: inline-block;">
-						<u-button type="primary" text="认领" size="mini"></u-button>
-					</span>
+				<view class="left-range">
+					手:332
+				</view>
+				<view class="left-range">
+					绩:2016
+				</view>
+				<view class="left-range">
+					属:jaz5
+				</view>
+				<view class="left-range">
+					<u-button type="primary" text="详情" size="mini"></u-button>
 				</view>
 			</view>
 		</view>
-		<!-- <view class="u-page">
-			<u-list
-				@scrolltolower="scrolltolower"
-			>
-				<u-list-item
-					v-for="(item, index) in indexList"
-					:key="index"
-				>
-					<u-cell>
-						<view class="" slot="icon" style="width: 100%;">
-							<view class="">
-								<span>学生：【</span>
-								<span>{{ item.name }}</span>
-								<span>】申请加入班级</span>
-							</view>
-							<view class="">
-								<span>{{item.time}}</span>
-								<span style="display: inline-block;">
-									<button>认领</button>
-								</span>
-							</view>
-						</view>
-						
-					</u-cell>
-				</u-list-item>
-			</u-list>
-		</view> -->
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
 	</view>
@@ -143,19 +121,25 @@
 		background: #f2f2f2;
 		margin-top: 5px;
 		padding: 5px 8px;
+		line-height: 26px;
 		.claim-content-top{
 			display: flex;
+			justify-content: space-between;
 			.claim-content-top-left{
-				width: 70%;
+				// width: 60%;
 			}
 			.claim-content-top-right{
-				width: 30%;
+				// width: 40%;
+				padding-right: 10px;
 			}
 		}
 		.claim-content-bottom{
 			display: flex;
 			justify-content: space-between;
 			padding-right: 10px;
+		}
+		.left-range{
+			margin-left:5px;
 		}
 	}
 </style>

@@ -3,57 +3,41 @@
 		<NoticeBar />
 		<menuBar />
 		<u-swiper />
-<!-- 	<button @click="getData">获取接口数据</button>
-		<button @click="login">denglu</button> -->
-		<!-- table -->
-		<view class="claim-content" v-for="(item, index) in indexList" :key="index">
+		<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
 			<view class="claim-content-top">
 				<view class="claim-content-top-left">
-					<span>学生：</span>
-					<span>【{{ item.name }}】</span>
+					<span>学生:</span>
+					<span style="color: #D9001B;">【{{ item.name }}】</span>
 				</view>
 				<view class="claim-content-top-right">
-					<span>申请加入班级</span>
+					<span>免审分数:3500</span>
 				</view>
 			</view>
 			<view class="claim-content-bottom">
 				<view class="claim-content-bottom-left">
-					<span>{{item.time}}</span>
+					<span>桌名:4/8</span>
+					<span>满50禁30-06017</span>
 				</view>
 				<view class="claim-content-bottom-right">
-					<span style="display: inline-block;">
-						<u-button type="primary" text="认领" size="mini"></u-button>
+					<span>申请带入:【
+					<span style="font-weight: bold;font-size: 16px;color: #d9001B">15000</span>
+					】</span>
+				</view>
+			</view>
+			<view class="claim-content-bottom">
+				<view class="claim-content-bottom-left">
+					<view class="">
+						2023-09-06 11:02:00
+					</view>
+				</view>
+				<view class="claim-content-bottom-right">
+					<span style="display: flex;">
+						<u-button type="primary" text="同意" size="mini" style="margin-right:15px"></u-button>
+						<u-button text="拒绝" size="mini"></u-button>
 					</span>
 				</view>
 			</view>
 		</view>
-		<!-- <view class="u-page">
-			<u-list
-				@scrolltolower="scrolltolower"
-			>
-				<u-list-item
-					v-for="(item, index) in indexList"
-					:key="index"
-				>
-					<u-cell>
-						<view class="" slot="icon" style="width: 100%;">
-							<view class="">
-								<span>学生：【</span>
-								<span>{{ item.name }}</span>
-								<span>】申请加入班级</span>
-							</view>
-							<view class="">
-								<span>{{item.time}}</span>
-								<span style="display: inline-block;">
-									<button>认领</button>
-								</span>
-							</view>
-						</view>
-						
-					</u-cell>
-				</u-list-item>
-			</u-list>
-		</view> -->
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
 	</view>
@@ -143,13 +127,14 @@
 		background: #f2f2f2;
 		margin-top: 5px;
 		padding: 5px 8px;
+		line-height: 24px;
 		.claim-content-top{
 			display: flex;
 			.claim-content-top-left{
-				width: 70%;
+				width: 60%;
 			}
 			.claim-content-top-right{
-				width: 30%;
+				width: 40%;
 			}
 		}
 		.claim-content-bottom{
