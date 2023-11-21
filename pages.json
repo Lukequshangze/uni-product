@@ -7,12 +7,6 @@
 			}
 		},
 		{
-			"path": "pages/logs/index",
-			"style": {
-				"navigationBarTitleText": "日志"
-			}
-		},
-		{
 			"path": "pages/bring/index",
 			"style": {
 				"navigationBarTitleText": "带入"
@@ -22,6 +16,43 @@
 			"path": "pages/setting/index",
 			"style": {
 				"navigationBarTitleText": "设置"
+			}
+		},
+		
+		// 首页-带入
+		{
+			"path": "pages/home/bringContent",
+			"style": {
+				"navigationBarTitleText": "带入"
+			}
+		},
+		// 首页-学生汇总
+		{
+			"path": "pages/home/studentSummary",
+			"style": {
+				"navigationBarTitleText": "学生汇总"
+			}
+		},
+		// 首页-学生成绩
+		{
+			"path": "pages/home/studentAchievement",
+			"style": {
+				"navigationBarTitleText": "学生成绩"
+			}
+		},
+		
+		// 日志-班级日志
+		{
+			"path": "pages/logs/index",
+			"style": {
+				"navigationBarTitleText": "班级日志"
+			}
+		},
+		// 日志-班级信息
+		{
+			"path": "pages/logs/classInfomation",
+			"style": {
+				"navigationBarTitleText": "班级信息"
 			}
 		}
 	],
@@ -37,36 +68,36 @@
 		"custom": {
 			"^u-(.*)":"@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
 		}
-	},
-	"tabBar": {
-		"borderStyle": "white",
-		"backgroundColor": "#fff",
-		"color": "#555",
-		"selectedColor": "#24afd6",
-		"list": [{
-				"text": "首页",
-				"pagePath": "pages/home/index",
-				"iconPath": "static/tabbar/index.png",
-				"selectedIconPath": "static/tabbar/index-active.png"
-			},
-			{
-				"text": "日志",
-				"pagePath": "pages/logs/index",
-				"iconPath": "static/tabbar/log.png",
-				"selectedIconPath": "static/tabbar/log-active.png"
-			},
-			{
-				"text": "带入",
-				"pagePath": "pages/bring/index",
-				"iconPath": "static/tabbar/bring.png",
-				"selectedIconPath": "static/tabbar/bring-active.png"
-			},
-			{
-				"text": "设置",
-				"pagePath": "pages/setting/index",
-				"iconPath": "static/tabbar/setting.png",
-				"selectedIconPath": "static/tabbar/setting-active.png"
-			}
-		]
 	}
+	// "tabBar": {
+	// 	"borderStyle": "white",
+	// 	"backgroundColor": "#fff",
+	// 	"color": "#555",
+	// 	"selectedColor": "#24afd6",
+	// 	"list": [{
+	// 			"text": "首页",
+	// 			"pagePath": "pages/home/index",
+	// 			"iconPath": "static/tabbar/index.png",
+	// 			"selectedIconPath": "static/tabbar/index-active.png"
+	// 		},
+	// 		{
+	// 			"text": "日志",
+	// 			"pagePath": "pages/logs/index",
+	// 			"iconPath": "static/tabbar/log.png",
+	// 			"selectedIconPath": "static/tabbar/log-active.png"
+	// 		},
+	// 		{
+	// 			"text": "带入",
+	// 			"pagePath": "pages/bring/index",
+	// 			"iconPath": "static/tabbar/bring.png",
+	// 			"selectedIconPath": "static/tabbar/bring-active.png"
+	// 		},
+	// 		{
+	// 			"text": "设置",
+	// 			"pagePath": "pages/setting/index",
+	// 			"iconPath": "static/tabbar/setting.png",
+	// 			"selectedIconPath": "static/tabbar/setting-active.png"
+	// 		}
+	// 	]
+	// }
 }

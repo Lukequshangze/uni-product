@@ -20,11 +20,22 @@
 				</view>
 			</view>
 			
-			<view class="">
-				<!-- 下拉选组件  select-lay@1.3.8 -->
-				<select-lay :zindex="1211" :value="tval" name="name" placeholder="请选择项目" :options="datalist"
-					@selectitem="selectitem">
-				</select-lay>
+			<view class="search-table">
+				
+				<!-- 表格 -->
+				<zb-table
+					:show-header="true"
+					:columns="column"
+					:stripe="true"
+					:fit="false"
+					@rowClick="rowClick"
+					@toggleRowSelection="toggleRowSelection"
+					@toggleAllSelection="toggleAllSelection"
+					:border="true"
+					@edit="buttonEdit"
+					@dele="dele"
+					:data="data">
+				</zb-table>
 			</view>
 		</view>
 		<!-- 底部导航栏组件 -->
@@ -47,7 +58,45 @@
 				inputType: "start",
 				
 				datalist: [],
-				tval: "",
+				
+				column:[
+				  { name: 'name', label: '名称',fixed:false,width:80,emptyString:'--' },
+				  { name: 'address', label: '所属',sorter:true,width:80,emptyString:'--'},
+				  { name: 'number', label: '人数',sorter:true},
+				  { name: 'result', label: '成绩',sorter:true },
+				],
+				data:[
+				  {
+					result: '670',
+					name: 'AA如影随形',
+					number:'300',
+					address:'be-ch',
+				  },
+				  {
+					result: '671',
+					name: '虎娃必胜',
+					number:'301',
+					address:'be-ch',
+				  },
+				  {
+					result: '672',
+					name: '王小虎3',
+					number:'311',
+					address:'be-ch',
+				  },
+				  {
+					result: '673',
+					name: '王小虎4',
+					number:'321',
+					address:'be-ch',
+				  },
+				  {
+					result: '674',
+					name: '王小虎5',
+					number:'330',
+					address:'be-ch',
+				  }
+				]  
 			}
 		},
 		components:{
@@ -63,16 +112,20 @@
 			this.$store.commit("changeTabbarIndex",0);
 			this.datalist = [
 				{
-					label: "label1",
-					value: "value1"
+					text: "名称",
+					value: "0"
 				},
 				{
-					label: "label2",
-					value: "value2"
+					text: "ID",
+					value: "1"
 				},
 				{
-					label: "label3",
-					value: "value3"
+					text: "备注",
+					value: "2"
+				},
+				{
+					text: "所属",
+					value: "3"
 				}
 			];
 		},
@@ -123,14 +176,6 @@
 					);
 				}
 			},
-			selectitem(index, item) {
-				console.log(item)
-				if (index >= 0) {
-					this.tval = item.value;
-				} else {
-					this.tval = ""
-				}
-			},
 			
 		}
 	}
@@ -145,5 +190,25 @@
 			top: 8px;
 			margin: 0 10px;
 		}
+	}
+	.search-table{
+		margin: 10px 0;
+		.select-com{
+			width: 30%;
+		}
+	}
+	.text {
+	    font-size: 12px;
+	    color: #666;
+	    margin-top: 5px;
+	  }
+	
+	.uni-px-5 {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	.uni-pb-5 {
+		padding-bottom: 10px;
 	}
 </style>

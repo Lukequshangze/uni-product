@@ -19,7 +19,7 @@
 		},
 		methods: {
 			toBringPage() {
-				uni.switchTab({
+				uni.navigateTo({
 					url: "/pages/bring/index"
 				})
 			}

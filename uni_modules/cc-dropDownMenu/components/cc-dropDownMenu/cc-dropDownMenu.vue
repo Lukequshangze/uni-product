@@ -181,7 +181,7 @@
 						.showTag
 					])
 				}
-
+				this.resultArr = [];   // 修改
 				this.resultArr.splice(this.currentIndex, 1, this.dropArr[this.currentIndex][this.currentSubIndex].value);
 
 				this.$emit('finishDropClick', this.resultArr)

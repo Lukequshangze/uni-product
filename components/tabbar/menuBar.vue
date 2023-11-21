@@ -26,27 +26,27 @@
 					[
 						{
                             text: '认领',
-                            value: "440102"
+                            value: "101"
                         },
                         {
                             text: '带入',
-                            value: "440103"
+                            value: "102"
                         }, {
                             text: '学生汇总',
-                            value: "440104"
+                            value: "103"
                         },
                         {
                             text: "学生成绩",
-                            value: "440105"
+                            value: "104"
                         }
                     ],
 					// 班级
 					[{
 							text: '班级日志',
-							value: ""
+							value: "201"
 						}, {
 							text: '班级信息',
-							value: "10000"
+							value: "202"
 						}
 					],
 					// 成绩
@@ -98,9 +98,29 @@
 				
 			},
 			 finishClick(resultData) {
-				if(resultData[0] === "440103"){
-					uni.switchTab({
-						url: "/pages/bring/index"
+				if(resultData[0] === "101"){
+					uni.navigateTo({
+						url: "/"
+					})
+				}else if(resultData[0] === "102"){
+					uni.navigateTo({
+						url: "/pages/home/bringContent"
+					})
+				}else if(resultData[0] === "103"){
+					uni.navigateTo({
+						url: "/pages/home/studentSummary"
+					})
+				}else if(resultData[0] === "104"){
+					uni.navigateTo({
+						url: "/pages/home/studentAchievement"
+					})
+				}else if(resultData[0] === "201"){
+					uni.navigateTo({
+						url: "/pages/logs/index"
+					})
+				}else if(resultData[0] === "202"){
+					uni.navigateTo({
+						url: "/pages/logs/classInfomation"
 					})
 				}
 			}

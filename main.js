@@ -20,6 +20,10 @@ Vue.prototype.$store = store
 import notifyBar from '@/components/notify/notifyBar.vue'
 Vue.component('notifyBar', notifyBar)
 
+// 时间方法封装
+import dateFormatter from '@/utils/dateFormatter'
+Vue.prototype.dateFormatter = dateFormatter;
+
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({

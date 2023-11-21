@@ -53,7 +53,7 @@
 			// tabbar change事件
 			tabBarChange(index){
 				// index === tabbar下标
-				uni.switchTab({
+				uni.navigateTo({
 					url: this.tabbarList[index].pagePath
 				})
 			},
