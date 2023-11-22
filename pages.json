@@ -54,6 +54,20 @@
 			"style": {
 				"navigationBarTitleText": "班级信息"
 			}
+		},
+		// 设置-修改密码
+		{
+			"path": "pages/setting/updatePassword",
+			"style": {
+				"navigationBarTitleText": "修改密码"
+			}
+		},
+		// 设置-消息通知
+		{
+			"path": "pages/setting/notifySetting",
+			"style": {
+				"navigationBarTitleText": "消息通知"
+			}
 		}
 	],
 	"globalStyle": {

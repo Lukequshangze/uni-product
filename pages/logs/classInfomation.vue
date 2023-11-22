@@ -23,7 +23,7 @@
 			
 			<u-button class="submit-button" :custom-style="customStyle" type="primary" @click="openUpdateModule">修改</u-button>
 			
-			<!-- 点击修改厚的模态框 -->
+			<!-- 点击修改后的模态框 -->
 			<view>
 				<u-modal :show="modalShow" :title="modalTitle" :content='modalContent' :closeOnClickOverlay="true" @close="closeModal"
 				:showCancelButton="true" @confirm="confirmSubmit" @cancel="cancelSubmit"></u-modal>
