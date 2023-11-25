@@ -1,6 +1,6 @@
 <template>
 	  <view>
-	    <view class="content">
+	    <view class="content-notify">
 	    	<image class="notify-image" src="@/static/icon/notify-bring.png" mode=""></image>
 	    	<image class="notify-image" src="@/static/icon/notify-claim.png" mode="" @click="toBringPage"></image>
 	    </view>
@@ -28,7 +28,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.content{
+	.content-notify{
 		float:right;
 		.notify-image {
 			height: 20px;

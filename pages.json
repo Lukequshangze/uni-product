@@ -68,6 +68,46 @@
 			"style": {
 				"navigationBarTitleText": "消息通知"
 			}
+		},
+		
+		// 成绩
+		// 成绩-本人成绩
+		{
+			"path": "pages/achieve/selfAchieve",
+			"style": {
+				"navigationBarTitleText": "本人成绩"
+			}
+		},
+		// 分组成绩
+		{
+			"path": "pages/achieve/groupAchieve",
+			"style": {
+				"navigationBarTitleText": "分组成绩"
+			}
+		},
+		
+		
+		// 管理
+		// 管理-学生管理
+		{
+			"path": "pages/manage/studentManagement",
+			"style": {
+				"navigationBarTitleText": "学生管理"
+			}
+		},
+		// 管理-老师管理
+		{
+			"path": "pages/manage/teacherManagement",
+			"style": {
+				"navigationBarTitleText": "老师管理"
+			}
+		},
+		// 管理-课程管理
+		{
+			"path": "pages/manage/courseManagement",
+			"style": {
+				"navigationBarTitleText": "课程管理"
+			}
 		}
 	],
 	"globalStyle": {

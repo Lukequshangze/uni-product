@@ -52,31 +52,31 @@
 					// 成绩
 					[{
 							text: '本人成绩',
-							value: "01"
+							value: "301"
 						}, {
 							text: '明细成绩',
-							value: "02"
+							value: "302"
 						},
 						{
 							text: '老师成绩',
-							value: "03"
+							value: "303"
 						},
 						{
 							text: '分组成绩',
-							value: "04"
+							value: "304"
 						}
 					],
 					// 管理
 					[{
 							text: '学生管理',
-							value: ""
+							value: "401"
 						}, {
 							text: '老师管理',
-							value: "0-1000"
+							value: "402"
 						},
 						{
-							text: '课程查询',
-							value: "1000-1500"
+							text: '课程管理',
+							value: "403"
 						}
 					]
 				],
@@ -121,6 +121,26 @@
 				}else if(resultData[0] === "202"){
 					uni.navigateTo({
 						url: "/pages/logs/classInfomation"
+					})
+				}else if(resultData[0] === "301"){
+					uni.navigateTo({
+						url: "/pages/achieve/selfAchieve"
+					})
+				}else if(resultData[0] === "304"){
+					uni.navigateTo({
+						url: "/pages/achieve/groupAchieve"
+					})
+				}else if(resultData[0] === "401"){
+					uni.navigateTo({
+						url: "/pages/manage/studentManagement"
+					})
+				}else if(resultData[0] === "402"){
+					uni.navigateTo({
+						url: "/pages/manage/teacherManagement"
+					})
+				}else if(resultData[0] === "403"){
+					uni.navigateTo({
+						url: "/pages/manage/courseManagement"
 					})
 				}
 			}

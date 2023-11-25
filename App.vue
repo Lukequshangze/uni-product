@@ -16,5 +16,7 @@
 <style lang="scss">
 	/*每个页面公共css */
 	@import "@/uni_modules/uview-ui/index.scss";
-	
+	.content{
+		padding:0px 5px 55px 5px;
+	}
 </style>
