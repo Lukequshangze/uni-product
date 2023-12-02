@@ -129,6 +129,8 @@
 					value: "3"
 				}
 			];
+			// 获取token
+			console.log("token===",uni.getStorageSync("token"));
 		},
 		methods: {
 			// 获取选择时间的时间戳

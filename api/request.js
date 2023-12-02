@@ -1,5 +1,8 @@
+// 暂时弃用的拦截器   新版拦截器在utils/http.js
+
 const http = {
-	baseUrl: "http://123.60.213.208:31009",
+	// baseUrl: "http://123.60.213.208:31009",
+	baseUrl: "http://jsonplaceholder.typicode.com",
 	
 	// 请求方法
 	request(config){

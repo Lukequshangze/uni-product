@@ -64,6 +64,7 @@
 	import menuBar from "@/components/tabbar/menuBar.vue";
 	import uSwiper from "@/components/tabbar/swiper.vue";
 	import NoticeBar from "@/components/notify/notifyBar.vue";
+	
 	export default {
 		data() {
 			return {
@@ -105,6 +106,8 @@
 		},
 		onShow() {
 			this.$store.commit("changeTabbarIndex",0);
+			this.init();
+			this.getData();
 		},
 		methods: {
 			async getData() {
@@ -115,22 +118,39 @@
 					pageSize: 10,
 					projectId: "",
 				}
-				const response = await this.$api.home.getTableData(params);
+				// const response = await this.$api.home.getTableData(params)
+				uni.$u.http.post('/nativesphere/host/getHostList', params).then(res => {
+					console.log("res",res)
+				}).catch((err) =>{
+					console.log("err",err)
+				})
 			},
-			async login() {
-				const response = await this.$api.user.login()
-			},
+			// async login() {
+			// 	const response = await this.$api.user.login()
+			// },
 			
 			// 滚动触底事件
 			scrolltolower() {
-				this.loadmore()
+				this.loadmore();
+				console.log("触底啦...")
 			},
 			loadmore() {
 				for (let i = 0; i < this.indexList.length; i++) {
 					
 				}
-			}
+			},
 			
+			// 初始化接口
+			async init() {
+				let params = {
+					_tk:uni.getStorageSync("token")
+				}
+				uni.$u.http.post('/app/api/main/init', params).then(res => {
+					console.log("res",res)
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
 		}
 	}
 </script>

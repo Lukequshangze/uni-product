@@ -20,7 +20,7 @@
 			<u-cell
 			    title="退出"
 			    isLink
-			    url="/pages/componentsB/badge/badge"
+			    url="/pages/setting/login"
 			></u-cell>
 		</u-cell-group>
 		

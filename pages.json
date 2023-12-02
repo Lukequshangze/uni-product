@@ -70,6 +70,14 @@
 			}
 		},
 		
+		// 设置-消息通知
+		{
+			"path": "pages/setting/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		
 		// 成绩
 		// 成绩-本人成绩
 		{
