@@ -27,7 +27,7 @@
 					<view class="code-key">
 						验证码：
 					</view>
-					<u--input border="bottom" v-model="form.graphicVerifyCode" style="padding:0"></u--input>
+					<u--input border="bottom" v-model="form.graphicVerifyCode" style="padding:0;letter-spacing: 8px;"></u--input>
 					<!-- <u-code-input v-model="form.graphicVerifyCode" mode="line" :space="1" :maxlength="4" hairline></u-code-input> -->
 					<!-- 随机生成图形验证码并校验 -->
 					<view class="code-img-wrapper" @click="updateImageCode">
@@ -58,7 +58,9 @@
 
 		},
 		onShow() {
-
+			// 登录页面禁止返回上一页，隐藏返回箭头
+			let a = document.getElementsByClassName('uni-page-head-hd')[0];
+			a.style.display = 'none';
 		},
 		onLoad() {
 
@@ -91,7 +93,9 @@
 						type: "error",
 						message: "图形验证码错误！"
 					});
-
+					// 失败则刷新验证码, 清空文本
+					this.updateImageCode();
+					this.form.graphicVerifyCode = "";
 				} else {
 					this.$refs.uToast.show({
 						type: "success",

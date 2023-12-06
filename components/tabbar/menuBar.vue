@@ -126,6 +126,14 @@
 					uni.navigateTo({
 						url: "/pages/achieve/selfAchieve"
 					})
+				}else if(resultData[0] === "302"){
+					uni.navigateTo({
+						url: "/pages/achieve/detailAchieve"
+					})
+				}else if(resultData[0] === "303"){
+					uni.navigateTo({
+						url: "/pages/achieve/teacherAchieve"
+					})
 				}else if(resultData[0] === "304"){
 					uni.navigateTo({
 						url: "/pages/achieve/groupAchieve"

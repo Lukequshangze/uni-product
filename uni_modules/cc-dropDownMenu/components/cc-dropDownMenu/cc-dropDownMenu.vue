@@ -210,6 +210,8 @@
 		display: flex;
 		position: relative;
 		z-index: 99;
+		height: 30px !important;
+		padding: 10px 0 15px 0;
 	}
 
 	.screen-bar::after {

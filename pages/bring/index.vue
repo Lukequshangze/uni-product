@@ -82,7 +82,7 @@
 			this.loadmore()
 		},
 		onShow() {
-			this.$store.commit("changeTabbarIndex",0);
+			this.$store.commit("changeTabbarIndex",2);
 		},
 		methods: {
 			async getData() {

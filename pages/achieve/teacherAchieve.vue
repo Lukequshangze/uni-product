@@ -1,4 +1,5 @@
 <template>
+	<!-- 老师成绩 -->
 	<view class="content">
 		<NoticeBar />
 		<menuBar />
@@ -30,7 +31,8 @@
 								<!-- #endif -->
 									<template slot="suffix">
 										<!-- @tap 手指触摸离开时触发 -->
-										<u-button @tap="getStudentList" :text="tips" type="primary" size="mini">查询</u-button>
+										<u-button @tap="getStudentList" :text="tips" type="primary"
+											size="mini">查询</u-button>
 									</template>
 							<!-- #ifndef APP-NVUE -->
 							</u-input>
@@ -42,13 +44,51 @@
 					</view>
 				</view>
 			</view>
-
-			<view class="search-table">
+			<view class="teacher-table">
 				<!-- 表格 -->
-				<zb-table :show-header="true" :columns="column" :stripe="true" :fit="false" @rowClick="rowClick"
-					@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
-					@edit="buttonEdit" @dele="dele" :data="data">
+				<zb-table
+					:show-header="true"
+					:columns="column"
+					:stripe="true"
+					:fit="false"
+					@rowClick="rowClick"
+					@toggleRowSelection="toggleRowSelection"
+					@toggleAllSelection="toggleAllSelection"
+					:border="true"
+					@edit="buttonEdit"
+					@dele="dele"
+					:data="data">
 				</zb-table>
+			</view>
+			<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
+				<view class="claim-content-top">
+					<view class="claim-content-top-left">
+						<span style="color: #d9001B">{{ item.name }}</span>
+					</view>
+					<view class="claim-content-top-left">
+						<span>总和:12312</span>
+					</view>
+					<view class="claim-content-top-left">
+						<span>返比:312312</span>
+					</view>
+					<view class="claim-content-top-right">
+						<span>{{ item.time }}</span>
+					</view>
+				</view>
+				<view class="claim-content-top">
+					<view class="claim-content-top-left">
+						总计:1537
+					</view>
+					<view class="claim-content-top-left">
+						成绩:1537
+					</view>
+					<view class="claim-content-top-left">
+						奖罚:1537
+					</view>
+					<view class="claim-content-top-left">
+						<u-button type="primary" text="详情" size="mini"></u-button>
+					</view>
+				</view>
 			</view>
 		</view>
 		<!-- 底部导航栏组件 -->
@@ -71,61 +111,29 @@
 				inputType: "start",
 
 				datalist: [],
-
-				column: [{
-						name: 'name',
-						label: '名称',
-						fixed: false,
-						emptyString: '--'
+				indexList: [
+					{
+						name:"KK疯",
+						time:"2023-09-06"
 					},
 					{
-						name: 'address',
-						label: '所属',
-						sorter: true,
-						emptyString: '--'
+						name:"KK疯狂中nutsaaa",
+						time:"2023-09-06"
 					},
 					{
-						name: 'number',
-						label: '人数',
-						sorter: true
+						name:"KK疯狂中nutsv",
+						time:"2023-09-06"
 					},
 					{
-						name: 'result',
-						label: '成绩',
-						sorter: true
+						name:"KK疯狂中",
+						time:"2023-09-06"
+					},
+					{
+						name:"KK疯狂中nuts",
+						time:"2023-09-06"
 					},
 				],
-				data: [{
-						result: '670',
-						name: 'AA如影随形',
-						number: '300',
-						address: 'be-ch',
-					},
-					{
-						result: '671',
-						name: '虎娃必胜',
-						number: '301',
-						address: 'be-ch',
-					},
-					{
-						result: '672',
-						name: '王小虎3',
-						number: '311',
-						address: 'be-ch',
-					},
-					{
-						result: '673',
-						name: '王小虎4',
-						number: '321',
-						address: 'be-ch',
-					},
-					{
-						result: '674',
-						name: '王小虎5',
-						number: '330',
-						address: 'be-ch',
-					}
-				],
+				
 				chosetype: 0,
 				studentSelect: [{
 						value: 0,
@@ -144,6 +152,46 @@
 						text: "所属"
 					},
 				],
+				
+				column:[
+				  { name: 'name', label: '总',fixed:false,emptyString:'--' },
+				  { name: 'address', label: '金',emptyString:'--'},
+				  { name: 'number', label: '手'},
+				  { name: 'result', label: '值' },
+				],
+				
+				data:[
+				  {
+					result: '670',
+					name: '123',
+					number:'300',
+					address:'900',
+				  },
+				  {
+					result: '671',
+					name: '312',
+					number:'301',
+					address:'900',
+				  },
+				  {
+					result: '672',
+					name: '123',
+					number:'311',
+					address:'900',
+				  },
+				  {
+					result: '673',
+					name: '314',
+					number:'321',
+					address:'900',
+				  },
+				  {
+					result: '674',
+					name: '135',
+					number:'330',
+					address:'900',
+				  }
+				]  
 			}
 		},
 		components: {
@@ -222,9 +270,19 @@
 					);
 				}
 			},
-			
+
 			// 查询
-			getStudentList(){},
+			getStudentList() {},
+			
+			// 滚动触底事件
+			scrolltolower() {
+				this.loadmore()
+			},
+			loadmore() {
+				for (let i = 0; i < this.indexList.length; i++) {
+					
+				}
+			}
 
 		}
 	}
@@ -242,14 +300,6 @@
 		}
 	}
 
-	.search-table {
-		margin: 10px 0;
-
-		.select-com {
-			width: 30%;
-		}
-	}
-
 	.text {
 		font-size: 12px;
 		color: #666;
@@ -264,20 +314,46 @@
 	.uni-pb-5 {
 		padding-bottom: 10px;
 	}
-	.query-content{
+
+	.query-content {
 		display: flex;
 		margin-top: 10px;
-		.query-content-select{
+
+		.query-content-select {
 			width: 29%;
 		}
-		.query-content-input{
+
+		.query-content-input {
 			margin-left: 1%;
 			width: 69%;
 		}
 	}
-	::v-deep{
-		.u-input--radius, .u-input--square{
+	::v-deep {
+
+		.u-input--radius,
+		.u-input--square {
 			padding: 4px 9px !important;
 		}
+	}
+	.claim-content{
+		background: #f2f2f2;
+		margin-top: 5px;
+		padding: 5px 8px;
+		line-height: 26px;
+		.claim-content-top{
+			display: flex;
+			.claim-content-top-left{
+				width: 25%;
+			}
+			.claim-content-top-right{
+				padding-right: 10px;
+			}
+		}
+		.left-range{
+			margin-left:5px;
+		}
+	}
+	.teacher-table{
+		margin: 10px 0;
 	}
 </style>

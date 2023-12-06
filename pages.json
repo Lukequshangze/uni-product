@@ -70,11 +70,16 @@
 			}
 		},
 		
-		// 设置-消息通知
+		// 设置-登录
 		{
 			"path": "pages/setting/login",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "登录",
+				"app-plus": {
+					"titleNView": {
+						"autoBackButton": false
+					}
+				}
 			}
 		},
 		
@@ -84,6 +89,20 @@
 			"path": "pages/achieve/selfAchieve",
 			"style": {
 				"navigationBarTitleText": "本人成绩"
+			}
+		},
+		// 明细成绩
+		{
+			"path": "pages/achieve/detailAchieve",
+			"style": {
+				"navigationBarTitleText": "明细成绩"
+			}
+		},
+		// 老师成绩
+		{
+			"path": "pages/achieve/teacherAchieve",
+			"style": {
+				"navigationBarTitleText": "老师成绩"
 			}
 		},
 		// 分组成绩

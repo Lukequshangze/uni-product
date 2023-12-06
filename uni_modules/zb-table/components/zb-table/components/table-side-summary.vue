@@ -34,6 +34,7 @@ export default {
     //display: flex;
     //align-items: center;
     box-sizing: border-box;
+	border-left: 1px solid rgb(232, 232, 232);
   }
 }
 .item-tr{
@@ -55,5 +56,6 @@ export default {
   overflow-wrap: break-word;
   border-bottom: 1px solid #e8e8e8;
   background: rgb(250, 250, 250);
+  border-left: 1px solid rgb(232, 232, 232);
 }
 </style>

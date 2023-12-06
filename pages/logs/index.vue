@@ -110,7 +110,7 @@
 			
 		},
 		onShow() {
-			this.$store.commit("changeTabbarIndex",0);
+			this.$store.commit("changeTabbarIndex",1);
 			this.datalist = [
 				{
 					text: "名称",

@@ -1144,6 +1144,7 @@ export default {
     overflow-wrap: break-word;
     border-bottom: 1px solid #e8e8e8;
     //transition: background 0.3s;
+	border-left: 1px solid rgb(232, 232, 232);
   }
 
   .zb-table-fixed-left .zb-table-header{
@@ -1159,6 +1160,7 @@ export default {
       //display: flex;
       //align-items: center;
       box-sizing: border-box;
+	  border-left: 1px solid rgb(232, 232, 232);
     }
   }
   .zb-table-fixed-left .zb-table-fixed{
@@ -1241,6 +1243,7 @@ export default {
     overflow-wrap: break-word;
     border-bottom: 1px solid #e8e8e8;
     //transition: background 0.3s;
+	border-left: 1px solid rgb(232, 232, 232);
   }
   .zb-table-header {
     //overflow: hidden;
