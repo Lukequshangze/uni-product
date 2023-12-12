@@ -329,7 +329,6 @@
 		}
 	}
 	::v-deep {
-
 		.u-input--radius,
 		.u-input--square {
 			padding: 4px 9px !important;

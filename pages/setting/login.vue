@@ -18,11 +18,11 @@
 		</view>
 		<view class="login-middle">
 			<view class="login-info">
-				<u--input class="login-user-put" placeholder="前置图标" prefixIcon="../../static/icon/login-user.png"
-					prefixIconStyle="font-size: 22px;color: #909399"></u--input>
-				<u--input class="login-password-put" placeholder="前置图标"
+				<u--input class="login-user-put" placeholder="请输入账号" prefixIcon="../../static/icon/login-user.png"
+					prefixIconStyle="font-size: 22px;color: #909399" v-model="form.userName"></u--input>
+				<u--input class="login-password-put" placeholder="请输入密码"
 					prefixIcon="../../static/icon/login-password.png"
-					prefixIconStyle="font-size: 22px;color: #909399"></u--input>
+					prefixIconStyle="font-size: 22px;color: #909399" v-model="form.passWord"></u--input>
 				<view class="login-code">
 					<view class="code-key">
 						验证码：
@@ -51,6 +51,8 @@
 			return {
 				form: {
 					graphicVerifyCode: "",
+					userName: "",
+					passWord: "",
 				}
 			}
 		},
@@ -78,38 +80,86 @@
 			updateImageCode() {
 				this.mcaptcha.refresh()
 			},
-			// 提交前校验图形验证码
+			// 登录表单提交
 			submit() {
-				if (!this.form.graphicVerifyCode) {
-					this.$refs.uToast.show({
-						type: "default",
-						message: "请输入图形验证码！"
-					});
-				}
 				let validate = this.mcaptcha.validate(this.form.graphicVerifyCode)
-				if (!validate) {
-					// return uni.showToast({ title: '图形验证码错误',icon:"error" });
-					this.$refs.uToast.show({
-						type: "error",
-						message: "图形验证码错误！"
-					});
-					// 失败则刷新验证码, 清空文本
-					this.updateImageCode();
-					this.form.graphicVerifyCode = "";
-				} else {
-					this.$refs.uToast.show({
-						type: "success",
-						message: "验证成功！"
-					});
-					// 登录成功后保存token
-					uni.setStorageSync("token","123456789abcdefg")
-					setTimeout(() => {
-						uni.navigateTo({
-							url: "/pages/home/index"
+				console.log("validate",validate)
+				// 用户名、密码、验证码都输入
+				if(this.form.userName && this.form.passWord && this.form.graphicVerifyCode){
+					if (!validate) {
+						this.$refs.uToast.show({
+							type: "error",
+							message: "图形验证码错误！"
+						});
+						// 失败则刷新验证码, 清空文本
+						this.updateImageCode();
+						this.form.graphicVerifyCode = "";
+					} else {
+						// 验证码验证成功后调用登录接口
+						// 若登录接口调用成功  保存token、跳转首页
+						// 否则提示失败信息
+						let params = {
+							account: this.form.userName,
+							pass: this.form.passWord,
+							// captcha: this.form.graphicVerifyCode,   // 暂时不传
+						}
+						uni.$u.http.post('/app/oauth/api/login', params).then(res => {
+							if(res.code == 0){
+								// 登录成功后保存token
+								if(res.data._tk){
+									uni.setStorageSync("wp_token",res.data._tk);
+								}
+								this.$refs.uToast.show({
+									type: "success",
+									message: "登录成功！"
+								});
+								setTimeout(() => {
+									uni.navigateTo({
+										url: "/pages/home/index"
+									})
+								}, 1500)
+							}else{
+								let item = {
+									type: 'default',
+									title: '默认主题',
+									message: res.msg,
+									iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/default.png'
+								}
+								this.showToast(item);
+							}
+						}).catch((err) =>{
+							console.log("err",err.msg)
 						})
-					}, 1500)
+					}
+				}else{
+					// 用户名密码校验
+					if(!this.form.userName || !this.form.passWord){
+						let item = {
+							type: 'default',
+							title: '默认主题',
+							message: "请输入用户名或密码",
+							iconUrl: 'https://cdn.uviewui.com/uview/demo/toast/default.png'
+						}
+						this.showToast(item)
+					}else if (!this.form.graphicVerifyCode) {  // 提交前校验图形验证码
+						this.$refs.uToast.show({
+							type: "default",
+							message: "请输入图形验证码！"
+						});
+					}
 				}
-			}
+			},
+			// 消息提示
+			showToast(params) {
+				this.$refs.uToast.show({
+					...params,
+					complete() {
+						params.url && uni.navigateTo({
+							url: params.url
+						})
+					}
+				})
+			}	
 		}
 	}
 </script>
