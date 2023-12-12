@@ -12,7 +12,7 @@
 		<u-overlay :show="showOverlay"></u-overlay> -->
 		
 		<!-- titleArr: 选择项数组 dropArr: 下拉项数组 二维数组 @finishDropClick: 下拉筛选完成事件-->
-		<cc-dropDownMenu :titleArr="titleArr" :dropArr="dropArr" @finishDropClick="finishClick"></cc-dropDownMenu> 
+		<cc-dropDownMenu v-if="flag" :titleArr="titleArr1" :dropArr="dropArr1" @finishDropClick="finishClick"></cc-dropDownMenu> 
 	</view>
 </template>
 
@@ -20,8 +20,12 @@
 	export default {
 		data() {
 			return {
-				titleArr: ["学生","班级","成绩","管理"],
-				dropArr: [
+				titleArr:[],
+				dropArr:[],
+				flag: false,
+				
+				titleArr1: ["学生","班级","成绩","管理"],
+				dropArr1: [
 					// 学生
 					[
 						{
@@ -30,10 +34,10 @@
                         },
                         {
                             text: '带入',
-                            value: "102"
+                            value: 102
                         }, {
                             text: '学生汇总',
-                            value: "103"
+                            value: 103
                         },
                         {
                             text: "学生成绩",
@@ -97,16 +101,17 @@
 				this.curNow = index;
 				
 			},
-			 finishClick(resultData) {
+			finishClick(resultData) {
+				console.log("103",resultData)
 				if(resultData[0] === "101"){
 					uni.navigateTo({
 						url: "/"
 					})
-				}else if(resultData[0] === "102"){
+				}else if(resultData[0] === 102){
 					uni.navigateTo({
 						url: "/pages/home/bringContent"
 					})
-				}else if(resultData[0] === "103"){
+				}else if(resultData[0] === 103){
 					uni.navigateTo({
 						url: "/pages/home/studentSummary"
 					})
@@ -151,7 +156,35 @@
 						url: "/pages/manage/courseManagement"
 					})
 				}
-			}
+			},
+			// 初始化接口
+			init() {
+				let params = {
+					_tk:uni.getStorageSync("wp_token")
+				}
+				uni.$u.http.post('/app/api/main/init', params).then(res => {
+					if(res.code == 0){
+						let titleList = [];
+						res.data.headerMenus.forEach(item=>{
+							this.titleArr.push(item.title);
+							titleList.push(item.menus);
+						})
+						for(let i=0;i< titleList.length;i++){
+							let newList = titleList[i].map(item => { return { text: item.title, value:item.orderNum, url:item.url} });
+							this.dropArr.push(newList);
+						}
+						console.log('aa',this.titleArr)
+						console.log('bb',this.dropArr)
+						console.log('cc',this.dropArr1)
+						this.flag = true;
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
+		},
+		created() {
+			this.init();
 		}
 	}
 </script>

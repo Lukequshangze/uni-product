@@ -30,7 +30,8 @@
 		{
 			"path": "pages/home/studentSummary",
 			"style": {
-				"navigationBarTitleText": "学生汇总"
+				"navigationBarTitleText": "学生汇总",
+				"onReachBottonDistance":50    // 距离底部50px时，触发onReachBottom事件
 			}
 		},
 		// 首页-学生成绩

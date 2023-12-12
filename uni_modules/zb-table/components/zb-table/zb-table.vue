@@ -64,7 +64,13 @@
 	        </view>
 	      </template>
 	      <template v-if="!data.length">
-	        <view class="no-data">暂无数据~~</view>
+	        <view class="no-data">
+				<u-empty
+				        mode="data"
+				        icon="http://cdn.uviewui.com/uview/empty/data.png"
+				>
+				</u-empty>
+			</view>
 	      </template>
 	      <scroll-view
             class="zb-table-body" ref="tableBody"	scroll-x="true"	scroll-y="true"	id="tableBody"
@@ -310,7 +316,13 @@
 	        </view>
 	      </template>
 	      <template v-if="!data.length">
-	        <view class="no-data">暂无数据~~</view>
+	        <view class="no-data">
+				<u-empty
+				        mode="data"
+				        icon="http://cdn.uviewui.com/uview/empty/data.png"
+				>
+				</u-empty>
+			</view>
 	      </template>
           <view class="zb-table-fixed">
             <view class="zb-table-tbody">
@@ -1083,11 +1095,11 @@ export default {
 }
 .no-data{
   width: 100%;
-  height: 80rpx;
+  height: 410rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #e8e8e8;
+  // border-bottom: 1px solid #e8e8e8;
 }
 .item-th{
   position: relative;
@@ -1257,13 +1269,14 @@ export default {
       height: 40px;
       box-sizing: border-box;
       background: #fafafa;
+	  text-align: center !important;
     }
     .zb-stick-side{
       position: sticky;
       top: 0;
       left: 0;
       z-index: 2;
-      //border-right: solid 1rpx #dbdbdb;
+      // border-right: solid 1rpx #dbdbdb;
       box-sizing: border-box;
       background: #fafafa;
       //box-shadow: 6px 0 6px -4px #ccc;

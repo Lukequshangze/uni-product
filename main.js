@@ -24,6 +24,10 @@ Vue.component('notifyBar', notifyBar)
 import dateFormatter from '@/utils/dateFormatter'
 Vue.prototype.dateFormatter = dateFormatter;
 
+// 消息提示封装   // this.$api.msg("id只能填写数字");
+import showToast from './utils/showToast.js'
+Vue.prototype.$api = showToast;
+
 // 引入请求封装，将app参数传递到配置中
 require('./utils/http.js')(app)
 

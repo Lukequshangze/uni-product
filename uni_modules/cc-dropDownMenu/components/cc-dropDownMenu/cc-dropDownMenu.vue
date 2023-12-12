@@ -279,7 +279,7 @@
 	}
 
 	.bar-item-text {
-		max-width: 120rpx;
+		max-width: 130rpx;
 		text-overflow: ellipsis;
 		overflow: hidden;
 		white-space: nowrap;

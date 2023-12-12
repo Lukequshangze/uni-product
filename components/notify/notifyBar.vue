@@ -22,7 +22,23 @@
 				uni.navigateTo({
 					url: "/pages/bring/index"
 				})
-			}
+			},
+			// 获取消息数量
+			getMsgNumber() {
+				let params = {
+					_tk:uni.getStorageSync("wp_token")
+				}
+				uni.$u.http.get('/app/api/main/mes/list', params).then(res => {
+					if(res.code == 0){
+						
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
+		},
+		created(){
+			// this.getMsgNumber();
 		},
 	}
 </script>

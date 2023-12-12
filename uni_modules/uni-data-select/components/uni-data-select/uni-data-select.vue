@@ -363,7 +363,7 @@
 		border-bottom: solid 1px $uni-border-3;
 		width: 100%;
 		flex: 1;
-		height: 35px;
+		height: 34px;
 
 		&--disabled {
 			background-color: #f5f7fa;
