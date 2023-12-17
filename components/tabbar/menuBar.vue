@@ -81,6 +81,10 @@
 						{
 							text: '课程管理',
 							value: "403"
+						},
+						{
+							text: '分组管理',
+							value: "404"
 						}
 					]
 				],
@@ -154,6 +158,10 @@
 				}else if(resultData[0] === "403"){
 					uni.navigateTo({
 						url: "/pages/manage/courseManagement"
+					})
+				}else if(resultData[0] === "404"){
+					uni.navigateTo({
+						url: "/pages/manage/groupManagement"
 					})
 				}
 			},

@@ -136,6 +136,13 @@
 			"style": {
 				"navigationBarTitleText": "课程管理"
 			}
+		},
+		// 管理-分组管理
+		{
+			"path": "pages/manage/groupManagement",
+			"style": {
+				"navigationBarTitleText": "分组管理"
+			}
 		}
 	],
 	"globalStyle": {

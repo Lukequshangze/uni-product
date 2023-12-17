@@ -255,7 +255,7 @@
 		}
 
 		.query-content-input {
-			margin-left: 1%;
+			margin-left: 1%; 
 			width: 69%;
 		}
 	}
