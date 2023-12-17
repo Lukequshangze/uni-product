@@ -64,10 +64,8 @@
 						{{ item.drtotalscoreLabel }}{{ item.drtotalscore }}
 					</view>
 					<view class="left-range">
-						手:{{ item.sumhandnum }}
+						{{ item.sumhandnumLabel }}{{ item.sumhandnum }}
 					</view>
-					
-					<!-- 20231212 无数据-->
 					<view class="left-range">  
 						{{ item.totalscoreLabel }}{{ item.totalscore }}
 					</view>

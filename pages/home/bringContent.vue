@@ -51,7 +51,6 @@
 				<view class="claim-content-top">
 					<view class="claim-content-top-left">
 						<span>{{ item.nicknameLabel }}</span>
-						<!-- 20231212 缺少nickname字段 -->
 						<span style="color: #D9001B;">【{{ item.nickname }}】</span>
 					</view>
 					<view class="claim-content-top-right">

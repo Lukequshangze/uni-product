@@ -56,6 +56,7 @@
 					:columns="column"
 					:stripe="true"
 					:fit="false"
+					style="font-size: 12px;"
 					@rowClick="rowClick"
 					@toggleRowSelection="toggleRowSelection"
 					@toggleAllSelection="toggleAllSelection"
@@ -99,8 +100,7 @@
 				total: 0,
 				
 				column:[
-					// 20231212 缺少时间字段
-				  { name: 'title', label: '时间',fixed:false,emptyString:'--' },
+				  { name: 'dailyDate', label: '时间',fixed:false,emptyString:'--' },
 				  { name: 'nickname', label: '名称',emptyString:'--'},
 				  { name: 'logInfo', label: '内容'},
 				  { name: 'status', label: '状态'},

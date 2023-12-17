@@ -52,13 +52,11 @@
 				<view class="claim-content-top">
 					<view class=""></view>
 					<view class="claim-content-time">
-						<!-- <span>{{item.time}}</span> -->
-						<span>2023-12-12</span>
+						<span>{{item.sendTimeStr}}</span>
 					</view>
 				</view>
 				<view class="claim-content-bottom">
 					<view class="claim-content-top">
-						<!-- 20231212 缺少时间 -->
 						<view class="">
 							{{ item.content }}
 						</view>
@@ -241,7 +239,9 @@
 						uni.hideLoading();
 					}
 				}).catch((err) =>{
-					console.log("err",err)
+					this.$api.msg("加载失败");
+					//隐藏加载框
+					uni.hideLoading();
 				})
 			},
 			async onReachBottom() {
@@ -262,7 +262,9 @@
 				uni.$u.http.post('/app/api/main/init', params).then(res => {
 					
 				}).catch((err) =>{
-					console.log("err",err)
+					this.$api.msg("加载失败");
+					//隐藏加载框
+					uni.hideLoading();
 				})
 			},
 		},

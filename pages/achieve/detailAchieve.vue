@@ -5,34 +5,32 @@
 		<menuBar />
 		<u-swiper />
 		<view>
-			<view class="">
+			<view class="" style="margin-top: 10px;">
 				<u-datetime-picker :show="pickerShow" v-model="valueTime" mode="date" @confirm="getDate"
-					@close="pickerClose" @change="changeStartTime"></u-datetime-picker>
-				<view class="search-box">
-					<u--input shape="circle" placeholder="起始时间" border="surround" v-model="startTime"
+					@cancel="pickerClose" closeOnClickOverlay>
+				</u-datetime-picker>
+				<view class="" style="display: flex;">
+					<p style="position: relative;top: 8px;">查询时间：</p>
+					<u--input shape="circle" placeholder="选择时间" border="surround" v-model="searchForm.dailyDate"
 						@focus="selectStartTime"></u--input>
-					<span class="time-line"> - </span>
-					<u--input shape="circle" placeholder="结束时间" border="surround" v-model="endTime"
-						@focus="selectEndTime"></u--input>
 				</view>
 				<view class="query-content">
 					<view class="query-content-select">
 						<uni-data-select v-model="chosetype" :localdata="studentSelect"
-							@change="change"></uni-data-select>
+							@change="changeStudentSelect"></uni-data-select>
 					</view>
 					<view class="query-content-input">
 						<view class="u-demo-block__content">
 							<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
 							<!-- #ifndef APP-NVUE -->
-							<u-input placeholder="请输入">
+							<u-input placeholder="请输入" v-model="searchForm.valueData">
 							<!-- #endif -->
 								<!-- #ifdef APP-NVUE -->
 								<u--input placeholder="请输入">
 								<!-- #endif -->
 									<template slot="suffix">
 										<!-- @tap 手指触摸离开时触发 -->
-										<u-button @tap="getStudentList" :text="tips" type="primary"
-											size="mini">查询</u-button>
+										<u-button @tap="getDetailAchieve" type="primary" size="mini">查询</u-button>
 									</template>
 							<!-- #ifndef APP-NVUE -->
 							</u-input>
@@ -47,51 +45,27 @@
 			<view class="detail-table">
 				<!-- 表格 特殊表格，采用原生方式处理 -->
 				<view class="wrap">
-					<view class="table_wrap">
-						<table class="table">
+					<view class="">
+						<!-- 无数据时 -->
+						<view style="margin-top: 15px;" class="" v-if="!tableTitle || tableTitle.length===0">
+							<u-empty
+							        mode="data"
+							        icon="http://cdn.uviewui.com/uview/empty/data.png"
+							>
+							</u-empty>
+						</view>
+						<table class="table table_wrap" v-if="tableTitle && tableTitle.length>0">
 							<thead> <!-- thead标签在这里已经不代表表头了-->
 								<tr>  <!-- 每个tr标签的第一个td标签为表头-->
-									<td class="table_title">
-										<p>汇</p>
-									</td>
-									<td class="table_content">
-										<p>总成绩</p>
-									</td>
-									<td class="table_content">
-										<p>德24</p>
-									</td><td class="table_content">
-										<p>德48</p>
-									</td><td class="table_content">
-										<p>德2550</p>
-									</td><td class="table_content">
-										<p>奥36</p>
-									</td><td class="table_content">
-										<p>金总和</p>
+									<td class="table_content" v-for="(item,i) in tableTitle" :key="i" :class="i===0 ? 'table_title' : ''">
+										<p>{{ item }}</p>
 									</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="table_tr">
-									<td class="table_title">
-										<p>合计</p>
-									</td>
-									<td class="table_content">
-					                    <p>67182</p>
-									</td>
-									<td class="table_content">
-									    <p>67182</p>
-									</td>
-									<td class="table_content">
-									    <p>67182</p>
-									</td>
-									<td class="table_content">
-									    <p>67182</p>
-									</td>
-									<td class="table_content">
-									    <p>67182</p>
-									</td>
-									<td class="table_content">
-									    <p>1231231</p>
+									<td class="table_content" v-for="(val,i) in tableValue" :key="i" :class="i===0 ? 'table_title' : ''">
+										<p>{{ val }}</p>
 									</td>
 								</tr>
 							</tbody>
@@ -102,28 +76,89 @@
 			<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
 				<view class="claim-content-top">
 					<view class="claim-content-top-left" style="width: 30%;">
-						<span style="color: #d9001B">KK疯狂中nuts</span>
+						<span style="color: #d9001B">{{ item.nickName }}</span>
 					</view>
-					<view class="" style="width: 20%;">
-						所属:jaz5
+					<view class="" style="width: 30%;">
+						{{ item.anLabel }} {{ item.an }}
 					</view>
-					<view class="claim-content-top-right" style="width: 50%;">
-						<span>备注:{{ item.value }}</span>
+					<view class="claim-content-top-right" style="width: 40%;">
+						<span>{{ item.cnLabel }} {{ item.cn }}</span>
 					</view>
 				</view>
 				<view class="claim-content-bottom">
-					<view class="left-range">
-						总成绩:2016
+					<view class="left-range" style="width: 50%;">
+						{{ item.tcsLabel }} {{ item.tcs }}
+					</view>
+					<view class="left-range" style="width: 96%;">
+						{{ item.tbsLabel }} {{ item.tbs }}
 					</view>
 					<view class="left-range">
-						总和金:jaz5
-					</view>
-					<view class="left-range">
-						<u-button type="primary" text="详情" size="mini"></u-button>
+						<u-button type="primary" @click="openDeatilAchieve(item)" text="详情" size="mini"></u-button>
 					</view>
 				</view>
 			</view>
 		</view>
+		<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalDetailAchieve" mode="bottom" :round="12" @close="closePopupDetailAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+			<view style="height: calc(100vh - 200px);">
+				<view class="u-pop-box">
+					<view class="pop-box-name">
+						用户: {{ detailAchieveInfo.nickName }}
+					</view>
+					<!-- 总成绩 总hejin -->
+					<view class="achieve-box">
+						<view class="">
+							{{ detailAchieveInfo.tcsLabel }} {{ detailAchieveInfo.tcs }}
+						</view>
+						<view class="achieve-box-last">
+							{{ detailAchieveInfo.tbsLabel }} {{ detailAchieveInfo.tbs }}
+						</view>
+					</view>
+					
+					<view class="achieve-label">
+						<view class="">
+							<view class="">
+								{{ detailAchieveInfo.cnLabel }} {{ detailAchieveInfo.cn }}
+							</view>
+							<view class="">
+								{{ detailAchieveInfo.anLabel }} {{ detailAchieveInfo.an }}
+							</view>
+						</view>
+					</view>
+					
+					<!-- 列表 -->
+					<view class="info-table-detail" v-if="detailAchieveInfo.tableItemVoList && detailAchieveInfo.tableItemVoList.length>0">
+						<view class="table_wrap" v-for="(item, index) in detailAchieveInfo.tableItemVoList" :key="index">
+							<view class="table-time">
+								{{ item.dailyDate }}
+							</view>
+							<view class="detail-table">
+								<view class="table_wrap">
+									<table class="table">
+										<thead> <!-- thead标签在这里已经不代表表头了-->
+											<tr>  <!-- 每个tr标签的第一个td标签为表头-->
+												<td class="table_content" v-for="(val,i) in item.tableTitle" :key="i">
+													<p>{{ val }}</p>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="table_tr">
+												<td class="table_content" v-for="(tem,i) in item.tableValue" :key="i">
+													<p>{{ tem }}</p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</view>
+							</view>
+							<view style="display: flex;justify-content: center;">
+								显示近7天数据
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</u-popup>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
 	</view>
@@ -139,33 +174,24 @@
 			return {
 				pickerShow: false,
 				valueTime: Number(new Date()),
-				startTime: "",
-				endTime: "",
 				inputType: "start",
-
+				selectType: "",
+				searchForm:{
+					uid:"", // id
+					nk:"",  // 昵称
+					cn:"",  // 备注
+					an:"",  // 所属
+					valueData:"",
+					page: 1,
+					limit: 20,
+					dailyDate: "",
+				},
 				datalist: [],
-				indexList: [
-					{
-						name:"KK疯狂中nuts",
-						value:"淳最好的最好的史"
-					},
-					{
-						name:"KK疯狂中nutsaaa",
-						value:"淳最好的最好的史"
-					},
-					{
-						name:"KK疯狂中nutsv",
-						value:"淳最好的"
-					},
-					{
-						name:"KK疯狂中",
-						value:"淳最好的最好的史111"
-					},
-					{
-						name:"KK疯狂中nuts",
-						value:"淳最好的最好的史zxcv"
-					},
-				],
+				tableTitle: [],
+				tableValue: [],
+				showModalDetailAchieve: false,
+				detailAchieveInfo: {},
+				indexList: [],
 				
 				chosetype: 0,
 				studentSelect: [{
@@ -217,66 +243,106 @@
 			];
 		},
 		methods: {
-			// 获取选择时间的时间戳
-			getDate(e) {
-				// e.value为选中事件的时间戳   e.mode为事件格式
-				console.log(e)
-				this.pickerClose();
+			// 下拉选择框事件
+			changeStudentSelect(e){
+				if(!e){
+					this.searchForm.valueData = "";
+				}
+				this.selectType = e;
+			},
+			// 获取学生成绩
+			getDetailAchieve(type){
+				if(this.selectType === 0){
+					this.searchForm.uid = Number(this.searchForm.valueData);
+					this.searchForm.nk = "";
+					this.searchForm.cn = "";
+					this.searchForm.an = "";
+				}else if(this.selectType === 1){
+					this.searchForm.nk = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.cn = "";
+					this.searchForm.an = "";
+				}else if(this.selectType === 2){
+					this.searchForm.cn = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.an = "";
+					this.searchForm.nk = "";
+				}else if(this.selectType === 3){
+					this.searchForm.an = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.nk = "";
+					this.searchForm.cn = "";
+				}
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					uid: this.searchForm.uid,
+					nk: this.searchForm.nk,
+					cn: this.searchForm.cn,
+					an: this.searchForm.an,
+					page: this.searchForm.page,
+					limit: this.searchForm.limit,    // 页码 默认20
+					start: 0,
+					dailyDate: this.searchForm.dailyDate,
+				}
+				uni.showLoading({
+					title: '加载中'
+				});
+				uni.$u.http.post('/app/api/score/items', params).then(res => {
+					if(res.code == 0){
+						this.total = res.data.count;
+						// 上表表头
+						this.tableTitle = res.data.tableTitle;
+						this.tableValue = res.data.tableValue;
+						// 上表内容
+						if(type && type==="more"){
+							res.data.detailItemVoList.forEach(item=>{
+								this.indexList.push(item)
+							})
+						}else{
+							this.indexList = res.data.detailItemVoList;
+						}
+						//隐藏加载框
+						uni.hideLoading();
+					}
+				}).catch((err) =>{
+					this.$api.msg("加载失败");
+					//隐藏加载框
+					uni.hideLoading();
+				})
 			},
 			// 关闭时间选择弹窗
 			pickerClose() {
 				this.pickerShow = false;
 			},
-			// 选择起始时间
-			selectStartTime() {
-				this.pickerShow = true;
-				this.inputType = "start";
-				let date = new Date(this.valueTime);
-				this.startTime = this.dateFormatter(
-					"yyyy-MM-dd",
-					date
-				);
-			},
-			// 选择结束时间
-			selectEndTime() {
-				this.pickerShow = true;
-				this.inputType = "end";
-				let date = new Date(this.valueTime);
-				this.endTime = this.dateFormatter(
-					"yyyy-MM-dd",
-					date
-				);
-			},
-			// 修改时间
-			changeStartTime(e) {
-				console.log("e", e)
-				let date = new Date(e.value);
-				if (this.inputType === "start") {
-					this.startTime = this.dateFormatter(
-						"yyyy-MM-dd",
-						date
-					);
-				} else if (this.inputType === "end") {
-					this.endTime = this.dateFormatter(
-						"yyyy-MM-dd",
-						date
-					);
-				}
-			},
-
-			// 查询
-			getStudentList() {},
 			
-			// 滚动触底事件
-			scrolltolower() {
-				this.loadmore()
+			// 触发
+			selectStartTime(){
+				this.pickerShow = true; 
 			},
-			loadmore() {
-				for (let i = 0; i < this.indexList.length; i++) {
-					
-				}
-			}
-
+			
+			// picher确认事件
+			getDate(e){
+				this.pickerShow = false; 
+				let date = new Date(e.value);
+				this.searchForm.dailyDate = this.dateFormatter(
+					"yyyy-MM-dd",
+					date
+				);
+				this.getDetailAchieve();
+			}, 
+			
+			// 打开详情
+			openDeatilAchieve(item){
+				this.showModalDetailAchieve = true;
+				this.detailAchieveInfo = item;
+			},
+			// 关闭弹出层
+			closePopupDetailAchieve(){
+				this.showModalDetailAchieve = false;
+			},
+		},
+		created() {
+			this.getDetailAchieve();
 		}
 	}
 </script>
@@ -350,7 +416,7 @@
 			padding-right: 10px;
 		}
 		.left-range{
-			margin-left:5px;
+			
 		}
 	}
 	.detail-table{
@@ -358,7 +424,7 @@
 		.wrap {
 			/* 这个只是用来居中内容 */
 			align-items: center;
-			display: flex;
+			// display: flex;
 			height: 100%;
 			justify-content: center;
 		}
@@ -401,6 +467,37 @@
 		
 		.table_tr{
 			border-top: 1px solid rgb(232, 232, 232);
+		}
+	}
+	.u-pop-box{
+		.pop-box-name{
+			font-size: 22px;
+			font-weight: bold;
+			color: #000;
+			text-align: center;
+		}
+		.achieve-box{
+			display: flex;
+			justify-content: center;
+			margin-top: 10px;
+			.achieve-box-last{
+				margin-left: 30px;
+			}
+		}
+		.achieve-label{
+			display: flex;
+			justify-content: center;
+			margin-top: 5px;
+			line-height: 25px;
+		}
+		.info-table-detail{
+			margin-top: 10px;
+			.table-time{
+				font-weight: bold;
+				font-size: 18px;
+				display: flex;
+				justify-content: center;
+			}
 		}
 	}
 </style>

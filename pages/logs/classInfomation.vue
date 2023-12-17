@@ -1,24 +1,27 @@
 <template>
 	<!-- 班级信息 -->
 	<view class="content">
-		<u--form labelPosition="left" :model="formData" :rules="rules" ref="uForm" labelWidth="90">
-			<u-form-item label="老师ID:" prop="formData.teacherId" borderBottom ref="item1">
-				<u--input v-model="formData.teacherId" border="none"></u--input>
+		<u--form labelPosition="left" :model="formData" :rules="rules" ref="uForm" labelWidth="100">
+			<u-form-item label="班级名称:" prop="formData.className" borderBottom ref="item1">
+				<u--input v-model="formData.className" border="none"></u--input>
 			</u-form-item>	
-			<u-form-item label="老师名称:" prop="formData.teacherName" borderBottom ref="item1">
-				<u--input v-model="formData.teacherName" border="none"></u--input>
+			<u-form-item label="老师ID:" prop="formData.id" borderBottom ref="item1">
+				<u--input v-model="formData.id" border="none"></u--input>
 			</u-form-item>	
-			<u-form-item label="带入状态:" prop="formData.bringStatus" borderBottom ref="item1">
-				<u-switch v-model="formData.bringStatus" @change="bringStatusChange"></u-switch>
+			<u-form-item label="老师名称:" prop="formData.markName" borderBottom ref="item1">
+				<u--input v-model="formData.markName" border="none"></u--input>
 			</u-form-item>	
-			<u-form-item label="带入开关:" prop="formData.bringSwitch" borderBottom ref="item1">
-				<u-switch v-model="formData.bringSwitch" @change="bringSwitchChange"></u-switch>
+			<u-form-item label="带入状态:" prop="formData.status" borderBottom ref="item1">
+				<u-switch v-model="formData.status" @change="bringStatusChange"></u-switch>
 			</u-form-item>	
-			<u-form-item label="班费押金:" prop="formData.classDeposit" borderBottom ref="item1">
-				<u--input v-model="formData.classDeposit" border="none"></u--input>
+			<u-form-item label="带入开关:" prop="formData.bring" borderBottom ref="item1">
+				<u-switch v-model="formData.bring" @change="bringSwitchChange"></u-switch>
 			</u-form-item>	
-			<u-form-item label="班费信用金:" prop="formData.classCredit" borderBottom ref="item1">
-				<u--input v-model="formData.classCredit" border="none"></u--input>
+			<u-form-item label="班费押金:" prop="formData.deposit" borderBottom ref="item1">
+				<u--input v-model="formData.deposit" border="none"></u--input>
+			</u-form-item>	
+			<u-form-item label="班费信用金:" prop="formData.creditScore" borderBottom ref="item1">
+				<u--input v-model="formData.creditScore" border="none"></u--input>
 			</u-form-item>
 			
 			<u-button class="submit-button" :custom-style="customStyle" type="primary" @click="openUpdateModule">修改</u-button>
@@ -41,16 +44,16 @@
 			return {
 				showSex: false,
 				formData: {
-					teacherId: '',
-					teacherName: '',
-					bringStatus: false,
-					bringSwitch: false,
-					classDeposit: '',
-					classCredit: '',
+					id: '',
+					markName: '',
+					status: false,
+					bring: false,
+					deposit: '',
+					creditScore: '',
 				},
 				rules: {
-					// 'formData.teacherId': {type: 'string',required: true,message: '请填写Id',trigger: ['blur', 'change']},
-					// 'formData.teacherName': {type: 'string',required: true,message: '请填写姓名',trigger: ['blur', 'change']},
+					// 'formData.id': {type: 'string',required: true,message: '请填写Id',trigger: ['blur', 'change']},
+					// 'formData.markName': {type: 'string',required: true,message: '请填写姓名',trigger: ['blur', 'change']},
 				},
 				radio: '',
 				switchVal: false,
@@ -99,6 +102,33 @@
 			closeModal(){
 				this.modalShow = false;
 			},
+			
+			// 获取班级信息
+			getClassInfo(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+				}
+				uni.showLoading({
+					title: '加载中'
+				});
+				uni.$u.http.post('/app/api/class/info', params).then(res => {
+					if(res.code == 0){
+						console.log("res",res)
+						this.formData = res.data;
+						this.formData.bring = this.formData.bring == 0 ? false : true;
+						this.formData.status = this.formData.status == 0 ? false : true;
+						//隐藏加载框
+						uni.hideLoading();
+					}
+				}).catch((err) =>{
+					this.$api.msg("加载失败");
+					//隐藏加载框
+					uni.hideLoading();
+				})
+			},
+		},
+		created() {
+			this.getClassInfo();
 		}
 
 	}

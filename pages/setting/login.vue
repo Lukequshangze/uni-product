@@ -166,7 +166,7 @@
 
 <style lang="scss">
 	.login-top {
-		margin-top: 50px;
+		padding-top: 50px;
 
 		.login-title {
 			font-size: 33px;
