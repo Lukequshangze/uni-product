@@ -6,7 +6,7 @@
 		<u-swiper />
 		<view>
 			<view class="">
-				<u-datetime-picker :show="pickerShow" v-model="valueTime" mode="date" @confirm="getDate"
+			<!-- 	<u-datetime-picker :show="pickerShow" v-model="valueTime" mode="date" @confirm="getDate"
 					@close="pickerClose" @change="changeStartTime"></u-datetime-picker>
 				<view class="search-box">
 					<u--input shape="circle" placeholder="起始时间" border="surround" v-model="startTime"
@@ -14,24 +14,27 @@
 					<span class="time-line"> - </span>
 					<u--input shape="circle" placeholder="结束时间" border="surround" v-model="endTime"
 						@focus="selectEndTime"></u--input>
+				</view> -->
+				<view class="" style="display: flex;margin-top: 10px;">
+					<text style="position: relative;top: 5px;margin-right: 10px;">分组名: </text>
+					<u-input placeholder="请输入分组名" v-model="searchForm.gn"></u-input>
 				</view>
 				<view class="query-content">
 					<view class="query-content-select">
-						<uni-data-select v-model="chosetype" :localdata="studentSelect"
-							@change="change"></uni-data-select>
+						<uni-data-select v-model="chosetype" :localdata="studentSelect"></uni-data-select>
 					</view>
 					<view class="query-content-input">
 						<view class="u-demo-block__content">
 							<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
 							<!-- #ifndef APP-NVUE -->
-							<u-input placeholder="请输入">
+							<u-input placeholder="请输入" v-model="searchForm.valueData">
 							<!-- #endif -->
 								<!-- #ifdef APP-NVUE -->
 								<u--input placeholder="请输入">
 								<!-- #endif -->
 									<template slot="suffix">
 										<!-- @tap 手指触摸离开时触发 -->
-										<u-button @tap="getStudentList" :text="tips" type="primary"
+										<u-button @tap="getCourseManageList" :text="tips" type="primary"
 											size="mini">查询</u-button>
 									</template>
 							<!-- #ifndef APP-NVUE -->
@@ -44,19 +47,29 @@
 					</view>
 				</view>
 			</view>
-			<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
-				<view class="claim-content-bottom">
-					<view class="left-range">
-						juneji23
-					</view>
-					<view class="left-range">
-						所属: 2016
-					</view>
-					<view class="left-range">
-						备注: jaz5
-					</view>
-					<view class="left-range">
-						<u-button type="primary" text="详情" size="mini"></u-button>
+			<!-- 无数据时 -->
+			<view style="margin-top: 15px;" class="" v-if="!indexList || indexList.length===0">
+				<u-empty
+				        mode="data"
+				        icon="http://cdn.uviewui.com/uview/empty/data.png"
+				>
+				</u-empty>
+			</view>
+			<view class="" v-if="!indexList || indexList.length>0">
+				<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
+					<view class="claim-content-bottom">
+						<view class="left-range">
+							{{ item.sn }}
+						</view>
+						<view class="left-range">
+							{{ item.anLabel }}{{ item.an }}
+						</view>
+						<view class="left-range">
+							{{ item.cnLabel }}{{ item.cn }}
+						</view>
+						<view class="left-range">
+							<u-button type="primary" text="详情" size="mini"></u-button>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -79,32 +92,20 @@
 				startTime: "",
 				endTime: "",
 				inputType: "start",
-
+				searchForm: {
+					uid: "",
+					nk: "",
+					cn: "",
+					an: "",
+					page: 1,
+					limit: 20,
+					gn: "",
+					valueData: "",
+				},
 				datalist: [],
-				indexList: [
-					{
-						name:"KK疯狂中nuts",
-						time:"2023-09-06"
-					},
-					{
-						name:"KK疯狂中nutsaaa",
-						time:"2023-09-06"
-					},
-					{
-						name:"KK疯狂中nutsv",
-						time:"2023-09-06"
-					},
-					{
-						name:"KK疯狂中",
-						time:"2023-09-06"
-					},
-					{
-						name:"KK疯狂中nuts",
-						time:"2023-09-06"
-					},
-				],
+				indexList: [],
 				
-				chosetype: 0,
+				chosetype: "",
 				studentSelect: [{
 						value: 0,
 						text: "ID"
@@ -154,66 +155,74 @@
 			];
 		},
 		methods: {
-			// 获取选择时间的时间戳
-			getDate(e) {
-				// e.value为选中事件的时间戳   e.mode为事件格式
-				console.log(e)
-				this.pickerClose();
+			// 获取老师管理信息
+			getCourseManageList(type){
+				if(this.chosetype === 0){
+					this.searchForm.uid = Number(this.searchForm.valueData);
+					this.searchForm.nk = "";
+					this.searchForm.cn = "";
+					this.searchForm.an = "";
+				}else if(this.chosetype === 1){
+					this.searchForm.nk = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.cn = "";
+					this.searchForm.an = "";
+				}else if(this.chosetype === 2){
+					this.searchForm.cn = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.an = "";
+					this.searchForm.nk = "";
+				}else if(this.chosetype === 3){
+					this.searchForm.an = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.nk = "";
+					this.searchForm.cn = "";
+				}
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					nk: this.searchForm.nk,
+					an: this.searchForm.an,         // 所属
+					cn: this.searchForm.cn,         // 所属
+					uid: this.searchForm.uid,
+					gn: this.searchForm.gn,         // 分组名
+					page: this.searchForm.page,
+					limit: this.searchForm.limit,   // 默认 20
+					start: "",
+				}
+				uni.showLoading({
+					title: '加载中'
+				});
+				uni.$u.http.post('/app/api/sys/courselist', params).then(res => {
+					if(res.code == 0){
+						this.total = res.data.count;
+						if(type && type==="more"){
+							res.data.itemVoList.forEach(item=>{
+								this.indexList.push(item)
+							})
+						}else{
+							this.indexList = res.data.itemVoList;
+						}
+						uni.hideLoading();
+					}else{
+						this.$api.msg("加载失败");
+					}
+				}).catch((err) =>{
+					//隐藏加载框
+					uni.hideLoading();
+				})
 			},
-			// 关闭时间选择弹窗
-			pickerClose() {
-				this.pickerShow = false;
-			},
-			// 选择起始时间
-			selectStartTime() {
-				this.pickerShow = true;
-				this.inputType = "start";
-				let date = new Date(this.valueTime);
-				this.startTime = this.dateFormatter(
-					"yyyy-MM-dd",
-					date
-				);
-			},
-			// 选择结束时间
-			selectEndTime() {
-				this.pickerShow = true;
-				this.inputType = "end";
-				let date = new Date(this.valueTime);
-				this.endTime = this.dateFormatter(
-					"yyyy-MM-dd",
-					date
-				);
-			},
-			// 修改时间
-			changeStartTime(e) {
-				console.log("e", e)
-				let date = new Date(e.value);
-				if (this.inputType === "start") {
-					this.startTime = this.dateFormatter(
-						"yyyy-MM-dd",
-						date
-					);
-				} else if (this.inputType === "end") {
-					this.endTime = this.dateFormatter(
-						"yyyy-MM-dd",
-						date
-					);
+			async onReachBottom() {
+				if(this.total > this.searchForm.page * this.searchForm.limit){
+					this.searchForm.page += 1;
+					this.getCourseManageList("more");
+				}else{
+					this.$api.msg("已加载全部数据");
 				}
 			},
 
-			// 查询
-			getStudentList() {},
-			
-			// 滚动触底事件
-			scrolltolower() {
-				this.loadmore()
-			},
-			loadmore() {
-				for (let i = 0; i < this.indexList.length; i++) {
-					
-				}
-			}
-
+		},
+		created() {
+			this.getCourseManageList();
 		}
 	}
 </script>

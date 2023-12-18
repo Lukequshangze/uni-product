@@ -6,7 +6,7 @@
 		<u-swiper />
 		<view>
 			<view class="">
-				<u-datetime-picker :show="pickerShow" v-model="valueTime" mode="date" @confirm="getDate"
+			<!-- 	<u-datetime-picker :show="pickerShow" v-model="valueTime" mode="date" @confirm="getDate"
 					@close="pickerClose" @change="changeStartTime"></u-datetime-picker>
 				<view class="search-box">
 					<u--input shape="circle" placeholder="起始时间" border="surround" v-model="startTime"
@@ -14,24 +14,23 @@
 					<span class="time-line"> - </span>
 					<u--input shape="circle" placeholder="结束时间" border="surround" v-model="endTime"
 						@focus="selectEndTime"></u--input>
-				</view>
+				</view> -->
 				<view class="query-content">
 					<view class="query-content-select">
-						<uni-data-select v-model="chosetype" :localdata="studentSelect"
-							@change="change"></uni-data-select>
+						<uni-data-select v-model="chosetype" :localdata="studentSelect"></uni-data-select>
 					</view>
 					<view class="query-content-input">
 						<view class="u-demo-block__content">
 							<!-- 注意:由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
 							<!-- #ifndef APP-NVUE -->
-							<u-input placeholder="请输入">
+							<u-input placeholder="请输入" v-model="searchForm.valueData">
 							<!-- #endif -->
 								<!-- #ifdef APP-NVUE -->
 								<u--input placeholder="请输入">
 								<!-- #endif -->
 									<template slot="suffix">
 										<!-- @tap 手指触摸离开时触发 -->
-										<u-button @tap="getStudentList" :text="tips" type="primary"
+										<u-button @tap="getTeacherManageList" :text="tips" type="primary"
 											size="mini">查询</u-button>
 									</template>
 							<!-- #ifndef APP-NVUE -->
@@ -44,80 +43,90 @@
 					</view>
 				</view>
 			</view>
-			<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
-				<view class="">
-					<uni-row class="demo-uni-row" :width="nvueWidth">
-						<uni-col :span="6">
-							<view class="demo-uni-col dark">
-								上:abe-bella
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col light">
-								输赢:3000
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col dark">
-								战奖罚:-0.25
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col light" style="display: flex;">
-								<span>状态:</span>
-								<u-switch size="14" style="position: relative;top: 5px;left: 3px;" v-model="bringStatus" @change="bringStatusChange"></u-switch>
-							</view>
-						</uni-col>
-					</uni-row>
-					
-					<uni-row class="demo-uni-row" :width="nvueWidth">
-						<uni-col :span="6">
-							<view class="demo-uni-col dark" style="font-size: 10px;color: #d9001b;">
-								名称：2/4级别
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col light">
-								信额:300
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col dark">
-								基奖罚:-0.1
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col light" style="display: flex;">
-								<span>带入:</span>
-								<u-switch size="14" style="position: relative;top: 5px;left: 3px;" v-model="bringSwitch" @change="bringStatusChange"></u-switch>
-							</view>
-						</uni-col>
-					</uni-row>
-					<uni-row class="demo-uni-row" :width="nvueWidth">
-						<uni-col :span="6">
-							<view class="demo-uni-col dark">
-								返比:0.98
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col light">
-								押金:30000
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col dark">
-								禁    用:否
-							</view>
-						</uni-col>
-						<uni-col :span="6">
-							<view class="demo-uni-col light" style="width: 40px;">
-								<u-button type="primary" text="编辑" size="mini"></u-button>
-							</view>
-						</uni-col>
-					</uni-row>
+			<!-- 无数据时 -->
+			<view style="margin-top: 15px;" class="" v-if="!indexList || indexList.length===0">
+				<u-empty
+				        mode="data"
+				        icon="http://cdn.uviewui.com/uview/empty/data.png"
+				>
+				</u-empty>
+			</view>
+			<view class="" v-if="!indexList || indexList.length>0">
+				<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 12px;">
+					<view class="">
+						<uni-row class="demo-uni-row" :width="nvueWidth">
+							<uni-col :span="6">
+								<view class="demo-uni-col dark">
+									{{ item.pNameLabel }}:{{ item.pName }}
+								</view>
+							</uni-col>
+							<uni-col :span="8">
+								<view class="demo-uni-col light">
+									{{ item.qwlLabel }}:{{ item.qwl }}
+								</view>
+							</uni-col>
+							<uni-col :span="6">
+								<view class="demo-uni-col dark">
+									{{ item.yozsrLabel }}:{{ item.yozsr }}
+								</view>
+							</uni-col>
+							<uni-col :span="4">
+								<view class="demo-uni-col light" style="display: flex;">
+									<span>状态:</span>
+									<u-switch size="14" style="position: relative;top: 5px;left: 3px;" v-model="item.status" @change="bringStatusChange"></u-switch>
+								</view>
+							</uni-col>
+						</uni-row>
+						
+						<uni-row class="demo-uni-row" :width="nvueWidth">
+							<uni-col :span="6">
+								<view class="demo-uni-col dark" style="font-size: 10px;color: #d9001b;">
+									{{ item.nameLabel }}:{{ item.name }}
+								</view>
+							</uni-col>
+							<uni-col :span="8">
+								<view class="demo-uni-col light">
+									{{ item.csLabel }}:{{ item.cs }}
+								</view>
+							</uni-col>
+							<uni-col :span="6">
+								<view class="demo-uni-col dark">
+									{{ item.erLabel }}:{{ item.er }}
+								</view>
+							</uni-col>
+							<uni-col :span="4">
+								<view class="demo-uni-col light" style="display: flex;">
+									<span>带入:</span>
+									<u-switch size="14" style="position: relative;top: 5px;left: 3px;" v-model="item.bring" @change="bringStatusChange"></u-switch>
+								</view>
+							</uni-col>
+						</uni-row>
+						<uni-row class="demo-uni-row" :width="nvueWidth">
+							<uni-col :span="6">
+								<view class="demo-uni-col dark">
+									{{ item.ratioLabel }}:{{ item.ratio }}
+								</view>
+							</uni-col>
+							<uni-col :span="8">
+								<view class="demo-uni-col light">
+									{{ item.recLabel }}:{{ item.rec }}
+								</view>
+							</uni-col>
+							<uni-col :span="6">
+								<view class="demo-uni-col dark">
+									{{ item.boundLabel }}:{{ item.bound === 0 ? '否' : '是'}}
+								</view>
+							</uni-col>
+							<uni-col :span="4">
+								<view class="demo-uni-col light" style="width: 40px;">
+									<u-button type="primary" text="编辑" size="mini"></u-button>
+								</view>
+							</uni-col>
+						</uni-row>
+					</view>
+					<view class=""></view>
+					<view class=""></view>
 				</view>
-				<view class=""></view>
-				<view class=""></view>
 			</view>
 		</view>
 		<!-- 底部导航栏组件 -->
@@ -140,49 +149,25 @@
 				inputType: "start",
 
 				datalist: [],
-				
-				bringStatus: false,// 状态
-				bringSwitch: false,// 状态
-				indexList: [
-					{
-						name:"KK疯狂中nuts",
-						time:"2023-09-06"
-					},
-					{
-						name:"KK疯狂中nutsaaa",
-						time:"2023-09-06"
-					},
-					{
-						name:"KK疯狂中nutsv",
-						time:"2023-09-06"
-					},
-					{
-						name:"KK疯狂中",
-						time:"2023-09-06"
-					},
-					{
-						name:"KK疯狂中nuts",
-						time:"2023-09-06"
-					},
-				],
-				
-				chosetype: 0,
+				searchForm: {
+					nk: "",
+					aid: "",
+					page: 1,
+					limit: 20,
+					valueData: "",
+				},
+				// bringStatus: false,// 状态
+				// bringSwitch: false,// 状态
+				indexList: [],
+				chosetype: "",
 				studentSelect: [{
 						value: 0,
-						text: "ID"
+						text: "老师ID"
 					},
 					{
 						value: 1,
-						text: "名称"
-					},
-					{
-						value: 2,
-						text: "备注"
-					},
-					{
-						value: 4,
-						text: "所属"
-					},
+						text: "老师名称"
+					}
 				],
 			}
 		},
@@ -204,78 +189,73 @@
 				{
 					text: "ID",
 					value: "1"
-				},
-				{
-					text: "备注",
-					value: "2"
-				},
-				{
-					text: "所属",
-					value: "3"
 				}
 			];
 		},
 		methods: {
-			// 获取选择时间的时间戳
-			getDate(e) {
-				// e.value为选中事件的时间戳   e.mode为事件格式
-				console.log(e)
-				this.pickerClose();
+			// 获取老师管理信息
+			getTeacherManageList(type){
+				if(this.chosetype === 0){
+					this.searchForm.aid = Number(this.searchForm.valueData);
+					this.searchForm.nk = "";
+				}else if(this.chosetype === 1){
+					this.searchForm.nk = this.searchForm.valueData;
+					this.searchForm.aid = "";
+				}
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					an: this.searchForm.nk,
+					aid: this.searchForm.aid,
+					page: this.searchForm.page,
+					limit: this.searchForm.limit,   // 默认 20
+					start: "",
+				}
+				uni.showLoading({
+					title: '加载中'
+				});
+				uni.$u.http.post('/app/api/sys/teachlist', params).then(res => {
+					if(res.code == 0){
+						this.total = res.data.count;
+						if(type && type==="more"){
+							res.data.itemVoList.forEach(item=>{
+								this.indexList.push(item)
+							})
+						}else{
+							this.indexList = res.data.itemVoList;
+						}
+						this.indexList.forEach(item=>{
+							if(item.status === 0){
+								item.status = false;
+							}else{
+								item.status = true;
+							}
+							
+							if(item.bring === 0){
+								item.bring = false;
+							}else{
+								item.bring = true;
+							}
+						})
+						uni.hideLoading();
+					}else{
+						this.$api.msg("加载失败");
+					}
+				}).catch((err) =>{
+					//隐藏加载框
+					uni.hideLoading();
+				})
 			},
-			// 关闭时间选择弹窗
-			pickerClose() {
-				this.pickerShow = false;
-			},
-			// 选择起始时间
-			selectStartTime() {
-				this.pickerShow = true;
-				this.inputType = "start";
-				let date = new Date(this.valueTime);
-				this.startTime = this.dateFormatter(
-					"yyyy-MM-dd",
-					date
-				);
-			},
-			// 选择结束时间
-			selectEndTime() {
-				this.pickerShow = true;
-				this.inputType = "end";
-				let date = new Date(this.valueTime);
-				this.endTime = this.dateFormatter(
-					"yyyy-MM-dd",
-					date
-				);
-			},
-			// 修改时间
-			changeStartTime(e) {
-				console.log("e", e)
-				let date = new Date(e.value);
-				if (this.inputType === "start") {
-					this.startTime = this.dateFormatter(
-						"yyyy-MM-dd",
-						date
-					);
-				} else if (this.inputType === "end") {
-					this.endTime = this.dateFormatter(
-						"yyyy-MM-dd",
-						date
-					);
+			async onReachBottom() {
+				if(this.total > this.searchForm.page * this.searchForm.limit){
+					this.searchForm.page += 1;
+					this.getTeacherManageList("more");
+				}else{
+					this.$api.msg("已加载全部数据");
 				}
 			},
-
-			// 查询
-			getStudentList() {},
-			
-			// 滚动触底事件
-			scrolltolower() {
-				this.loadmore()
-			},
-			loadmore() {
-				for (let i = 0; i < this.indexList.length; i++) {
-					
-				}
-			}
-
+		},
+		created() {
+			this.getTeacherManageList();
 		}
 	}
 </script>
