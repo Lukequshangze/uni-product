@@ -32,7 +32,7 @@
 					},
 					{
 						"text": "带入",
-						"pagePath": "/pages/bring/index",
+						"pagePath": "/pages/home/bringContent",
 						"iconPath": "/static/tabbar/bring.png",
 						"selectedIconPath": "/static/tabbar/bring-active.png"
 					},

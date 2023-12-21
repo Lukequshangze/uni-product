@@ -82,6 +82,7 @@
 			},
 			// 登录表单提交
 			submit() {
+				console.log("this.form.graphicVerifyCode",this.form.graphicVerifyCode)
 				let validate = this.mcaptcha.validate(this.form.graphicVerifyCode)
 				console.log("validate",validate)
 				// 用户名、密码、验证码都输入
