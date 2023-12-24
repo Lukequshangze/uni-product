@@ -30,7 +30,7 @@
 								<!-- #endif -->
 									<template slot="suffix">
 										<!-- @tap 手指触摸离开时触发 -->
-										<u-button @tap="getTeacherManageList" :text="tips" type="primary"
+										<u-button @tap="getTeacherManageList" type="primary"
 											size="mini">查询</u-button>
 									</template>
 							<!-- #ifndef APP-NVUE -->
@@ -54,7 +54,7 @@
 			<view class="" v-if="!indexList || indexList.length>0">
 				<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 12px;">
 					<view class="">
-						<uni-row class="demo-uni-row" :width="nvueWidth">
+						<uni-row class="demo-uni-row">
 							<uni-col :span="6">
 								<view class="demo-uni-col dark">
 									{{ item.pNameLabel }}:{{ item.pName }}
@@ -78,7 +78,7 @@
 							</uni-col>
 						</uni-row>
 						
-						<uni-row class="demo-uni-row" :width="nvueWidth">
+						<uni-row class="demo-uni-row">
 							<uni-col :span="6">
 								<view class="demo-uni-col dark" style="font-size: 10px;color: #d9001b;">
 									{{ item.nameLabel }}:{{ item.name }}
@@ -101,7 +101,7 @@
 								</view>
 							</uni-col>
 						</uni-row>
-						<uni-row class="demo-uni-row" :width="nvueWidth">
+						<uni-row class="demo-uni-row">
 							<uni-col :span="6">
 								<view class="demo-uni-col dark">
 									{{ item.ratioLabel }}:{{ item.ratio }}
@@ -119,7 +119,7 @@
 							</uni-col>
 							<uni-col :span="4">
 								<view class="demo-uni-col light" style="width: 40px;">
-									<u-button type="primary" text="编辑" size="mini"></u-button>
+									<u-button type="primary" @click="openModelTeacher(item)" text="编辑" size="mini"></u-button>
 								</view>
 							</uni-col>
 						</uni-row>
@@ -128,6 +128,109 @@
 					<view class=""></view>
 				</view>
 			</view>
+			<!-- 编辑弹出层 -->
+			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalTeacherEdit" mode="bottom" :round="12" @close="closeModelTeacher" closeable closeOnClickOverlay safeAreaInsetBottom>
+				<view style="height: 50vh;" class="teacher-edit">
+					<u--form
+							labelPosition="left"
+							:model="teacherObj"
+							ref="uForm"
+							labelWidth="140rpx"
+					>
+						<view class="teacher-edit-title">
+							老师编辑
+						</view>
+						<view class="teacher-edit-content">
+							<u-form-item
+									label="上级老师:"
+									ref="item1"
+									style="width: 49%;"
+							>
+								<view class="">
+									{{ teacherObj.pName }}
+								</view>
+							</u-form-item>
+							<u-form-item
+									label="是否禁用:"
+									ref="item1"
+									style="width: 49%;margin-left: 2%;"
+							>
+								<u-switch size="14" style="position: relative;top: 4px;left: 3px;" v-model="teacherObj.bound" @change="editUseChange"></u-switch>
+							</u-form-item>
+						</view>
+						<view class="teacher-edit-content">
+							<u-form-item
+									label="老师名称:"
+									ref="item1"
+									style="width: 49%;"
+							>
+								<view class="">
+									{{ teacherObj.name }}
+								</view>
+							</u-form-item>
+							<u-form-item
+									label="剩余额度:"
+									ref="item1"
+									style="width: 49%;margin-left: 2%;position: relative;top: 3px;"
+							>
+								<text>{{ teacherObj.rec }}</text>
+							</u-form-item>
+						</view>
+						<view class="teacher-edit-content">
+							<u-form-item
+									label="返比比例:"
+									ref="item1"
+									style="width: 49%;"
+							>
+								<u--input v-model="teacherObj.ratio" style="height: 18px;"></u--input>
+							</u-form-item>
+							<u-form-item
+									label="信用额度:"
+									ref="item1"
+									style="width: 49%;margin-left: 2%"
+							>
+								<u--input v-model="teacherObj.cs" style="height: 18px;"></u--input>
+							</u-form-item>
+						</view>
+						<view class="teacher-edit-content">
+							<u-form-item
+									label="基金奖罚:"
+									ref="item1"
+									style="width: 49%;"
+							>
+								<u--input v-model="teacherObj.er" style="height: 18px;"></u--input>
+							</u-form-item>
+							<u-form-item
+									label="初始押金:"
+									ref="item1"
+									style="width: 49%;margin-left: 2%"
+							>
+								<u--input v-model="teacherObj.deposit" style="height: 18px;"></u--input>
+							</u-form-item>
+						</view>
+						<view class="teacher-edit-content">
+							<u-form-item
+									label="战绩奖罚:"
+									ref="item1"
+									style="width: 49%;"
+							>
+								<u--input v-model="teacherObj.yozsr" style="height: 18px;"></u--input>
+							</u-form-item>
+							<u-form-item
+									label="输赢额度:"
+									ref="item1"
+									style="width: 49%;margin-left: 2%"
+							>
+								<u--input v-model="teacherObj.qwl" style="height: 18px;"></u--input>
+							</u-form-item>
+						</view>
+					</u--form>
+					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+						<u-button type="primary" text="确定" @click="submitTeacherForm" style="width: 30%;"></u-button>
+						<u-button type="info" text="取消" @click="closeModelTeacher" style="width: 30%;"></u-button>
+					</view>
+				</view>
+			</u-popup>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -169,6 +272,10 @@
 						text: "老师名称"
 					}
 				],
+				teacherObj: {
+					name: 1
+				},
+				showModalTeacherEdit: false,
 			}
 		},
 		components: {
@@ -253,6 +360,65 @@
 					this.$api.msg("已加载全部数据");
 				}
 			},
+			
+			// 编辑
+			// 打开编辑弹出层
+			openModelTeacher(item){
+				this.showModalTeacherEdit = true;
+				this.teacherObj = item;
+				if(this.teacherObj.bound == 1){
+					this.teacherObj.bound = true;
+				}else{
+					this.teacherObj.bound = false;
+				}
+				console.log("it",item)
+			},
+			// 关闭编辑弹出层
+			closeModelTeacher(item){
+				this.showModalTeacherEdit = false;
+			},
+			
+			// 提交表单
+			submitTeacherForm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					id: this.teacherObj.id,		   // 主键id
+					name: this.teacherObj.name,     // 昵称
+					bound: this.teacherObj.bound == 0 || this.teacherObj.bound == false ? 0 : 1,   // 是否禁用 1:是；0:否
+					ratio: Number(this.teacherObj.ratio),   // 返比
+					status: this.teacherObj.status == false || this.teacherObj.status == 0 ? 0 : 1,   // 带入状态 0:自动；1:手动
+					er: Number(this.teacherObj.er),   // 基奖罚
+					yozsr: Number(this.teacherObj.yozsr),   // 战奖罚
+					pId: this.teacherObj.pid,   // 上级老师id
+					pName: this.teacherObj.pName,   // 上级老师名称
+					bring: this.teacherObj.bring === true ? 1 : 0,   // 带入开关 1:开启，0:关闭
+					cs: this.teacherObj.cs,   // 信额
+					deposit: Number(this.teacherObj.deposit),   // 押金
+					qwl: this.teacherObj.qwl,   // 输额
+					rec: this.teacherObj.rec,   // 当前剩额
+				}
+			
+				uni.$u.http.post('/app/api/sys/teach/edit', params).then(res => {
+					if(res.code == 0){
+						this.getTeacherManageList("update");   // 刷新列表
+						this.showModalTeacherEdit = false;  // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("修改成功");
+						},200)
+					}else{
+						this.$api.msg(res.msg);
+						this.showModalTeacherEdit = false;
+					}
+				}).catch((err) =>{
+					//隐藏加载框
+					uni.hideLoading();
+				})
+			},
+			
+			// 禁用修改
+			editUseChange(){
+				
+			},
 		},
 		created() {
 			this.getTeacherManageList();
@@ -335,6 +501,20 @@
 			.u-button--mini{
 				min-width: 0 !important;
 			}
+		}
+	}
+	.teacher-edit{
+		.teacher-edit-title{
+			display: flex;
+			justify-content: center;
+			text-align: center;
+			color: #000;
+			font-size: 20px;
+			font-weight: bold;
+			margin: 10px 0 15px 0;
+		}
+		.teacher-edit-content{
+			display: flex;
 		}
 	}
 </style>

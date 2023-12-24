@@ -109,7 +109,7 @@
 				console.log("103",resultData)
 				if(resultData[0] === "101"){
 					uni.navigateTo({
-						url: "/"
+						url: "/pages/home/index"
 					})
 				}else if(resultData[0] === 102){
 					uni.navigateTo({

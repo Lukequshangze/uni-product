@@ -68,6 +68,7 @@
 
 		},
 		onReady() {
+			console.log("this.mcaptcha",this.mcaptcha)
 			this.mcaptcha = new Mcaptcha({
 				el: 'canvas',
 				width: 80,
@@ -78,15 +79,16 @@
 		methods: {
 			// 刷新验证码
 			updateImageCode() {
+				console.log("this.mcaptcha",this.mcaptcha)
 				this.mcaptcha.refresh()
 			},
 			// 登录表单提交
 			submit() {
-				console.log("this.form.graphicVerifyCode",this.form.graphicVerifyCode)
-				let validate = this.mcaptcha.validate(this.form.graphicVerifyCode)
-				console.log("validate",validate)
 				// 用户名、密码、验证码都输入
 				if(this.form.userName && this.form.passWord && this.form.graphicVerifyCode){
+					let validate = this.mcaptcha.validate(this.form.graphicVerifyCode)
+					console.log("this.form.graphicVerifyCode",this.form.graphicVerifyCode)
+					console.log("validate",validate)
 					if (!validate) {
 						this.$refs.uToast.show({
 							type: "error",

@@ -52,12 +52,63 @@
 							{{ item.csLabel }}{{ item.cs }}
 						</view>
 						<view class="left-range" style="display: flex">
-							<u-button type="primary" text="额备" size="mini"></u-button>
-							<u-button type="primary" text="移除" size="mini" style="margin-left: 5px;"></u-button>
+							<u-button type="primary" text="额备" @click="openModelGroupAchieve(item)" size="mini"></u-button>
+							<u-button type="primary" text="移除" @click="openRemoveBtn(item)" size="mini" style="margin-left: 5px;"></u-button>
 						</view>
 					</view>
 				</view>
 			</view>
+			
+			<!-- 额备 -->
+			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalGroupAchieve" mode="bottom" :round="12" @close="closeModelGroupAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+				<view style="height: 40vh;">
+					<u--form
+							labelPosition="left"
+							:model="model1"
+							ref="uForm"
+							labelWidth="200rpx"
+					>
+					<u-form-item
+							label="分组ID"
+							ref="item1"
+							borderBottom
+					>
+						<u--input
+								v-model="model1.userInfo.gId"
+								border="none"
+								disabled
+						></u--input>
+					</u-form-item>
+					<u-form-item
+							label="分组名称"
+							ref="item1"
+							borderBottom
+					>
+						<u--input
+								v-model="model1.userInfo.name"
+								border="none"
+								disabled
+						></u--input>
+					</u-form-item>
+						<u-form-item
+								label="分组信额"
+								ref="item1"
+								borderBottom
+						>
+							<u--input
+									v-model="model1.userInfo.cs"
+									border="none"
+							></u--input>
+						</u-form-item>
+					</u--form>
+					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+						<u-button type="primary" text="确定" @click="submitForm" style="width: 30%;"></u-button>
+						<u-button type="info" text="取消" @click="closeModelGroupAchieve" style="width: 30%;"></u-button>
+					</view>
+				</view>
+			</u-popup>
+			<!-- 移除模态框 -->
+			<u-modal :show="removeModel" :content='removeContent' @confirm="removeConfirm" @cancel="removeCancel" showCancelButton></u-modal>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -73,6 +124,7 @@
 		data() {
 			return {
 				pickerShow: false,
+				showModalGroupAchieve: false,
 				valueTime: Number(new Date()),
 				startTime: "",
 				endTime: "",
@@ -82,6 +134,16 @@
 				},
 				datalist: [],
 				indexList: [],
+				removeContent:"确认移除此分组？",
+				removeModel: false,
+				removeObjData: {},
+				model1: {
+					userInfo: {
+						name: '',
+						gId: '',
+						cs: '',
+					},
+				},
 			}
 		},
 		components: {
@@ -117,6 +179,81 @@
 					//隐藏加载框
 					uni.hideLoading();
 				})
+			},
+			
+			// 打开额备弹出层
+			openModelGroupAchieve(item){
+				this.showModalGroupAchieve = true;
+				this.model1.userInfo.gId = item.gId;
+				this.model1.userInfo.name = item.gn;
+				this.model1.userInfo.cs = item.cs;
+			},
+			
+			// 关闭额备弹出层
+			closeModelGroupAchieve(item){
+				this.showModalGroupAchieve = false;
+			},
+			
+			// 提交表单
+			submitForm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					gId: this.model1.userInfo.gId,
+					cs: Number(this.model1.userInfo.cs),
+					gn: this.model1.userInfo.name,
+				}
+				if(!this.model1.userInfo.cs && this.model1.userInfo.cs !==0){
+					this.$api.msg("请输入额备值...");
+				}else{
+					uni.$u.http.post('/app/api/sys/group/edit', params).then(res => {
+						if(res.code == 0){
+							this.showModalGroupAchieve = false;
+							this.getGroupManageList();
+							setTimeout(()=>{
+								this.$api.msg("修改成功");
+							},200)
+						}else{
+							this.$api.msg(res.msg);
+							this.showModalGroupAchieve = false;
+						}
+					}).catch((err) =>{
+						//隐藏加载框
+						uni.hideLoading();
+					})
+				}
+			},
+			
+			// 移除
+			openRemoveBtn(item){
+				this.removeModel = true;
+				// 存放将要删除的数据
+				this.removeObjData = item;
+			},
+			// 确认移除
+			removeConfirm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					gId: this.removeObjData.gId,
+					cs: this.removeObjData.cs,
+					gn: this.removeObjData.gn,
+				}
+				uni.$u.http.post('/app/api/sys/group/delete', params).then(res => {
+					if(res.code == 0){
+						this.getGroupManageList();   // 刷新列表
+						this.removeModel = false;  // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("移除成功");
+						},200)
+					}else{
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
+			// 移除-取消事件
+			removeCancel(){
+				this.removeModel = false;
 			},
 		},
 		created() {

@@ -3,13 +3,13 @@
 	<view class="content">
 		<u--form labelPosition="left" :model="formData" :rules="rules" ref="uForm" labelWidth="100">
 			<u-form-item label="班级名称:" prop="formData.className" borderBottom ref="item1">
-				<u--input v-model="formData.className" border="none"></u--input>
+				<u--input v-model="formData.className" border="none" disabled></u--input>
 			</u-form-item>	
 			<u-form-item label="老师ID:" prop="formData.id" borderBottom ref="item1">
-				<u--input v-model="formData.id" border="none"></u--input>
+				<u--input v-model="formData.id" border="none" disabled></u--input>
 			</u-form-item>	
 			<u-form-item label="老师名称:" prop="formData.markName" borderBottom ref="item1">
-				<u--input v-model="formData.markName" border="none"></u--input>
+				<u--input v-model="formData.markName" border="none" disabled></u--input>
 			</u-form-item>	
 			<u-form-item label="带入状态:" prop="formData.status" borderBottom ref="item1">
 				<u-switch v-model="formData.status" @change="bringStatusChange"></u-switch>
@@ -18,10 +18,10 @@
 				<u-switch v-model="formData.bring" @change="bringSwitchChange"></u-switch>
 			</u-form-item>	
 			<u-form-item label="班费押金:" prop="formData.deposit" borderBottom ref="item1">
-				<u--input v-model="formData.deposit" border="none"></u--input>
+				<u--input v-model="formData.deposit" border="none" disabled></u--input>
 			</u-form-item>	
 			<u-form-item label="班费信用金:" prop="formData.creditScore" borderBottom ref="item1">
-				<u--input v-model="formData.creditScore" border="none"></u--input>
+				<u--input v-model="formData.creditScore" border="none" disabled></u--input>
 			</u-form-item>
 			
 			<u-button class="submit-button" :custom-style="customStyle" type="primary" @click="openUpdateModule">修改</u-button>
@@ -60,7 +60,7 @@
 				
 				modalShow:false,
 				modalTitle:'提示',
-				modalContent:'确认是否修改？'
+				modalContent:'确认是否修改？',
 			};
 		},
 		components: {
@@ -90,7 +90,28 @@
 			
 			// 点击确认按钮触发
 			confirmSubmit(){
-				this.modalShow = false;
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					id: this.formData.id,
+					status: this.formData.status == false ? 0 : 1,     // 带入状态 0自动， 1手动
+					bring: this.formData.bring == false ? 0 : 1,     // 带入开关 0关闭， 1开启 
+				}
+							
+				uni.$u.http.post('/app/api/class/edit', params).then(res => {
+					if(res.code == 0){
+						this.getClassInfo();
+						this.modalShow = false; // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("修改成功");
+						},200)
+					}else{
+						this.$api.msg(res.msg);
+						this.modalShow = false;
+					}
+				}).catch((err) =>{
+					//隐藏加载框
+					uni.hideLoading();
+				})
 			},
 			
 			// 点击取消按钮触发

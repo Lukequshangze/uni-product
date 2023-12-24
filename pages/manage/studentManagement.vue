@@ -76,8 +76,9 @@
 							</uni-col>
 							<uni-col :span="6">
 								<view class="demo-uni-col light" style="display: flex;">
-									<u-button type="primary" text="额备" size="mini"></u-button>
-									<u-button type="primary" text="分组" size="mini" style="margin-left: 2px;"></u-button>
+									<u-button type="primary" @click="openModelReserveAchieve(item)" text="额备" size="mini"></u-button>
+									<u-button type="primary" @click="openModelGroupStudent(item)" v-if="item.isInGroup === 0" text="分组" size="mini" style="margin-left: 2px;"></u-button>
+									<u-button type="primary" @click="openModelSecureStudent(item)" v-if="item.isInGroup === 1" text="解组" size="mini" style="margin-left: 2px;"></u-button>
 								</view>
 							</uni-col>
 						</uni-row>
@@ -100,8 +101,8 @@
 							</uni-col>
 							<uni-col :span="6">
 								<view class="demo-uni-col light" style="display: flex;">
-									<u-button type="primary" text="充" size="mini"></u-button>
-									<u-button type="primary" text="结" size="mini" style="margin-left: 2px;"></u-button>
+									<u-button type="primary" @click="openModelRechargeStudent(item)" text="充" size="mini"></u-button>
+									<u-button type="primary" @click="openModelSettleStudent(item)" text="结" size="mini" style="margin-left: 2px;"></u-button>
 								</view>
 							</uni-col>
 						</uni-row>
@@ -109,13 +110,15 @@
 						<uni-row class="demo-uni-row">
 							<uni-col :span="18">
 								<view class="demo-uni-col dark">
-									{{ item.groupLabel }}
+									{{ item.groupLabel }} :{{ item.group ? item.group : ' 无' }}
 								</view>
 							</uni-col>
 							<uni-col :span="6">
 								<view class="demo-uni-col light" style="display: flex;">
-									<u-button type="primary" text="移除" size="mini"></u-button>
-									<u-button type="primary" text="拉黑" size="mini" style="margin-left: 2px;"></u-button>
+									<u-button type="primary" @click="openRemoveBtn(item)" text="移除" size="mini">
+									</u-button>
+									<u-button type="primary" @click="openBlockBtn(item)" text="拉黑" size="mini" style="margin-left: 2px;">
+									</u-button>
 								</view>
 							</uni-col>
 						</uni-row>
@@ -124,6 +127,194 @@
 					<view class=""></view>
 				</view>
 			</view>
+			<!-- 移除模态框 -->
+			<u-modal :show="removeModel" :content='removeContent' @confirm="removeConfirm" @cancel="removeCancel" showCancelButton></u-modal>
+			<!-- 拉黑模态框 -->
+			<u-modal :show="blockModel" :content='blockContent' @confirm="blockConfirm" @cancel="blockCancel" showCancelButton></u-modal>
+			<!-- 解除绑定分组 -->
+			<u-modal :show="secureModel" :content='secureContent' @confirm="secureConfirm" @cancel="secureCancel" showCancelButton></u-modal>
+			<!-- 额备弹出层 -->
+			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalReserveAchieve" mode="bottom" :round="12" @close="closeModelReserveAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+				<view style="height: 60vh;">
+					<u--form
+							labelPosition="left"
+							:model="reserveObj"
+							ref="uForm"
+							labelWidth="200rpx"
+					>
+					<u-form-item
+							label="学生ID"
+							ref="item1"
+							borderBottom
+					>
+						<u--input
+								v-model="reserveObj.studentId"
+								border="none"
+								disabled
+						></u--input>
+					</u-form-item>
+					<u-form-item
+							label="学生名称"
+							ref="item1"
+							borderBottom
+					>
+						<u--input
+								v-model="reserveObj.nickName"
+								border="none"
+								disabled
+						></u--input>
+					</u-form-item>
+						<u-form-item
+								label="学生信额"
+								ref="item1"
+								borderBottom
+						>
+							<u--input
+									v-model="reserveObj.creditScore"
+									border="none"
+							></u--input>
+						</u-form-item>
+						<u-form-item
+								label="学生备注1"
+								ref="item1"
+								borderBottom
+						>
+							<u--input
+									v-model="reserveObj.cn1"
+									border="none"
+							></u--input>
+						</u-form-item>
+						<u-form-item
+								label="学生备注2"
+								ref="item1"
+								borderBottom
+						>
+							<u--input
+									v-model="reserveObj.cn2"
+									border="none"
+							></u--input>
+						</u-form-item>
+					</u--form>
+					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+						<u-button type="primary" text="确定" @click="submitReserveForm" style="width: 30%;"></u-button>
+						<u-button type="info" text="取消" @click="closeModelReserveAchieve" style="width: 30%;"></u-button>
+					</view>
+				</view>
+			</u-popup>
+			
+			<!-- 分组弹出层 -->
+			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalGroupStudent" mode="bottom" :round="12" @close="closeModelGroupStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
+				<view style="height: 60vh;">
+					<u--form
+							labelPosition="left"
+							:model="groupStudentObj"
+							ref="uForm"
+							labelWidth="200rpx"
+					>
+					<u-form-item
+							label="学生ID"
+							ref="item1"
+							borderBottom
+					>
+						<u--input
+								v-model="groupStudentObj.studentId"
+								border="none"
+								disabled
+						></u--input>
+					</u-form-item>
+					<u-form-item
+							label="学生名称"
+							ref="item1"
+							borderBottom
+					>
+						<u--input
+								v-model="groupStudentObj.nickName"
+								border="none"
+								disabled
+						></u--input>
+					</u-form-item>
+						<u-form-item
+								label="选择分组"
+								ref="item1"
+								borderBottom
+						>
+							<view class="query-content-select" style="width: 100%;">
+								<uni-data-select v-model="chosetypeGroup" :localdata="studentSelectGroupList"
+									@change="changeStudentSelect"></uni-data-select>
+							</view>
+						</u-form-item>
+					</u--form>
+					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+						<u-button type="primary" text="确定" @click="submitGroupStudentForm" style="width: 30%;"></u-button>
+						<u-button type="info" text="取消" @click="closeModelGroupStudent" style="width: 30%;"></u-button>
+					</view>
+				</view>
+			</u-popup>
+			
+			<!-- 充值弹出层 -->
+			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalRechargeStudent" mode="bottom" :round="12" @close="closeModelRechargeStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
+				<view style="height: 30vh;">
+					<view class="recharge-title">
+						正在为【{{ rechargeObj.nickName }}】充值
+					</view>
+					<u--form
+							labelPosition="left"
+							:model="rechargeObj"
+							ref="uForm"
+							labelWidth="200rpx"
+					>
+					<u-form-item
+							label="追加充值额度:"
+							ref="item1"
+					>
+						<u--input
+								v-model="rechargeObj.rechargeNum"
+						></u--input>
+					</u-form-item>
+					</u--form>
+					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+						<u-button type="primary" text="确定" @click="submitRechargeForm" style="width: 30%;"></u-button>
+						<u-button type="info" text="取消" @click="closeModelRechargeStudent" style="width: 30%;"></u-button>
+					</view>
+				</view>
+			</u-popup>
+			
+			<!-- 结算弹出层 -->
+			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalSettleStudent" mode="bottom" :round="12" @close="closeModelSettleStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
+				<view style="height: 30vh;">
+					<view class="recharge-title">
+						正在为【{{ settlementObj.nickName }}】结算
+					</view>
+					<u--form
+							labelPosition="left"
+							:model="settlementObj"
+							ref="uForm"
+							labelWidth="200rpx"
+					>
+					<u-form-item
+							label="可结算额度"
+							ref="item1"
+					>
+						<u--input
+								v-model="settlementObj.reCredit"
+								disabled
+						></u--input>
+					</u-form-item>
+					<u-form-item
+							label="结算额度:"
+							ref="item1"
+					>
+						<u--input
+								v-model="settlementObj.settlementNum"
+						></u--input>
+					</u-form-item>
+					</u--form>
+					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+						<u-button type="primary" text="确定" @click="submitSettleForm" style="width: 30%;"></u-button>
+						<u-button type="info" text="取消" @click="closeModelSettleStudent" style="width: 30%;"></u-button>
+					</view>
+				</view>
+			</u-popup>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -157,6 +348,12 @@
 					gn:"",
 				},
 				indexList: [],
+				removeContent:"确认移除此学生出班级？",
+				blockContent:"确认拉黑此学生？",
+				removeModel: false,
+				blockModel: false,
+				removeObjData: {},
+				blockObjData: {},
 				
 				chosetype: "",
 				studentSelect: [{
@@ -176,6 +373,36 @@
 						text: "所属"
 					},
 				],
+				
+				// 额备
+				showModalReserveAchieve: false,
+				reserveObj:{
+					cn1: "",
+					cn2: "",
+				},
+				
+				// 分组
+				showModalGroupStudent: false,
+				groupStudentObj:{},
+				chosetypeGroup: "",
+				studentSelectGroupList:[],
+				secureContent:"确认解除分组绑定？",
+				
+				// 解除绑定分组
+				secureModel: false,
+				secureObjData: {},
+				
+				// 充值
+				showModalRechargeStudent: false,
+				rechargeObj: {
+					rechargeNum: "",
+				},
+				
+				// 结算
+				showModalSettleStudent: false,
+				settlementObj:{
+					settlementNum: "",
+				},
 			}
 		},
 		components: {
@@ -249,9 +476,13 @@
 					start: 0,
 					gn: this.searchForm.gn,   						 // 分组名
 				}
-				uni.showLoading({
-					title: '加载中'
-				});
+				if(type != "update"){
+					uni.showLoading({
+						title: '加载中'
+					});
+				}
+				console.log("uni.$u.http",uni.$u.http)
+				// uni.$u.http.config.baseURL = "http://apptest.alianke.com:9092"
 				uni.$u.http.post('/app/api/sys/studentlist', params).then(res => {
 					if(res.code == 0){
 						console.log("res",res)
@@ -276,6 +507,302 @@
 					this.getStudentManage("more");
 				}else{
 					this.$api.msg("已加载全部数据");
+				}
+			},
+			
+			// 移除
+			openRemoveBtn(item){
+				this.removeModel = true;
+				// 存放将要删除的数据
+				this.removeObjData = item;
+			},
+			// 确认移除
+			removeConfirm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					studentId: this.removeObjData.studentId,
+				}
+				uni.$u.http.post('/app/api/sys/player/remove', params).then(res => {
+					if(res.code == 0){
+						this.getStudentManage("update");   // 刷新列表
+						this.removeModel = false;  // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("移除成功");
+						},200)
+					}else{
+						this.removeModel = false;
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
+			// 移除-取消事件
+			removeCancel(){
+				this.removeModel = false;
+			},
+			
+			// 拉黑
+			openBlockBtn(item){
+				if(item.isBlack && item.isBlack === "是"){
+					this.$api.msg("当前学生已拉入黑名单");
+				}else{
+					this.blockModel = true;
+					// 存放将要拉黑的数据
+					this.blockObjData = item;
+				}
+			},
+			// 确认拉黑
+			blockConfirm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					studentId: this.blockObjData.studentId,
+					isBlack: 0,
+				}
+				uni.$u.http.post('/app/api/sys/player/black/edit', params).then(res => {
+					if(res.code == 0){
+						this.getStudentManage("update");   // 刷新列表
+						this.blockModel = false;  // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("当前学生已拉入黑名单");
+						},200)
+					}else{
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					this.$api.msg(err);
+				})
+			},
+			// 拉黑-取消事件
+			blockCancel(){
+				this.blockModel = false;
+			},
+			
+			// 学生额备
+			// 打开额备弹出层
+			openModelReserveAchieve(item){
+				this.showModalReserveAchieve = true;
+				this.reserveObj = item;
+				console.log("it",item)
+			},
+			// 关闭额备弹出层
+			closeModelReserveAchieve(item){
+				this.showModalReserveAchieve = false;
+			},
+			
+			// 提交表单
+			submitReserveForm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					studentId: this.reserveObj.studentId,
+					nickName: this.reserveObj.nickName,
+					cs: this.reserveObj.creditScore,   // 信额
+					cn1: this.reserveObj.cn1,
+					cn2: this.reserveObj.cn2,
+				}
+				if(!this.reserveObj.creditScore && this.reserveObj.creditScore !==0){
+					this.$api.msg("请输入学生信额...");
+				}else{
+					uni.$u.http.post('/app/api/sys/player/edit', params).then(res => {
+						if(res.code == 0){
+							this.getStudentManage("update");   // 刷新列表
+							this.showModalReserveAchieve = false;  // 关闭model框
+							setTimeout(()=>{
+								this.$api.msg("修改成功");
+							},200)
+						}else{
+							this.$api.msg(res.msg);
+							this.showModalReserveAchieve = false;
+						}
+					}).catch((err) =>{
+						//隐藏加载框
+						uni.hideLoading();
+					})
+				}
+			},
+			
+			// 学生分组
+			// 打开分组弹出层
+			openModelGroupStudent(item){
+				this.showModalGroupStudent = true;
+				this.groupStudentObj = item;
+				// 获取分组列表
+				this.getGroupList();
+				console.log("it",item)
+			},
+			
+			getGroupList(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+				}
+				uni.$u.http.post('/app/api/sys/grouplist', params).then(res => {
+					if(res.code == 0){
+						this.total = res.data.count;
+						let groupList = [];
+						groupList = res.data.itemVoList;
+						this.studentSelectGroupList = groupList.map(item => ({
+							value: item.gId,
+							text: item.gn
+						}))
+					}else{
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					
+				})
+			},
+			// 关闭分组弹出层
+			closeModelGroupStudent(item){
+				this.showModalGroupStudent = false;
+			},
+			
+			
+			// 提交表单
+			submitGroupStudentForm(){
+				let gNameStr = "";
+				if(this.studentSelectGroupList && this.studentSelectGroupList.length>0){
+					this.studentSelectGroupList.forEach(item=>{
+						if(item.value === this.chosetypeGroup){
+							gNameStr = item.text;
+						}
+					})
+				}
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					studentId: this.groupStudentObj.studentId,
+					gId: this.chosetypeGroup,
+					gName: gNameStr,
+				}
+				if(!this.chosetypeGroup){
+					this.$api.msg("请选择分组...");
+				}else{
+					uni.$u.http.post('/app/api/sys/player/group/edit', params).then(res => {
+						if(res.code == 0){
+							this.getStudentManage("update");   // 刷新列表
+							this.showModalGroupStudent = false;  // 关闭model框
+							setTimeout(()=>{
+								this.$api.msg("修改成功");
+							},200)
+						}else{
+							this.$api.msg(res.msg);
+							this.showModalGroupStudent = false;
+						}
+					}).catch((err) =>{
+						//隐藏加载框
+						uni.hideLoading();
+					})
+				}
+			},
+			
+			// 解除绑定分组
+			openModelSecureStudent(item){
+				this.secureModel = true;
+				this.secureObjData = item;
+			},
+			// 确认解除绑定分组
+			secureConfirm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					studentId: this.secureObjData.studentId,
+					gId: this.secureObjData.gId,
+					gName: this.secureObjData.gName,
+				}
+				uni.$u.http.post('/app/api/sys/player/group/unbind', params).then(res => {
+					if(res.code == 0){
+						this.getStudentManage("update");   // 刷新列表
+						this.secureModel = false;  // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("解除绑定分组成功");
+						},200)
+					}else{
+						this.secureModel = false;
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
+			// 解除绑定分组-取消事件
+			secureCancel(){
+				this.secureModel = false;
+			},
+			
+			// 学生 - 充
+			// 打开充值弹出层
+			openModelRechargeStudent(item){
+				this.showModalRechargeStudent = true;
+				this.rechargeObj = item;
+				console.log("it",item)
+			},
+			// 关闭充值弹出层
+			closeModelRechargeStudent(item){
+				this.showModalRechargeStudent = false;
+			},
+			
+			// 提交表单
+			submitRechargeForm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					studentId: this.rechargeObj.studentId,
+					sv: Number(this.rechargeObj.rechargeNum),    // 结算金额
+				}
+				if(!this.rechargeObj.rechargeNum && this.rechargeObj.rechargeNum !==0){
+					this.$api.msg("请输入结算金额...");
+				}else{
+					uni.$u.http.post('/app/api/sys/player/rechange', params).then(res => {
+						if(res.code == 0){
+							this.getStudentManage("update");   // 刷新列表
+							this.showModalRechargeStudent = false;  // 关闭model框
+							setTimeout(()=>{
+								this.$api.msg("充值成功");
+							},200)
+						}else{
+							this.$api.msg(res.msg);
+							this.showModalRechargeStudent = false;
+						}
+					}).catch((err) =>{
+						//隐藏加载框
+						uni.hideLoading();
+					})
+				}
+			},
+			// 学生 - 结
+			// 打开结算弹出层
+			openModelSettleStudent(item){
+				this.showModalSettleStudent = true;
+				this.settlementObj = item;
+				console.log("it",item)
+			},
+			// 关闭结算弹出层
+			closeModelSettleStudent(item){
+				this.showModalSettleStudent = false;
+			},
+			
+			// 提交表单
+			submitSettleForm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					studentId: this.settlementObj.studentId,
+					sv: Number(this.settlementObj.settlementNum),    // 结算金额
+				}
+				if(!this.settlementObj.settlementNum && this.settlementObj.settlementNum !==0){
+					this.$api.msg("请输入结算金额...");
+				}else{
+					uni.$u.http.post('/app/api/sys/player/settlement', params).then(res => {
+						if(res.code == 0){
+							this.getStudentManage("update");   // 刷新列表
+							this.showModalSettleStudent = false;  // 关闭model框
+							setTimeout(()=>{
+								this.$api.msg("结算成功");
+							},200)
+						}else{
+							this.$api.msg(res.msg);
+							this.showModalSettleStudent = false;
+						}
+					}).catch((err) =>{
+						//隐藏加载框
+						uni.hideLoading();
+					})
 				}
 			},
 		},
@@ -374,5 +901,13 @@
 		.gn-ipt{
 			width: calc( 100vh - 80px );
 		}
+	}
+	.recharge-title{
+		font-size: 32rpx;
+		font-family: PingFang SC-Semibold, PingFang SC;
+		font-weight: 600;
+		color: #1A1D24;
+		margin-bottom: 26rpx;
+		margin-left: 12rpx;
 	}
 </style>

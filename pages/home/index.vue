@@ -14,9 +14,11 @@
 			@change="changeStartTime"
 		></u-datetime-picker>
 		<view class="search-box">
-			  <u--input shape="circle" placeholder="起始时间" border="surround" v-model="searchForm.startTime" @focus="selectStartTime"></u--input>
-			  <span class="time-line"> - </span>
-			  <u--input shape="circle" placeholder="结束时间" border="surround" v-model="searchForm.endTime" @focus="selectEndTime"></u--input>
+				<u-cell :title="startTimeVal" v-model="searchForm.startTime" @click="selectStartTime" style="width: 49%"></u-cell>
+			  <!-- <u--input shape="circle" placeholder="起始时间" border="surround" v-model="searchForm.startTime" @focus="selectStartTime"></u--input> -->
+			  <span class="time-line" style="width: 1%;"> - </span>
+			  <u-cell title="结束时间" v-model="searchForm.endTime" @click="selectEndTime" style="width: 49%"></u-cell>
+			  <!-- <u--input shape="circle" placeholder="结束时间" border="surround" @click="selectEndTime" v-model="searchForm.endTime"></u--input> -->
 		</view>
 		<view class="search-cond">
 			<span class="search-nk">昵 称: </span>
@@ -72,11 +74,13 @@
 					</view>
 					<view class="claim-content-bottom-right">
 						<span style="display: inline-block;">
-							<u-button type="primary" text="认领" size="mini"></u-button>
+							<u-button type="primary" @click="openAgreeModel(item)" text="认领" size="mini"></u-button>
 						</span>
 					</view>
 				</view>
 			</view>
+			<!-- 领取模态框 -->
+			<u-modal :show="agreeModel" :content='sureContent' @confirm="agreeConfirm" @cancel="agreeCancel" showCancelButton></u-modal>
 		</view>
 		<!-- <view class="u-page">
 			<u-list
@@ -138,7 +142,11 @@
 						name:"KK疯狂中nuts",
 						time:"2023-09-06 11:02"
 					}
-				]
+				],
+				agreeModel: false,
+				agreeObjData: {},
+				sureContent:"确认领取？",
+				startTimeVal: "起始时间 ",
 			}
 		},
 		components:{
@@ -184,12 +192,26 @@
 			},
 			// 选择起始时间
 			selectStartTime() {
+				// 只是解决软键盘的闪现
+				var interval = setInterval(function(){
+				    uni.hideKeyboard();//隐藏软键盘
+				    console.log('刷新')
+			    },20);
+				setTimeout(() => {
+				    clearInterval(interval);
+				    console.log('停止刷新')
+				},3000);
+				
 				this.pickerShow = true;
 				this.inputType = "start";
 				
 			},
 			// 选择结束时间
 			selectEndTime() {
+				// setTimeout(() => {
+				//   uni.hideKeyboard();
+				// }, 50);
+				console.log("dianji")
 				this.pickerShow = true;
 				this.inputType = "end";
 			},
@@ -221,9 +243,9 @@
 					limit: this.searchForm.limit,    // 页码 默认20
 					start: "",
 				}
-				uni.showLoading({
-					title: '加载中'
-				});
+				// uni.showLoading({
+				// 	title: '加载中6'
+				// });
 				uni.$u.http.post('/app/api/main/cm/xylist', params).then(res => {
 					if(res.code == 0){
 						console.log("res",res)
@@ -267,6 +289,39 @@
 					uni.hideLoading();
 				})
 			},
+			
+			// 认领
+			openAgreeModel(item){
+				this.agreeModel = true;
+				// 存放将要删除的数据
+				this.agreeObjData = item;
+			},
+			// 确认认领
+			agreeConfirm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					op: 1,   // 处理状态 1:同意，0:拒绝 |
+					mid: this.agreeObjData.mailId,   // 消息id
+				}
+				uni.$u.http.post('/app/api/main/cm/agree', params).then(res => {
+					if(res.code == 0){
+						this.getClaimList("update");   // 刷新列表
+						this.agreeModel = false;  // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("认领成功");
+						},200)
+					}else{
+						this.agreeModel = false;
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
+			// 认领-取消事件
+			agreeCancel(){
+				this.agreeModel = false;
+			},
 		},
 		created() {
 			this.getClaimList();
@@ -301,7 +356,7 @@
 		.time-line{
 			position: relative;
 			top: 8px;
-			margin: 0 10px;
+			// margin: 0 10px;
 		}
 	}
 	.search-cond{

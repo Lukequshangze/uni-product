@@ -12,11 +12,11 @@
 			    isLink
 			    url="/pages/setting/notifySetting"
 			></u-cell>
-			<u-cell
+	<!-- 		<u-cell
 			    title="切换账号"
 			    isLink
 			    url="/pages/componentsB/badge/badge"
-			></u-cell>
+			></u-cell> -->
 			<u-cell
 			    title="退出"
 			    isLink

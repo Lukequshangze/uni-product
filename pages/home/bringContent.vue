@@ -13,9 +13,13 @@
 			@change="changeStartTime"
 		></u-datetime-picker>
 		<view class="search-box">
-			  <u--input shape="circle" placeholder="起始时间" border="surround" v-model="searchForm.startTime" @focus="selectStartTime"></u--input>
+			  <!-- <u--input shape="circle" placeholder="起始时间" border="surround" v-model="searchForm.startTime" @focus="selectStartTime"></u--input>
 			  <span class="time-line"> - </span>
-			  <u--input shape="circle" placeholder="结束时间" border="surround" v-model="searchForm.endTime" @focus="selectEndTime"></u--input>
+			  <u--input shape="circle" placeholder="结束时间" border="surround" v-model="searchForm.endTime" @focus="selectEndTime"></u--input> -->
+			  
+			  <u-cell title="起始时间" v-model="searchForm.startTime" @click="selectStartTime" style="width: 46%"></u-cell>
+			  <span class="time-line" style="width: 2%;"> - </span>
+			  <u-cell title="结束时间" v-model="searchForm.endTime" @click="selectEndTime" style="width: 46%"></u-cell>
 		</view>
 		<view class="search-cond">
 			<span class="search-nk">昵 称: </span>
@@ -77,12 +81,14 @@
 					</view>
 					<view class="claim-content-bottom-right">
 						<span style="display: flex;">
-							<u-button type="primary" text="同意" size="mini" style="margin-right:15px"></u-button>
-							<u-button text="拒绝" size="mini"></u-button>
+							<u-button type="primary" text="同意" @click="openAgreeModel(item)" size="mini" style="margin-right:15px"></u-button>
+							<u-button text="拒绝" @click="cancelAgreeModel(item)" size="mini"></u-button>
 						</span>
 					</view>
 				</view>
 			</view>
+			<!-- 同意模态框 -->
+			<u-modal :show="agreeModel" :content='sureContent' @confirm="agreeConfirm" @cancel="agreeCancel" showCancelButton></u-modal>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -111,7 +117,12 @@
 					startTime: "",
 					endTime: "",
 				},
-				indexList: []
+				indexList: [],
+				
+				agreeModel: false,
+				agreeObjData: {},
+				sureContent:"确认同意？",
+				agreeType: "",  // agree同意  cancel拒绝
 			}
 		},
 		components:{
@@ -195,7 +206,7 @@
 					start: "",
 				}
 				uni.showLoading({
-					title: '加载中'
+					title: '加载中5'
 				});
 				uni.$u.http.post('/app/api/main/cm/drlist', params).then(res => {
 					if(res.code == 0){
@@ -235,6 +246,52 @@
 				}).catch((err) =>{
 					console.log("err",err)
 				})
+			},
+			
+			// 同意
+			openAgreeModel(item){
+				this.agreeModel = true;
+				this.agreeObjData = item;
+				this.sureContent = "确认同意？";
+				this.agreeType = "agree";
+			},
+			// 拒绝
+			cancelAgreeModel(item){
+				this.agreeModel = true;
+				this.agreeObjData = item;
+				this.sureContent = "确认拒绝？";
+				this.agreeType = "cancel";
+			},
+			// 确认同意
+			agreeConfirm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					op: 1,   // 处理状态 1:同意，0:拒绝 |
+					mid: this.agreeObjData.mailId,   // 消息id
+				}
+				if(this.agreeType === "agree"){
+					params.op = 1;
+				}else if(this.agreeType === "cancel"){
+					params.op = 0;
+				}
+				uni.$u.http.post('/app/api/main/cm/agree', params).then(res => {
+					if(res.code == 0){
+						this.getClaimList("update");   // 刷新列表
+						this.agreeModel = false;  // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("认领成功");
+						},200)
+					}else{
+						this.agreeModel = false;
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
+			// 同意-取消事件
+			agreeCancel(){
+				this.agreeModel = false;
 			},
 		},
 		created() {
