@@ -35,7 +35,7 @@
 			<view style="margin-top: 15px;" class="" v-if="!indexList || indexList.length===0">
 				<u-empty
 				        mode="data"
-				        icon="http://cdn.uviewui.com/uview/empty/data.png"
+				        icon="../../static/icon/no-data-img.png"
 				>
 				</u-empty>
 			</view>
@@ -301,7 +301,7 @@
 
 		.query-content-input {
 			margin-left: 1%; 
-			width: 80%;
+			width: 100%;
 		}
 	}
 	::v-deep {

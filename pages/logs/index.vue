@@ -11,13 +11,17 @@
 					v-model="valueTime"
 					mode="date"
 					@confirm="getDate"
-					@close="pickerClose"
+					@cancel="pickerClose"
 					@change="changeStartTime"
 				></u-datetime-picker>
-				<view class="search-box">
-					  <u--input shape="circle" placeholder="起始时间" border="surround" v-model="searchForm.startTime" @focus="selectStartTime"></u--input>
-					  <span class="time-line"> - </span>
-					  <u--input shape="circle" placeholder="结束时间" border="surround" v-model="searchForm.endTime" @focus="selectEndTime"></u--input>
+				<view class="search-box time-component">
+					<view class="time-component-input" @click="selectStartTime">
+						{{ searchForm.startTime ? searchForm.startTime : "请选择起始时间" }}
+					</view>
+					<span class="time-component-line"></span>
+					<view class="time-component-input" @click="selectEndTime">
+						{{ searchForm.endTime ? searchForm.endTime : "请选择结束时间" }}
+					</view>
 				</view>
 				<view class="query-content">
 					<view class="query-content-select">

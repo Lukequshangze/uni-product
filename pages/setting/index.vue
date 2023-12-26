@@ -20,10 +20,12 @@
 			<u-cell
 			    title="退出"
 			    isLink
-			    url="/pages/setting/login"
+			    @click="openLoginOut"
 			></u-cell>
 		</u-cell-group>
 		
+		<!-- 登出模态框 -->
+		<u-modal :show="logoutModel" :content='removeContent' @confirm="logoutConfirm" @cancel="logoutCancel" showCancelButton></u-modal>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
 	</view>
@@ -35,7 +37,9 @@
 	export default {
 		data() {
 			return {
-				title: '设置'
+				title: '设置',
+				logoutModel: false,
+				removeContent: "确认退出登录？"
 			}
 		},
 		components:{
@@ -49,7 +53,30 @@
 
 		},
 		methods: {
-
+			openLoginOut(){
+				this.logoutModel = true;
+			},
+			logoutConfirm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+				}
+				uni.$u.http.post('/app/oauth/api/logout', params).then(res => {
+					if(res.code == 0){
+						this.logoutModel = false;  // 关闭model框
+						uni.navigateTo({
+							url: "/pages/setting/login"
+						})
+					}else{
+						this.logoutModel = false;
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					this.$api.msg(err);
+				})
+			},
+			logoutCancel(){
+				this.logoutModel = false;
+			},
 		}
 	}
 </script>

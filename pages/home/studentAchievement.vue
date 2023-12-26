@@ -4,14 +4,17 @@
 		<NoticeBar />
 		<menuBar />
 		<u-swiper />
-		<view class="search-box">
+		<view class="search-box time-component">
 			<u-datetime-picker :show="pickerShow" v-model="valueTime" mode="date" @confirm="getDate"
 				@cancel="pickerClose" closeOnClickOverlay>
 			</u-datetime-picker>
 			<view class="" style="display: flex;">
-				<p style="position: relative;top: 8px;">查询时间：</p>
-				<u--input shape="circle" placeholder="选择时间" border="surround" v-model="searchForm.dailyDate"
-					@focus="selectStartTime"></u--input>
+				<p style="position: relative;top: 8px;width: 100px">查询时间：</p>
+				<!-- <u--input shape="circle" placeholder="选择时间" border="surround" v-model="searchForm.dailyDate"
+					@focus="selectStartTime"></u--input> -->
+				<view class="time-component-input-all" @click="selectStartTime">
+					{{ searchForm.dailyDate ? searchForm.dailyDate : "请选择时间" }}
+				</view>
 			</view>
 			<view class="query-content">
 				<view class="query-content-select">
@@ -45,7 +48,7 @@
 		<view style="margin-top: 15px;" class="" v-if="indexList && indexList.length===0">
 			<u-empty
 			        mode="data"
-			        icon="http://cdn.uviewui.com/uview/empty/data.png"
+			        icon="../../static/icon/no-data-img.png"
 			>
 			</u-empty>
 		</view>

@@ -12,14 +12,14 @@
 			closeOnClickOverlay
 			@change="changeStartTime"
 		></u-datetime-picker>
-		<view class="search-box">
-			  <!-- <u--input shape="circle" placeholder="起始时间" border="surround" v-model="searchForm.startTime" @focus="selectStartTime"></u--input>
-			  <span class="time-line"> - </span>
-			  <u--input shape="circle" placeholder="结束时间" border="surround" v-model="searchForm.endTime" @focus="selectEndTime"></u--input> -->
-			  
-			  <u-cell title="起始时间" v-model="searchForm.startTime" @click="selectStartTime" style="width: 46%"></u-cell>
-			  <span class="time-line" style="width: 2%;"> - </span>
-			  <u-cell title="结束时间" v-model="searchForm.endTime" @click="selectEndTime" style="width: 46%"></u-cell>
+		<view class="search-box time-component">
+			  <view class="time-component-input" @click="selectStartTime">
+			  	{{ searchForm.startTime ? searchForm.startTime : "请选择起始时间" }}
+			  </view>
+			  <span class="time-component-line"></span>
+			  <view class="time-component-input" @click="selectEndTime">
+			  	{{ searchForm.endTime ? searchForm.endTime : "请选择结束时间" }}
+			  </view>
 		</view>
 		<view class="search-cond">
 			<span class="search-nk">昵 称: </span>
@@ -46,7 +46,7 @@
 		<view style="margin-top: 15px;" class="" v-if="indexList && indexList.length===0">
 			<u-empty
 			        mode="data"
-			        icon="http://cdn.uviewui.com/uview/empty/data.png"
+			        icon="../../static/icon/no-data-img.png"
 			>
 			</u-empty>
 		</view>
@@ -135,7 +135,7 @@
 			
 		},
 		onShow() {
-			this.$store.commit("changeTabbarIndex",0);
+			this.$store.commit("changeTabbarIndex",2);
 		},
 		methods: {
 			//  -------------------- 时间选择器 start --------------------
@@ -206,7 +206,7 @@
 					start: "",
 				}
 				uni.showLoading({
-					title: '加载中5'
+					title: '加载中'
 				});
 				uni.$u.http.post('/app/api/main/cm/drlist', params).then(res => {
 					if(res.code == 0){

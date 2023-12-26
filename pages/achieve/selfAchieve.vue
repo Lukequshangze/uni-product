@@ -8,12 +8,14 @@
 			<view class="">
 				<u-datetime-picker :show="pickerShow" v-model="valueTime" mode="date" @confirm="getDate"
 					@cancel="pickerClose" @change="changeStartTime"></u-datetime-picker>
-				<view class="search-box">
-					<u--input shape="circle" placeholder="起始时间" border="surround" v-model="searchForm.startTime"
-						@focus="selectStartTime"></u--input>
-					<span class="time-line"> - </span>
-					<u--input shape="circle" placeholder="结束时间" border="surround" v-model="searchForm.endTime"
-						@focus="selectEndTime"></u--input>
+				<view class="search-box time-component">
+					<view class="time-component-input" @click="selectStartTime">
+						{{ searchForm.startTime ? searchForm.startTime : "请选择起始时间" }}
+					</view>
+					<span class="time-component-line"></span>
+					<view class="time-component-input" @click="selectEndTime">
+						{{ searchForm.endTime ? searchForm.endTime : "请选择结束时间" }}
+					</view>
 				</view>
 				<view class="search-cond">
 					<span class="search-nk">昵 称: </span>
@@ -42,7 +44,7 @@
 			<view style="margin-top: 15px;" class="" v-if="selfAchieveList && selfAchieveList.length===0">
 				<u-empty
 				        mode="data"
-				        icon="http://cdn.uviewui.com/uview/empty/data.png"
+				        icon="../../static/icon/no-data-img.png"
 				>
 				</u-empty>
 			</view>
@@ -52,13 +54,11 @@
 					<view class="achieve-date">
 						{{ item.dailyDate }}
 					</view>
-					<zb-table :show-header="true" :columns="item.column" :stripe="true" :fit="false" @rowClick="rowClick"
-						@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
-						@edit="buttonEdit" @dele="dele" :data="item.scoreItemVoList">
+					<zb-table :show-header="true" :columns="item.column" :stripe="true" :fit="false" :border="true"
+					  :data="item.scoreItemVoList">
 					</zb-table>
-					<zb-table :show-header="true" :columns="item.columnChild" :stripe="true" :fit="false" @rowClick="rowClick"
-						@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
-						@edit="buttonEdit" @dele="dele" :data="item.levelItemVoList" style="margin-top: 10px;">
+					<zb-table :show-header="true" :columns="item.columnChild" :stripe="true" :fit="false" :border="true"
+					  :data="item.levelItemVoList" style="margin-top: 10px;">
 					</zb-table>
 				</view>
 			</view>

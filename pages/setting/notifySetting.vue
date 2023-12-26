@@ -10,7 +10,25 @@
 						<u-switch v-model="formData.receiveNotify" @change="receiveNotifyChange"></u-switch>
 					</view>
 				</u-form-item>	
-				<u-form-item label="消息铃声设置:" prop="formData.newPassWord" borderBottom ref="item1">
+				<u-form-item label="认领消息铃声设置" prop="formData.newPassWord" borderBottom ref="item1">
+					<view class="" style="display: flex;justify-content: space-between;width: 100%;">
+						<view class=""></view>
+						<view class="" style="display: flex;justify-content: space-between">
+							<view class="">夜曲</view>
+							<view class="" style="color: #aaa;margin-left: 20px;"> >>> </view>
+						</view>
+					</view>
+				</u-form-item>	
+				<u-form-item label="带入消息铃声设置" prop="formData.newPassWord" borderBottom ref="item1">
+					<view class="" style="display: flex;justify-content: space-between;width: 100%;">
+						<view class=""></view>
+						<view class="" style="display: flex;justify-content: space-between">
+							<view class="">叮咚</view>
+							<view class="" style="color: #aaa;margin-left: 20px;"> >>> </view>
+						</view>
+					</view>
+				</u-form-item>	
+				<!-- <u-form-item label="消息铃声设置:" prop="formData.newPassWord" borderBottom ref="item1">
 					<view class="" style="display: flex;justify-content: space-between;width: 100%;">
 						<view class=""></view>
 						<view class="" style="color: #aaa;"> >>> </view>
@@ -21,7 +39,7 @@
 						<view class=""></view>
 						<view class="" style="color: #aaa;"> 夜曲 </view>
 					</view>
-				</u-form-item>
+				</u-form-item> -->
 				<!-- 点击修改厚的模态框 -->
 			</u--form>
 			<!-- 底部导航栏组件 -->
