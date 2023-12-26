@@ -2,21 +2,21 @@
 	export default {
 		onLaunch: function() {
 			uni.hideTabBar();
-			console.log('App Launch')
-			// 判断是否登录
-			let token= uni.getStorageSync("wp_token");
-			if (token) {
-				    //存在则关闭启动页进入首页
-					plus.navigator.closeSplashscreen();
-			    } else {
-					//不存在则跳转至登录页
-			        uni.reLaunch({
-			            url: "/pages/setting/login",
-					    success: () => {
-					        plus.navigator.closeSplashscreen();
-					    }
-			    	})
-			    }
+			// console.log('App Launch')
+			// // 判断是否登录
+			// let token= uni.getStorageSync("wp_token");
+			// if (token) {
+			// 	    //存在则关闭启动页进入首页
+			// 		plus.navigator.closeSplashscreen();
+			//     } else {
+			// 		//不存在则跳转至登录页
+			//         uni.reLaunch({
+			//             url: "/pages/setting/login",
+			// 		    success: () => {
+			// 		        plus.navigator.closeSplashscreen();
+			// 		    }
+			//     	})
+			//     }
 		},
 		onShow: function() {
 			console.log('App Show')

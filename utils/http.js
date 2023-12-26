@@ -18,25 +18,29 @@ module.exports = (vm) => {
 	
 	// 响应拦截
 	uni.$u.http.interceptors.response.use((response) => { /* 对响应成功做点什么 可使用async await 做异步操作*/
-	console.log("response",response)
-		// if(response.data.code === -100){
-		// 	// this.$api.msg("账号未登录，请重新登录！");
-		// 	uni.showToast({
-		// 	    title: `账号未登录，请重新登录！`,
-		// 	    duration: 1500
-		// 	});
-		// 	setTimeout(()=>{
-		// 		uni.navigateTo({
-		// 			url:"/pages/setting/login",
-		// 			success() {
-		// 				uni.navigateBack({
-		// 					delta: 0
-		// 				})
-		// 			}
-		// 		})
-		// 	},1500)
-		// 	return;
-		// }
+		console.log("response",response)
+		let isLogin = "";
+		if(response.data.code === -100){
+			isLogin = true;
+		}
+		if(isLogin === true){
+				uni.showToast({
+				    title: `账号未登录，请重新登录！`,
+					icon: 'none',
+				    duration: 1500
+				});
+				setTimeout(()=>{
+					uni.redirectTo({
+						url:"/pages/setting/login",
+						// success() {
+						// 	uni.navigateBack({
+						// 		delta: 0
+						// 	})
+						// }
+					})
+				},1500)
+				return;
+		}
 		const data = response.data
 		return data === undefined ? {} : data
 	}, (response) => { 

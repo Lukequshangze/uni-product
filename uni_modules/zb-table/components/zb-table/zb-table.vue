@@ -67,7 +67,7 @@
 	        <view class="no-data">
 				<u-empty
 				        mode="data"
-				        icon="http://cdn.uviewui.com/uview/empty/data.png"
+				        icon="../../static/icon/no-data-img.png"
 				>
 				</u-empty>
 			</view>
@@ -319,7 +319,7 @@
 	        <view class="no-data">
 				<u-empty
 				        mode="data"
-				        icon="http://cdn.uviewui.com/uview/empty/data.png"
+				        icon="../../static/icon/no-data-img.png"
 				>
 				</u-empty>
 			</view>

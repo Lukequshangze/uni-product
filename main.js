@@ -30,7 +30,7 @@ Vue.prototype.$api = showToast;
 
 // 引入请求封装，将app参数传递到配置中
 require('./utils/http.js')(app)
-
+console.log("main")
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
