@@ -32,7 +32,7 @@
 						<view class="u-demo-block__content">
 							<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
 							<!-- #ifndef APP-NVUE -->
-							<u-input placeholder="请输入" v-model="searchForm.valueData">
+							<u-input placeholder="请输入" v-model="searchForm.valueData" style="padding: 4px 9px;">
 							<!-- #endif -->
 								<!-- #ifdef APP-NVUE -->
 								<u--input placeholder="请输入">
@@ -99,7 +99,7 @@
 					endTime: "",
 				},
 				
-				chosetype: "",
+				chosetype: 1,
 				datalist: [],
 				total: 0,
 				
@@ -236,22 +236,22 @@
 			
 			// 获取班级日志
 			getClassLogs(type){
-				if(this.selectType === 0){
+				if(this.chosetype === 0){
 					this.searchForm.uid = Number(this.searchForm.valueData);
 					this.searchForm.nk = "";
 					this.searchForm.cn = "";
 					this.searchForm.an = "";
-				}else if(this.selectType === 1){
+				}else if(this.chosetype === 1){
 					this.searchForm.nk = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.cn = "";
 					this.searchForm.an = "";
-				}else if(this.selectType === 2){
+				}else if(this.chosetype === 2){
 					this.searchForm.cn = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.an = "";
 					this.searchForm.nk = "";
-				}else if(this.selectType === 3){
+				}else if(this.chosetype === 3){
 					this.searchForm.an = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.nk = "";

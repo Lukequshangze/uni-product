@@ -9,7 +9,7 @@
 				@cancel="pickerClose" closeOnClickOverlay>
 			</u-datetime-picker>
 			<view class="" style="display: flex;">
-				<p style="position: relative;top: 8px;width: 100px">查询时间：</p>
+				<p style="position: relative;top: 6px;width: 100px">查询时间：</p>
 				<!-- <u--input shape="circle" placeholder="选择时间" border="surround" v-model="searchForm.dailyDate"
 					@focus="selectStartTime"></u--input> -->
 				<view class="time-component-input-all" @click="selectStartTime">
@@ -25,7 +25,7 @@
 					<view class="u-demo-block__content">
 						<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
 						<!-- #ifndef APP-NVUE -->
-						<u-input placeholder="请输入" v-model="searchForm.valueData">
+						<u-input placeholder="请输入" v-model="searchForm.valueData" style="padding: 4px 9px;">
 						<!-- #endif -->
 							<!-- #ifdef APP-NVUE -->
 							<u--input placeholder="请输入">
@@ -81,81 +81,83 @@
 				</view>
 			</view>
 		</view>
-		<u-popup customStyle="padding:40px 5px 0 5px" :show="showModal" mode="bottom" :round="12" @close="closePopup" closeable closeOnClickOverlay safeAreaInsetBottom>
-			<view style="height: calc(100vh - 200px);">
-				<view class="u-pop-box">
-					<view class="pop-box-name">
-						{{ activeData.title }}
-					</view>
-					<view class="pop-box-settle">
-						<!-- 未结场 -->
-						<view class="wrap">
-							<text class="wrap-text">未结场</text>
-							<view class="table_wrap">
-								<table class="table">
-									<thead> <!-- thead标签在这里已经不代表表头了-->
-										<tr>  <!-- 每个tr标签的第一个td标签为表头-->
-											<td class="table_content">
-												<p>{{ activeData.drscoredoingLabel }}</p>
-											</td>
-											<td class="table_content">
-												<p>{{ activeData.recorddoingLabel }}</p>
-											</td>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="table_tr">
-											<td class="table_content">
-							                    <p>{{ activeData.drscoredoing }}</p>
-											</td>
-											<td class="table_content">
-											    <p>{{ activeData.recorddoing }}</p>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+		<view class="" @touchmove.stop.prevent="stopPenetrate">
+			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModal" mode="bottom" :round="12" @close="closePopup" closeable closeOnClickOverlay safeAreaInsetBottom>
+				<view style="height: calc(100vh - 200px);">
+					<view class="u-pop-box">
+						<view class="pop-box-name">
+							{{ activeData.title }}
+						</view>
+						<view class="pop-box-settle">
+							<!-- 未结场 -->
+							<view class="wrap">
+								<text class="wrap-text">未结场</text>
+								<view class="table_wrap">
+									<table class="table">
+										<thead> <!-- thead标签在这里已经不代表表头了-->
+											<tr>  <!-- 每个tr标签的第一个td标签为表头-->
+												<td class="table_content">
+													<p>{{ activeData.drscoredoingLabel }}</p>
+												</td>
+												<td class="table_content">
+													<p>{{ activeData.recorddoingLabel }}</p>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="table_tr">
+												<td class="table_content">
+								                    <p>{{ activeData.drscoredoing }}</p>
+												</td>
+												<td class="table_content">
+												    <p>{{ activeData.recorddoing }}</p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</view>
+							</view>
+							
+							<!-- 已结场 -->
+							<view class="wrap">
+								<text class="wrap-text">已结场</text>
+								<view class="table_wrap">
+									<table class="table">
+										<thead> <!-- thead标签在这里已经不代表表头了-->
+											<tr>  <!-- 每个tr标签的第一个td标签为表头-->
+												<td class="table_content">
+													<p>{{ activeData.drscoreoverLabel }}</p>
+												</td>
+												<td class="table_content">
+													<p>{{ activeData.recordoverLabel }}</p>
+												</td>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="table_tr">
+												<td class="table_content">
+													<p>{{ activeData.drscoreover }}</p>
+												</td>
+												<td class="table_content">
+													<p>{{ activeData.recordover }}</p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</view>
 							</view>
 						</view>
-						
-						<!-- 已结场 -->
-						<view class="wrap">
-							<text class="wrap-text">已结场</text>
-							<view class="table_wrap">
-								<table class="table">
-									<thead> <!-- thead标签在这里已经不代表表头了-->
-										<tr>  <!-- 每个tr标签的第一个td标签为表头-->
-											<td class="table_content">
-												<p>{{ activeData.drscoreoverLabel }}</p>
-											</td>
-											<td class="table_content">
-												<p>{{ activeData.recordoverLabel }}</p>
-											</td>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="table_tr">
-											<td class="table_content">
-												<p>{{ activeData.drscoreover }}</p>
-											</td>
-											<td class="table_content">
-												<p>{{ activeData.recordover }}</p>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</view>
+						<view class="search-table">
+							<!-- 表格 -->
+							<zb-table :show-header="true" :columns="column" :stripe="true" :fit="false"
+								@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
+								@edit="buttonEdit" @dele="dele" :data="activeData.detailItemVoList">
+							</zb-table>
 						</view>
-					</view>
-					<view class="search-table">
-						<!-- 表格 -->
-						<zb-table :show-header="true" :columns="column" :stripe="true" :fit="false"
-							@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
-							@edit="buttonEdit" @dele="dele" :data="activeData.detailItemVoList">
-						</zb-table>
 					</view>
 				</view>
-			</view>
-		</u-popup>
+			</u-popup>
+		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
 	</view>
@@ -188,7 +190,8 @@
 					dailyDate: null,
 				},
 				indexList: [],
-				chosetype: "",
+				chosetype: 1,
+				selectType: "",
 				studentSelect: [{
 						value: 0,
 						text: "ID"
@@ -252,8 +255,37 @@
 				const response = await this.$api.home.getTableData(params);
 			},
 			
+			// 下拉选择框事件
+			changeStudentSelect(e){
+				if(!e){
+					this.searchForm.valueData = "";
+				}
+				this.selectType = e;
+			},
+			
 			// 获取学生成绩   
 			getStudentAchieve(type){
+				if(this.chosetype === 0){
+					this.searchForm.uid = Number(this.searchForm.valueData);
+					this.searchForm.nk = "";
+					this.searchForm.cn = "";
+					this.searchForm.an = "";
+				}else if(this.chosetype === 1){
+					this.searchForm.nk = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.cn = "";
+					this.searchForm.an = "";
+				}else if(this.chosetype === 2){
+					this.searchForm.cn = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.an = "";
+					this.searchForm.nk = "";
+				}else if(this.chosetype === 3){
+					this.searchForm.an = this.searchForm.valueData;
+					this.searchForm.uid = "";
+					this.searchForm.nk = "";
+					this.searchForm.cn = "";
+				}
 				let params = {
 					_tk: uni.getStorageSync("wp_token"),
 					uid: this.searchForm.uid,
@@ -314,6 +346,10 @@
 			// 关闭弹出层
 			closePopup(){
 				this.showModal = false;
+			},
+			// 防止弹出层滑动
+			stopPenetrate(){
+				return;
 			},
 		},
 		created() {

@@ -17,7 +17,8 @@
 				</view> -->
 				<view class="query-content">
 					<view class="query-content-select">
-						<uni-data-select v-model="chosetype" :localdata="studentSelect"></uni-data-select>
+						<uni-data-select v-model="chosetype" :localdata="studentSelect"
+						@change="changeStudentSelect"></uni-data-select>
 					</view>
 					<view class="query-content-input">
 						<view class="u-demo-block__content">
@@ -129,108 +130,110 @@
 				</view>
 			</view>
 			<!-- 编辑弹出层 -->
-			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalTeacherEdit" mode="bottom" :round="12" @close="closeModelTeacher" closeable closeOnClickOverlay safeAreaInsetBottom>
-				<view style="height: 50vh;" class="teacher-edit">
-					<u--form
-							labelPosition="left"
-							:model="teacherObj"
-							ref="uForm"
-							labelWidth="140rpx"
-					>
-						<view class="teacher-edit-title">
-							老师编辑
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalTeacherEdit" mode="bottom" :round="12" @close="closeModelTeacher" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: 50vh;" class="teacher-edit">
+						<u--form
+								labelPosition="left"
+								:model="teacherObj"
+								ref="uForm"
+								labelWidth="140rpx"
+						>
+							<view class="teacher-edit-title">
+								老师编辑
+							</view>
+							<view class="teacher-edit-content">
+								<u-form-item
+										label="上级老师:"
+										ref="item1"
+										style="width: 49%;"
+								>
+									<view class="">
+										{{ teacherObj.pName }}
+									</view>
+								</u-form-item>
+								<u-form-item
+										label="是否禁用:"
+										ref="item1"
+										style="width: 49%;margin-left: 2%;"
+								>
+									<u-switch size="14" style="position: relative;top: 4px;left: 3px;" v-model="teacherObj.bound" @change="editUseChange"></u-switch>
+								</u-form-item>
+							</view>
+							<view class="teacher-edit-content">
+								<u-form-item
+										label="老师名称:"
+										ref="item1"
+										style="width: 49%;"
+								>
+									<view class="">
+										{{ teacherObj.name }}
+									</view>
+								</u-form-item>
+								<u-form-item
+										label="剩余额度:"
+										ref="item1"
+										style="width: 49%;margin-left: 2%;position: relative;top: 3px;"
+								>
+									<text>{{ teacherObj.rec }}</text>
+								</u-form-item>
+							</view>
+							<view class="teacher-edit-content">
+								<u-form-item
+										label="返比比例:"
+										ref="item1"
+										style="width: 49%;"
+								>
+									<u--input v-model="teacherObj.ratio" style="height: 18px;"></u--input>
+								</u-form-item>
+								<u-form-item
+										label="信用额度:"
+										ref="item1"
+										style="width: 49%;margin-left: 2%"
+								>
+									<u--input v-model="teacherObj.cs" style="height: 18px;"></u--input>
+								</u-form-item>
+							</view>
+							<view class="teacher-edit-content">
+								<u-form-item
+										label="基金奖罚:"
+										ref="item1"
+										style="width: 49%;"
+								>
+									<u--input v-model="teacherObj.er" style="height: 18px;"></u--input>
+								</u-form-item>
+								<u-form-item
+										label="初始押金:"
+										ref="item1"
+										style="width: 49%;margin-left: 2%"
+								>
+									<u--input v-model="teacherObj.deposit" style="height: 18px;"></u--input>
+								</u-form-item>
+							</view>
+							<view class="teacher-edit-content">
+								<u-form-item
+										label="战绩奖罚:"
+										ref="item1"
+										style="width: 49%;"
+								>
+									<u--input v-model="teacherObj.yozsr" style="height: 18px;"></u--input>
+								</u-form-item>
+								<u-form-item
+										label="输赢额度:"
+										ref="item1"
+										style="width: 49%;margin-left: 2%"
+								>
+									<u--input v-model="teacherObj.qwl" style="height: 18px;"></u--input>
+								</u-form-item>
+							</view>
+						</u--form>
+						<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+							<u-button type="primary" text="确定" @click="submitTeacherForm" style="width: 30%;"></u-button>
+							<u-button type="info" text="取消" @click="closeModelTeacher" style="width: 30%;"></u-button>
 						</view>
-						<view class="teacher-edit-content">
-							<u-form-item
-									label="上级老师:"
-									ref="item1"
-									style="width: 49%;"
-							>
-								<view class="">
-									{{ teacherObj.pName }}
-								</view>
-							</u-form-item>
-							<u-form-item
-									label="是否禁用:"
-									ref="item1"
-									style="width: 49%;margin-left: 2%;"
-							>
-								<u-switch size="14" style="position: relative;top: 4px;left: 3px;" v-model="teacherObj.bound" @change="editUseChange"></u-switch>
-							</u-form-item>
-						</view>
-						<view class="teacher-edit-content">
-							<u-form-item
-									label="老师名称:"
-									ref="item1"
-									style="width: 49%;"
-							>
-								<view class="">
-									{{ teacherObj.name }}
-								</view>
-							</u-form-item>
-							<u-form-item
-									label="剩余额度:"
-									ref="item1"
-									style="width: 49%;margin-left: 2%;position: relative;top: 3px;"
-							>
-								<text>{{ teacherObj.rec }}</text>
-							</u-form-item>
-						</view>
-						<view class="teacher-edit-content">
-							<u-form-item
-									label="返比比例:"
-									ref="item1"
-									style="width: 49%;"
-							>
-								<u--input v-model="teacherObj.ratio" style="height: 18px;"></u--input>
-							</u-form-item>
-							<u-form-item
-									label="信用额度:"
-									ref="item1"
-									style="width: 49%;margin-left: 2%"
-							>
-								<u--input v-model="teacherObj.cs" style="height: 18px;"></u--input>
-							</u-form-item>
-						</view>
-						<view class="teacher-edit-content">
-							<u-form-item
-									label="基金奖罚:"
-									ref="item1"
-									style="width: 49%;"
-							>
-								<u--input v-model="teacherObj.er" style="height: 18px;"></u--input>
-							</u-form-item>
-							<u-form-item
-									label="初始押金:"
-									ref="item1"
-									style="width: 49%;margin-left: 2%"
-							>
-								<u--input v-model="teacherObj.deposit" style="height: 18px;"></u--input>
-							</u-form-item>
-						</view>
-						<view class="teacher-edit-content">
-							<u-form-item
-									label="战绩奖罚:"
-									ref="item1"
-									style="width: 49%;"
-							>
-								<u--input v-model="teacherObj.yozsr" style="height: 18px;"></u--input>
-							</u-form-item>
-							<u-form-item
-									label="输赢额度:"
-									ref="item1"
-									style="width: 49%;margin-left: 2%"
-							>
-								<u--input v-model="teacherObj.qwl" style="height: 18px;"></u--input>
-							</u-form-item>
-						</view>
-					</u--form>
-					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
-						<u-button type="primary" text="确定" @click="submitTeacherForm" style="width: 30%;"></u-button>
-						<u-button type="info" text="取消" @click="closeModelTeacher" style="width: 30%;"></u-button>
 					</view>
-				</view>
-			</u-popup>
+				</u-popup>
+			</view>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -262,11 +265,8 @@
 				// bringStatus: false,// 状态
 				// bringSwitch: false,// 状态
 				indexList: [],
-				chosetype: "",
-				studentSelect: [{
-						value: 0,
-						text: "老师ID"
-					},
+				chosetype: 1,
+				studentSelect: [
 					{
 						value: 1,
 						text: "老师名称"
@@ -300,6 +300,13 @@
 			];
 		},
 		methods: {
+			// 下拉选择框事件
+			changeStudentSelect(e){
+				if(!e){
+					this.searchForm.valueData = "";
+				}
+				this.selectType = e;
+			},
 			// 获取老师管理信息
 			getTeacherManageList(type){
 				if(this.chosetype === 0){
@@ -418,6 +425,11 @@
 			// 禁用修改
 			editUseChange(){
 				
+			},
+			
+			// 防止弹出层滑动
+			stopPenetrate(){
+				return;
 			},
 		},
 		created() {

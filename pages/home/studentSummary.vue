@@ -54,9 +54,9 @@
 
 			<view class="search-table">
 				<!-- 表格 -->
-				<zb-table :show-header="true" :columns="column" :stripe="true" :fit="false" @rowClick="rowClick"
+				<zb-table :show-header="true" :columns="column" :stripe="true" :fit="false"
 					@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
-					@edit="buttonEdit" @dele="dele" :data="data">
+					@edit="buttonEdit" :data="data">
 				</zb-table>
 			</view>
 		</view>
@@ -95,17 +95,18 @@
 				column: [{
 						name: 'nickname',
 						label: '名称',
-						fixed: false,
 						emptyString: '--'
 					},
 					{
 						name: 'agentname',
 						label: '所属',
+						width: 80,
 						emptyString: '--'
 					},
 					{
 						name: 'handnum',
 						label: '手数',
+						width: 80,
 						sorter: true
 					},
 					{
@@ -114,15 +115,8 @@
 						sorter: true
 					},
 				],
-				data: [
-					// {
-					// 	result: '670',
-					// 	name: 'AA如影随形',
-					// 	number: '300',
-					// 	address: 'be-ch',
-					// },
-				],
-				chosetype: "",
+				data: [],
+				chosetype: 1,
 				studentSelect: [{
 						value: 0,
 						text: "ID"
@@ -237,22 +231,22 @@
 			
 			// 查询
 			getStudentList(type){
-				if(this.selectType === 0){
+				if(this.chosetype === 0){
 					this.searchForm.uid = Number(this.searchForm.valueData);
 					this.searchForm.nk = "";
 					this.searchForm.cn = "";
 					this.searchForm.an = "";
-				}else if(this.selectType === 1){
+				}else if(this.chosetype === 1){
 					this.searchForm.nk = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.cn = "";
 					this.searchForm.an = "";
-				}else if(this.selectType === 2){
+				}else if(this.chosetype === 2){
 					this.searchForm.cn = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.an = "";
 					this.searchForm.nk = "";
-				}else if(this.selectType === 3){
+				}else if(this.chosetype === 3){
 					this.searchForm.an = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.nk = "";

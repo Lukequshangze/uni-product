@@ -18,7 +18,7 @@
 					</view>
 				</view>
 				<view class="search-cond">
-					<span class="search-nk">昵 称: </span>
+					<span class="search-nk">老 师: </span>
 					  <view class="u-demo-block__content" style="width: calc(100% - 50px);">
 						<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
 						<!-- #ifndef APP-NVUE -->
@@ -54,9 +54,11 @@
 					<view class="achieve-date">
 						{{ item.dailyDate }}
 					</view>
-					<zb-table :show-header="true" :columns="item.column" :stripe="true" :fit="false" :border="true"
-					  :data="item.scoreItemVoList">
-					</zb-table>
+					<view class="top-table">
+						<zb-table :show-header="true" :columns="item.column" :stripe="true" :fit="false" :border="true"
+						  :data="item.scoreItemVoList">
+						</zb-table>
+					</view>
 					<zb-table :show-header="true" :columns="item.columnChild" :stripe="true" :fit="false" :border="true"
 					  :data="item.levelItemVoList" style="margin-top: 10px;">
 					</zb-table>
@@ -320,7 +322,6 @@
 						this.selfAchieveList.forEach(item=>{
 							item.columnChild = columnChild;
 						})
-						console.log("aaaaaaaaaaaaaa",this.selfAchieveList)
 						//隐藏加载框
 						uni.hideLoading();
 					}
@@ -417,5 +418,19 @@
 			margin-right: 15px;
 			width: 50px;
 		}
+	}
+	
+	// 修改上表每行宽度
+	::v-deep .top-table .item-th{
+		min-width: 70px !important;
+		width: 70px !important;
+		padding-left: 2px !important;
+		padding-right: 0 !important;
+	}
+	::v-deep .top-table .zb-table .item-td{
+		min-width: 70px !important;
+		width: 70px !important;
+		padding-left: 2px !important;
+		padding-right: 0 !important;
 	}
 </style>

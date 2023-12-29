@@ -6454,6 +6454,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uButton: __webpack_require__(/*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 113)
+      .default,
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function () {
   var _vm = this
   var _h = _vm.$createElement
@@ -6469,7 +6491,10 @@ var render = function () {
           _c("uni-view", { attrs: { _i: 2 } }),
           _c(
             "uni-view",
-            { staticStyle: { display: "flex" }, attrs: { _i: 3 } },
+            {
+              staticStyle: { display: "flex", "margin-right": "30px" },
+              attrs: { _i: 3 },
+            },
             [
               _c(
                 "uni-view",
@@ -6502,7 +6527,11 @@ var render = function () {
                 [
                   _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
+                    {
+                      staticClass: _vm._$g(8, "sc"),
+                      staticStyle: { "margin-right": "5px" },
+                      attrs: { _i: 8 },
+                    },
                     [_vm._v(_vm._$g(8, "t0-0"))]
                   ),
                   _c("v-uni-image", {
@@ -6521,13 +6550,57 @@ var render = function () {
                 ],
                 1
               ),
+              _c(
+                "uni-view",
+                {
+                  staticStyle: { "margin-left": "10px", "margin-top": "5px" },
+                  attrs: { _i: 10 },
+                },
+                [
+                  _c(
+                    "u-button",
+                    {
+                      attrs: { _i: 11 },
+                      on: {
+                        click: function ($event) {
+                          return _vm.$handleViewEvent($event)
+                        },
+                      },
+                    },
+                    [_vm._v("认领+1")]
+                  ),
+                ],
+                1
+              ),
+              _c(
+                "uni-view",
+                {
+                  staticStyle: { "margin-left": "5px", "margin-top": "5px" },
+                  attrs: { _i: 12 },
+                },
+                [
+                  _c(
+                    "u-button",
+                    {
+                      attrs: { _i: 13 },
+                      on: {
+                        click: function ($event) {
+                          return _vm.$handleViewEvent($event)
+                        },
+                      },
+                    },
+                    [_vm._v("带入+1")]
+                  ),
+                ],
+                1
+              ),
             ],
             1
           ),
         ],
         1
       ),
-      _c("uni-view", { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } }),
+      _c("uni-view", { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } }),
     ],
     1
   )
@@ -6626,7 +6699,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-6ab52002] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-6ab52002] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-6ab52002] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.content-notify[data-v-6ab52002] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.content-notify .notify-image[data-v-6ab52002] {\r\n  height: 23px;\r\n  width: 23px;\r\n  padding: 2px 10px 0 0;\n}\n.content-notify .notify-num[data-v-6ab52002] {\r\n  position: relative;\r\n  left: 6px;\r\n  top: -2px;\r\n  border: 1px solid #f50d0d;\r\n  border-radius: 20px;\r\n  font-size: 10px;\r\n  padding: 0 3px;\r\n  color: #f50d0d;\r\n  background: #fff;\r\n  z-index: 2;\r\n  min-width: 12px;\r\n  text-align: center;\r\n  display: inline-block;\n}\n.clear-both[data-v-6ab52002] {\r\n  clear: both;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-6ab52002] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-6ab52002] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-6ab52002] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.content-notify[data-v-6ab52002] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.content-notify .notify-image[data-v-6ab52002] {\r\n  height: 23px;\r\n  width: 23px;\r\n  padding: 2px 10px 0 0;\n}\n.content-notify .notify-num[data-v-6ab52002] {\r\n  position: relative;\r\n  left: 40px;\r\n  top: -2px;\r\n  border-radius: 20px;\r\n  font-size: 10px;\r\n  padding: 0 3px;\r\n  color: #fff;\r\n  background: #fff;\r\n  z-index: 2;\r\n  min-width: 12px;\r\n  text-align: center;\r\n  display: inline-block;\r\n  background: #f56c6c;\n}\n.clear-both[data-v-6ab52002] {\r\n  clear: both;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -9264,9 +9337,6 @@ var render = function () {
               _c("zb-table", {
                 attrs: { _i: 20 },
                 on: {
-                  rowClick: function ($event) {
-                    return _vm.$handleViewEvent($event)
-                  },
                   toggleRowSelection: function ($event) {
                     return _vm.$handleViewEvent($event)
                   },
@@ -9274,9 +9344,6 @@ var render = function () {
                     return _vm.$handleViewEvent($event)
                   },
                   edit: function ($event) {
-                    return _vm.$handleViewEvent($event)
-                  },
-                  dele: function ($event) {
                     return _vm.$handleViewEvent($event)
                   },
                 },
@@ -12465,7 +12532,7 @@ var render = function () {
                 {
                   staticStyle: {
                     position: "relative",
-                    top: "8px",
+                    top: "6px",
                     width: "100px",
                   },
                   attrs: { _i: 7 },
@@ -12523,6 +12590,7 @@ var render = function () {
                       _c(
                         "u-input",
                         {
+                          staticStyle: { padding: "4px 9px" },
                           attrs: { _i: 14 },
                           model: {
                             value: _vm._$g(14, "v-model"),
@@ -12709,93 +12777,189 @@ var render = function () {
           )
         : _vm._e(),
       _c(
-        "u-popup",
+        "uni-view",
         {
           attrs: { _i: 33 },
           on: {
-            close: function ($event) {
-              return _vm.$handleViewEvent($event)
+            touchmove: function ($event) {
+              return _vm.$handleViewEvent($event, { stop: true, prevent: true })
             },
           },
         },
         [
           _c(
-            "uni-view",
+            "u-popup",
             {
-              staticStyle: { height: "calc(100vh - 200px)" },
               attrs: { _i: 34 },
+              on: {
+                close: function ($event) {
+                  return _vm.$handleViewEvent($event)
+                },
+              },
             },
             [
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(35, "sc"), attrs: { _i: 35 } },
+                {
+                  staticStyle: { height: "calc(100vh - 200px)" },
+                  attrs: { _i: 35 },
+                },
                 [
                   _c(
                     "uni-view",
                     { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
-                    [_vm._v(_vm._$g(36, "t0-0"))]
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
                     [
+                      _c(
+                        "uni-view",
+                        { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
+                        [_vm._v(_vm._$g(37, "t0-0"))]
+                      ),
                       _c(
                         "uni-view",
                         { staticClass: _vm._$g(38, "sc"), attrs: { _i: 38 } },
                         [
                           _c(
-                            "v-uni-text",
+                            "uni-view",
                             {
                               staticClass: _vm._$g(39, "sc"),
                               attrs: { _i: 39 },
                             },
-                            [_vm._v("未结场")]
-                          ),
-                          _c(
-                            "uni-view",
-                            {
-                              staticClass: _vm._$g(40, "sc"),
-                              attrs: { _i: 40 },
-                            },
                             [
                               _c(
-                                "table",
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(40, "sc"),
+                                  attrs: { _i: 40 },
+                                },
+                                [_vm._v("未结场")]
+                              ),
+                              _c(
+                                "uni-view",
                                 {
                                   staticClass: _vm._$g(41, "sc"),
                                   attrs: { _i: 41 },
                                 },
                                 [
                                   _c(
-                                    "thead",
-                                    { attrs: { _i: 42 } },
+                                    "table",
+                                    {
+                                      staticClass: _vm._$g(42, "sc"),
+                                      attrs: { _i: 42 },
+                                    },
                                     [
                                       _c(
-                                        "tr",
+                                        "thead",
                                         { attrs: { _i: 43 } },
                                         [
                                           _c(
-                                            "td",
-                                            {
-                                              staticClass: _vm._$g(44, "sc"),
-                                              attrs: { _i: 44 },
-                                            },
+                                            "tr",
+                                            { attrs: { _i: 44 } },
                                             [
-                                              _c("p", { attrs: { _i: 45 } }, [
-                                                _vm._v(_vm._$g(45, "t0-0")),
-                                              ]),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    45,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: 45 },
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    { attrs: { _i: 46 } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(46, "t0-0")
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    47,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: 47 },
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    { attrs: { _i: 48 } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(48, "t0-0")
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
                                             ],
                                             1
                                           ),
+                                        ],
+                                        1
+                                      ),
+                                      _c(
+                                        "tbody",
+                                        { attrs: { _i: 49 } },
+                                        [
                                           _c(
-                                            "td",
+                                            "tr",
                                             {
-                                              staticClass: _vm._$g(46, "sc"),
-                                              attrs: { _i: 46 },
+                                              staticClass: _vm._$g(50, "sc"),
+                                              attrs: { _i: 50 },
                                             },
                                             [
-                                              _c("p", { attrs: { _i: 47 } }, [
-                                                _vm._v(_vm._$g(47, "t0-0")),
-                                              ]),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    51,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: 51 },
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    { attrs: { _i: 52 } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(52, "t0-0")
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    53,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: 53 },
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    { attrs: { _i: 54 } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(54, "t0-0")
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
                                             ],
                                             1
                                           ),
@@ -12805,40 +12969,154 @@ var render = function () {
                                     ],
                                     1
                                   ),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "uni-view",
+                            {
+                              staticClass: _vm._$g(55, "sc"),
+                              attrs: { _i: 55 },
+                            },
+                            [
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(56, "sc"),
+                                  attrs: { _i: 56 },
+                                },
+                                [_vm._v("已结场")]
+                              ),
+                              _c(
+                                "uni-view",
+                                {
+                                  staticClass: _vm._$g(57, "sc"),
+                                  attrs: { _i: 57 },
+                                },
+                                [
                                   _c(
-                                    "tbody",
-                                    { attrs: { _i: 48 } },
+                                    "table",
+                                    {
+                                      staticClass: _vm._$g(58, "sc"),
+                                      attrs: { _i: 58 },
+                                    },
                                     [
                                       _c(
-                                        "tr",
-                                        {
-                                          staticClass: _vm._$g(49, "sc"),
-                                          attrs: { _i: 49 },
-                                        },
+                                        "thead",
+                                        { attrs: { _i: 59 } },
                                         [
                                           _c(
-                                            "td",
-                                            {
-                                              staticClass: _vm._$g(50, "sc"),
-                                              attrs: { _i: 50 },
-                                            },
+                                            "tr",
+                                            { attrs: { _i: 60 } },
                                             [
-                                              _c("p", { attrs: { _i: 51 } }, [
-                                                _vm._v(_vm._$g(51, "t0-0")),
-                                              ]),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    61,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: 61 },
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    { attrs: { _i: 62 } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(62, "t0-0")
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    63,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: 63 },
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    { attrs: { _i: 64 } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(64, "t0-0")
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
                                             ],
                                             1
                                           ),
+                                        ],
+                                        1
+                                      ),
+                                      _c(
+                                        "tbody",
+                                        { attrs: { _i: 65 } },
+                                        [
                                           _c(
-                                            "td",
+                                            "tr",
                                             {
-                                              staticClass: _vm._$g(52, "sc"),
-                                              attrs: { _i: 52 },
+                                              staticClass: _vm._$g(66, "sc"),
+                                              attrs: { _i: 66 },
                                             },
                                             [
-                                              _c("p", { attrs: { _i: 53 } }, [
-                                                _vm._v(_vm._$g(53, "t0-0")),
-                                              ]),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    67,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: 67 },
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    { attrs: { _i: 68 } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(68, "t0-0")
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
+                                              _c(
+                                                "td",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    69,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: 69 },
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    { attrs: { _i: 70 } },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(70, "t0-0")
+                                                      ),
+                                                    ]
+                                                  ),
+                                                ],
+                                                1
+                                              ),
                                             ],
                                             1
                                           ),
@@ -12859,146 +13137,28 @@ var render = function () {
                       ),
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(54, "sc"), attrs: { _i: 54 } },
+                        { staticClass: _vm._$g(71, "sc"), attrs: { _i: 71 } },
                         [
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(55, "sc"),
-                              attrs: { _i: 55 },
+                          _c("zb-table", {
+                            attrs: { _i: 72 },
+                            on: {
+                              toggleRowSelection: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                              toggleAllSelection: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                              edit: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                              dele: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
                             },
-                            [_vm._v("已结场")]
-                          ),
-                          _c(
-                            "uni-view",
-                            {
-                              staticClass: _vm._$g(56, "sc"),
-                              attrs: { _i: 56 },
-                            },
-                            [
-                              _c(
-                                "table",
-                                {
-                                  staticClass: _vm._$g(57, "sc"),
-                                  attrs: { _i: 57 },
-                                },
-                                [
-                                  _c(
-                                    "thead",
-                                    { attrs: { _i: 58 } },
-                                    [
-                                      _c(
-                                        "tr",
-                                        { attrs: { _i: 59 } },
-                                        [
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: _vm._$g(60, "sc"),
-                                              attrs: { _i: 60 },
-                                            },
-                                            [
-                                              _c("p", { attrs: { _i: 61 } }, [
-                                                _vm._v(_vm._$g(61, "t0-0")),
-                                              ]),
-                                            ],
-                                            1
-                                          ),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: _vm._$g(62, "sc"),
-                                              attrs: { _i: 62 },
-                                            },
-                                            [
-                                              _c("p", { attrs: { _i: 63 } }, [
-                                                _vm._v(_vm._$g(63, "t0-0")),
-                                              ]),
-                                            ],
-                                            1
-                                          ),
-                                        ],
-                                        1
-                                      ),
-                                    ],
-                                    1
-                                  ),
-                                  _c(
-                                    "tbody",
-                                    { attrs: { _i: 64 } },
-                                    [
-                                      _c(
-                                        "tr",
-                                        {
-                                          staticClass: _vm._$g(65, "sc"),
-                                          attrs: { _i: 65 },
-                                        },
-                                        [
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: _vm._$g(66, "sc"),
-                                              attrs: { _i: 66 },
-                                            },
-                                            [
-                                              _c("p", { attrs: { _i: 67 } }, [
-                                                _vm._v(_vm._$g(67, "t0-0")),
-                                              ]),
-                                            ],
-                                            1
-                                          ),
-                                          _c(
-                                            "td",
-                                            {
-                                              staticClass: _vm._$g(68, "sc"),
-                                              attrs: { _i: 68 },
-                                            },
-                                            [
-                                              _c("p", { attrs: { _i: 69 } }, [
-                                                _vm._v(_vm._$g(69, "t0-0")),
-                                              ]),
-                                            ],
-                                            1
-                                          ),
-                                        ],
-                                        1
-                                      ),
-                                    ],
-                                    1
-                                  ),
-                                ],
-                                1
-                              ),
-                            ],
-                            1
-                          ),
+                          }),
                         ],
                         1
                       ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(70, "sc"), attrs: { _i: 70 } },
-                    [
-                      _c("zb-table", {
-                        attrs: { _i: 71 },
-                        on: {
-                          toggleRowSelection: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                          toggleAllSelection: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                          edit: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                          dele: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
                     ],
                     1
                   ),
@@ -13011,7 +13171,7 @@ var render = function () {
         ],
         1
       ),
-      _c("customTabBar", { attrs: { _i: 72 } }),
+      _c("customTabBar", { attrs: { _i: 73 } }),
     ],
     1
   )
@@ -13345,6 +13505,7 @@ var render = function () {
                           _c(
                             "u-input",
                             {
+                              staticStyle: { padding: "4px 9px" },
                               attrs: { _i: 16 },
                               model: {
                                 value: _vm._$g(16, "v-model"),
@@ -15044,7 +15205,7 @@ var render = function () {
                 model: {
                   value: _vm._$g(4, "v-model"),
                   callback: function () {},
-                  expression: "formData.oldPassWord",
+                  expression: "formData.account",
                 },
               }),
             ],
@@ -15059,7 +15220,7 @@ var render = function () {
                 model: {
                   value: _vm._$g(6, "v-model"),
                   callback: function () {},
-                  expression: "formData.newPassWord",
+                  expression: "formData.oldPassWord",
                 },
               }),
             ],
@@ -15074,6 +15235,21 @@ var render = function () {
                 model: {
                   value: _vm._$g(8, "v-model"),
                   callback: function () {},
+                  expression: "formData.newPassWord",
+                },
+              }),
+            ],
+            1
+          ),
+          _c(
+            "u-form-item",
+            { ref: "item1", attrs: { _i: 9 } },
+            [
+              _c("u--input", {
+                attrs: { _i: 10 },
+                model: {
+                  value: _vm._$g(10, "v-model"),
+                  callback: function () {},
                   expression: "formData.confirmPassword",
                 },
               }),
@@ -15083,9 +15259,9 @@ var render = function () {
           _c(
             "u-button",
             {
-              staticClass: _vm._$g(9, "sc"),
+              staticClass: _vm._$g(11, "sc"),
               staticStyle: { "margin-top": "35px" },
-              attrs: { _i: 9 },
+              attrs: { _i: 11 },
               on: {
                 click: function ($event) {
                   return _vm.$handleViewEvent($event)
@@ -15096,10 +15272,10 @@ var render = function () {
           ),
           _c(
             "uni-view",
-            { attrs: { _i: 10 } },
+            { attrs: { _i: 12 } },
             [
               _c("u-modal", {
-                attrs: { _i: 11 },
+                attrs: { _i: 13 },
                 on: {
                   close: function ($event) {
                     return _vm.$handleViewEvent($event)
@@ -15118,7 +15294,7 @@ var render = function () {
         ],
         1
       ),
-      _c("customTabBar", { attrs: { _i: 12 } }),
+      _c("customTabBar", { attrs: { _i: 14 } }),
     ],
     1
   )
@@ -15339,7 +15515,7 @@ var render = function () {
     "uni-view",
     { attrs: { _i: 0 } },
     [
-      _c("NoticeBar", { attrs: { _i: 1 } }),
+      _vm._$g(1, "i") ? _c("NoticeBar", { attrs: { _i: 1 } }) : _vm._e(),
       _c(
         "uni-view",
         { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
@@ -15385,7 +15561,15 @@ var render = function () {
               ),
               _c(
                 "u-form-item",
-                { ref: "item1", attrs: { _i: 8 } },
+                {
+                  ref: "item1",
+                  attrs: { _i: 8 },
+                  on: {
+                    click: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
                 [
                   _c(
                     "uni-view",
@@ -15401,35 +15585,27 @@ var render = function () {
                       _c("uni-view", { attrs: { _i: 10 } }),
                       _c(
                         "uni-view",
-                        { staticStyle: { color: "#aaa" }, attrs: { _i: 11 } },
-                        [_vm._v(">>>")]
-                      ),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-              _c(
-                "u-form-item",
-                { ref: "item1", attrs: { _i: 12 } },
-                [
-                  _c(
-                    "uni-view",
-                    {
-                      staticStyle: {
-                        display: "flex",
-                        "justify-content": "space-between",
-                        width: "100%",
-                      },
-                      attrs: { _i: 13 },
-                    },
-                    [
-                      _c("uni-view", { attrs: { _i: 14 } }),
-                      _c(
-                        "uni-view",
-                        { staticStyle: { color: "#aaa" }, attrs: { _i: 15 } },
-                        [_vm._v("夜曲")]
+                        {
+                          staticStyle: {
+                            display: "flex",
+                            "justify-content": "space-between",
+                          },
+                          attrs: { _i: 11 },
+                        },
+                        [
+                          _c(
+                            "uni-view",
+                            {
+                              staticStyle: {
+                                color: "#aaa",
+                                "margin-left": "20px",
+                              },
+                              attrs: { _i: 12 },
+                            },
+                            [_vm._v(">>>")]
+                          ),
+                        ],
+                        1
                       ),
                     ],
                     1
@@ -15440,7 +15616,7 @@ var render = function () {
             ],
             1
           ),
-          _c("customTabBar", { attrs: { _i: 16 } }),
+          _c("customTabBar", { attrs: { _i: 13 } }),
         ],
         1
       ),
@@ -16543,7 +16719,7 @@ var render = function () {
                   _c(
                     "span",
                     { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
-                    [_vm._v("昵 称:")]
+                    [_vm._v("老 师:")]
                   ),
                   _c(
                     "uni-view",
@@ -16624,10 +16800,18 @@ var render = function () {
                         },
                         [_vm._v(_vm._$g("21-" + $30, "t0-0"))]
                       ),
-                      _c("zb-table", { attrs: { _i: "22-" + $30 } }),
+                      _c(
+                        "uni-view",
+                        {
+                          staticClass: _vm._$g("22-" + $30, "sc"),
+                          attrs: { _i: "22-" + $30 },
+                        },
+                        [_c("zb-table", { attrs: { _i: "23-" + $30 } })],
+                        1
+                      ),
                       _c("zb-table", {
                         staticStyle: { "margin-top": "10px" },
-                        attrs: { _i: "23-" + $30 },
+                        attrs: { _i: "24-" + $30 },
                       }),
                     ],
                     1
@@ -16639,7 +16823,7 @@ var render = function () {
         ],
         1
       ),
-      _c("customTabBar", { attrs: { _i: 24 } }),
+      _c("customTabBar", { attrs: { _i: 25 } }),
     ],
     1
   )
@@ -16748,7 +16932,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-0462008e] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-0462008e] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-0462008e] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.search-box[data-v-0462008e] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.search-box .time-line[data-v-0462008e] {\r\n  position: relative;\r\n  top: 8px;\r\n  margin: 0 10px;\n}\n.text[data-v-0462008e] {\r\n  font-size: 12px;\r\n  color: #666;\r\n  margin-top: 5px;\n}\n.uni-px-5[data-v-0462008e] {\r\n  padding-left: 10px;\r\n  padding-right: 10px;\n}\n.uni-pb-5[data-v-0462008e] {\r\n  padding-bottom: 10px;\n}\n.query-content[data-v-0462008e] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.query-content .query-content-select[data-v-0462008e] {\r\n  width: 29%;\n}\n.query-content .query-content-input[data-v-0462008e] {\r\n  margin-left: 1%;\r\n  width: 69%;\n}\n[data-v-0462008e] .u-input--radius,[data-v-0462008e] .u-input--square {\r\n  padding: 4px 9px !important;\n}\n.search-table[data-v-0462008e] {\r\n  margin: 10px 0;\n}\n.search-table .self-achieve[data-v-0462008e] {\r\n  background: #F2F2F2;\r\n  padding: 5px;\r\n  margin: 3px 0;\n}\n.search-table .self-achieve .achieve-date[data-v-0462008e] {\r\n  display: flex;\r\n  justify-content: center;\r\n  margin: 5px 0;\n}\n.search-cond[data-v-0462008e] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.search-cond .search-nk[data-v-0462008e] {\r\n  position: relative;\r\n  top: 6px;\r\n  margin-right: 15px;\r\n  width: 50px;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-0462008e] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-0462008e] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-0462008e] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.search-box[data-v-0462008e] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.search-box .time-line[data-v-0462008e] {\r\n  position: relative;\r\n  top: 8px;\r\n  margin: 0 10px;\n}\n.text[data-v-0462008e] {\r\n  font-size: 12px;\r\n  color: #666;\r\n  margin-top: 5px;\n}\n.uni-px-5[data-v-0462008e] {\r\n  padding-left: 10px;\r\n  padding-right: 10px;\n}\n.uni-pb-5[data-v-0462008e] {\r\n  padding-bottom: 10px;\n}\n.query-content[data-v-0462008e] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.query-content .query-content-select[data-v-0462008e] {\r\n  width: 29%;\n}\n.query-content .query-content-input[data-v-0462008e] {\r\n  margin-left: 1%;\r\n  width: 69%;\n}\n[data-v-0462008e] .u-input--radius,[data-v-0462008e] .u-input--square {\r\n  padding: 4px 9px !important;\n}\n.search-table[data-v-0462008e] {\r\n  margin: 10px 0;\n}\n.search-table .self-achieve[data-v-0462008e] {\r\n  background: #F2F2F2;\r\n  padding: 5px;\r\n  margin: 3px 0;\n}\n.search-table .self-achieve .achieve-date[data-v-0462008e] {\r\n  display: flex;\r\n  justify-content: center;\r\n  margin: 5px 0;\n}\n.search-cond[data-v-0462008e] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.search-cond .search-nk[data-v-0462008e] {\r\n  position: relative;\r\n  top: 6px;\r\n  margin-right: 15px;\r\n  width: 50px;\n}\n[data-v-0462008e] .top-table .item-th {\r\n  min-width: 70px !important;\r\n  width: 70px !important;\r\n  padding-left: 2px !important;\r\n  padding-right: 0 !important;\n}\n[data-v-0462008e] .top-table .zb-table .item-td {\r\n  min-width: 70px !important;\r\n  width: 70px !important;\r\n  padding-left: 2px !important;\r\n  padding-right: 0 !important;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -16913,7 +17097,7 @@ var render = function () {
                     {
                       staticStyle: {
                         position: "relative",
-                        top: "8px",
+                        top: "6px",
                         width: "100px",
                       },
                       attrs: { _i: 8 },
@@ -17279,105 +17463,121 @@ var render = function () {
         2
       ),
       _c(
-        "u-popup",
+        "uni-view",
         {
           attrs: { _i: 44 },
           on: {
-            close: function ($event) {
-              return _vm.$handleViewEvent($event)
+            touchmove: function ($event) {
+              return _vm.$handleViewEvent($event, { stop: true, prevent: true })
             },
           },
         },
         [
           _c(
-            "uni-view",
+            "u-popup",
             {
-              staticStyle: { height: "calc(100vh - 200px)" },
               attrs: { _i: 45 },
+              on: {
+                close: function ($event) {
+                  return _vm.$handleViewEvent($event)
+                },
+              },
             },
             [
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
+                {
+                  staticStyle: { height: "calc(100vh - 200px)" },
+                  attrs: { _i: 46 },
+                },
                 [
                   _c(
                     "uni-view",
                     { staticClass: _vm._$g(47, "sc"), attrs: { _i: 47 } },
-                    [_vm._v("用户: " + _vm._$g(47, "t0-0"))]
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(48, "sc"), attrs: { _i: 48 } },
                     [
-                      _c("uni-view", { attrs: { _i: 49 } }, [
-                        _vm._v(_vm._$g(49, "t0-0") + " " + _vm._$g(49, "t0-1")),
-                      ]),
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(50, "sc"), attrs: { _i: 50 } },
-                        [
-                          _vm._v(
-                            _vm._$g(50, "t0-0") + " " + _vm._$g(50, "t0-1")
-                          ),
-                        ]
+                        { staticClass: _vm._$g(48, "sc"), attrs: { _i: 48 } },
+                        [_vm._v("用户: " + _vm._$g(48, "t0-0"))]
                       ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    { staticClass: _vm._$g(51, "sc"), attrs: { _i: 51 } },
-                    [
                       _c(
                         "uni-view",
-                        { attrs: { _i: 52 } },
+                        { staticClass: _vm._$g(49, "sc"), attrs: { _i: 49 } },
                         [
-                          _c("uni-view", { attrs: { _i: 53 } }, [
+                          _c("uni-view", { attrs: { _i: 50 } }, [
                             _vm._v(
-                              _vm._$g(53, "t0-0") + " " + _vm._$g(53, "t0-1")
+                              _vm._$g(50, "t0-0") + " " + _vm._$g(50, "t0-1")
                             ),
                           ]),
-                          _c("uni-view", { attrs: { _i: 54 } }, [
-                            _vm._v(
-                              _vm._$g(54, "t0-0") + " " + _vm._$g(54, "t0-1")
-                            ),
-                          ]),
+                          _c(
+                            "uni-view",
+                            {
+                              staticClass: _vm._$g(51, "sc"),
+                              attrs: { _i: 51 },
+                            },
+                            [
+                              _vm._v(
+                                _vm._$g(51, "t0-0") + " " + _vm._$g(51, "t0-1")
+                              ),
+                            ]
+                          ),
                         ],
                         1
                       ),
-                    ],
-                    1
-                  ),
-                  _vm._$g(55, "i")
-                    ? _c(
+                      _c(
                         "uni-view",
-                        { staticClass: _vm._$g(55, "sc"), attrs: { _i: 55 } },
-                        _vm._l(
-                          _vm._$g(56, "f"),
-                          function (item, index, $23, $33) {
-                            return _c(
-                              "uni-view",
-                              {
-                                key: item,
-                                staticClass: _vm._$g("56-" + $33, "sc"),
-                                attrs: { _i: "56-" + $33 },
-                              },
-                              [
-                                _c(
+                        { staticClass: _vm._$g(52, "sc"), attrs: { _i: 52 } },
+                        [
+                          _c(
+                            "uni-view",
+                            { attrs: { _i: 53 } },
+                            [
+                              _c("uni-view", { attrs: { _i: 54 } }, [
+                                _vm._v(
+                                  _vm._$g(54, "t0-0") +
+                                    " " +
+                                    _vm._$g(54, "t0-1")
+                                ),
+                              ]),
+                              _c("uni-view", { attrs: { _i: 55 } }, [
+                                _vm._v(
+                                  _vm._$g(55, "t0-0") +
+                                    " " +
+                                    _vm._$g(55, "t0-1")
+                                ),
+                              ]),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._$g(56, "i")
+                        ? _c(
+                            "uni-view",
+                            {
+                              staticClass: _vm._$g(56, "sc"),
+                              attrs: { _i: 56 },
+                            },
+                            _vm._l(
+                              _vm._$g(57, "f"),
+                              function (item, index, $23, $33) {
+                                return _c(
                                   "uni-view",
                                   {
+                                    key: item,
                                     staticClass: _vm._$g("57-" + $33, "sc"),
                                     attrs: { _i: "57-" + $33 },
                                   },
-                                  [_vm._v(_vm._$g("57-" + $33, "t0-0"))]
-                                ),
-                                _c(
-                                  "uni-view",
-                                  {
-                                    staticClass: _vm._$g("58-" + $33, "sc"),
-                                    attrs: { _i: "58-" + $33 },
-                                  },
                                   [
+                                    _c(
+                                      "uni-view",
+                                      {
+                                        staticClass: _vm._$g("58-" + $33, "sc"),
+                                        attrs: { _i: "58-" + $33 },
+                                      },
+                                      [_vm._v(_vm._$g("58-" + $33, "t0-0"))]
+                                    ),
                                     _c(
                                       "uni-view",
                                       {
@@ -17386,7 +17586,7 @@ var render = function () {
                                       },
                                       [
                                         _c(
-                                          "table",
+                                          "uni-view",
                                           {
                                             staticClass: _vm._$g(
                                               "60-" + $33,
@@ -17396,48 +17596,51 @@ var render = function () {
                                           },
                                           [
                                             _c(
-                                              "thead",
-                                              { attrs: { _i: "61-" + $33 } },
+                                              "table",
+                                              {
+                                                staticClass: _vm._$g(
+                                                  "61-" + $33,
+                                                  "sc"
+                                                ),
+                                                attrs: { _i: "61-" + $33 },
+                                              },
                                               [
                                                 _c(
-                                                  "tr",
+                                                  "thead",
                                                   {
                                                     attrs: { _i: "62-" + $33 },
                                                   },
-                                                  _vm._l(
-                                                    _vm._$g(
-                                                      63 + "-" + $33,
-                                                      "f"
-                                                    ),
-                                                    function (
-                                                      val,
-                                                      i,
-                                                      $24,
-                                                      $34
-                                                    ) {
-                                                      return _c(
-                                                        "td",
-                                                        {
-                                                          key: val,
-                                                          staticClass: _vm._$g(
-                                                            "63-" +
-                                                              $33 +
-                                                              "-" +
-                                                              $34,
-                                                            "sc"
-                                                          ),
-                                                          attrs: {
-                                                            _i:
-                                                              "63-" +
-                                                              $33 +
-                                                              "-" +
-                                                              $34,
-                                                          },
+                                                  [
+                                                    _c(
+                                                      "tr",
+                                                      {
+                                                        attrs: {
+                                                          _i: "63-" + $33,
                                                         },
-                                                        [
-                                                          _c(
-                                                            "p",
+                                                      },
+                                                      _vm._l(
+                                                        _vm._$g(
+                                                          64 + "-" + $33,
+                                                          "f"
+                                                        ),
+                                                        function (
+                                                          val,
+                                                          i,
+                                                          $24,
+                                                          $34
+                                                        ) {
+                                                          return _c(
+                                                            "td",
                                                             {
+                                                              key: val,
+                                                              staticClass:
+                                                                _vm._$g(
+                                                                  "64-" +
+                                                                    $33 +
+                                                                    "-" +
+                                                                    $34,
+                                                                  "sc"
+                                                                ),
                                                               attrs: {
                                                                 _i:
                                                                   "64-" +
@@ -17447,74 +17650,79 @@ var render = function () {
                                                               },
                                                             },
                                                             [
-                                                              _vm._v(
-                                                                _vm._$g(
-                                                                  "64-" +
-                                                                    $33 +
-                                                                    "-" +
-                                                                    $34,
-                                                                  "t0-0"
-                                                                )
+                                                              _c(
+                                                                "p",
+                                                                {
+                                                                  attrs: {
+                                                                    _i:
+                                                                      "65-" +
+                                                                      $33 +
+                                                                      "-" +
+                                                                      $34,
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._$g(
+                                                                      "65-" +
+                                                                        $33 +
+                                                                        "-" +
+                                                                        $34,
+                                                                      "t0-0"
+                                                                    )
+                                                                  ),
+                                                                ]
                                                               ),
-                                                            ]
-                                                          ),
-                                                        ],
-                                                        1
-                                                      )
-                                                    }
-                                                  ),
+                                                            ],
+                                                            1
+                                                          )
+                                                        }
+                                                      ),
+                                                      1
+                                                    ),
+                                                  ],
                                                   1
                                                 ),
-                                              ],
-                                              1
-                                            ),
-                                            _c(
-                                              "tbody",
-                                              { attrs: { _i: "65-" + $33 } },
-                                              [
                                                 _c(
-                                                  "tr",
+                                                  "tbody",
                                                   {
-                                                    staticClass: _vm._$g(
-                                                      "66-" + $33,
-                                                      "sc"
-                                                    ),
                                                     attrs: { _i: "66-" + $33 },
                                                   },
-                                                  _vm._l(
-                                                    _vm._$g(
-                                                      67 + "-" + $33,
-                                                      "f"
-                                                    ),
-                                                    function (
-                                                      tem,
-                                                      i,
-                                                      $25,
-                                                      $35
-                                                    ) {
-                                                      return _c(
-                                                        "td",
-                                                        {
-                                                          key: tem,
-                                                          staticClass: _vm._$g(
-                                                            "67-" +
-                                                              $33 +
-                                                              "-" +
-                                                              $35,
-                                                            "sc"
-                                                          ),
-                                                          attrs: {
-                                                            _i:
-                                                              "67-" +
-                                                              $33 +
-                                                              "-" +
-                                                              $35,
-                                                          },
+                                                  [
+                                                    _c(
+                                                      "tr",
+                                                      {
+                                                        staticClass: _vm._$g(
+                                                          "67-" + $33,
+                                                          "sc"
+                                                        ),
+                                                        attrs: {
+                                                          _i: "67-" + $33,
                                                         },
-                                                        [
-                                                          _c(
-                                                            "p",
+                                                      },
+                                                      _vm._l(
+                                                        _vm._$g(
+                                                          68 + "-" + $33,
+                                                          "f"
+                                                        ),
+                                                        function (
+                                                          tem,
+                                                          i,
+                                                          $25,
+                                                          $35
+                                                        ) {
+                                                          return _c(
+                                                            "td",
                                                             {
+                                                              key: tem,
+                                                              staticClass:
+                                                                _vm._$g(
+                                                                  "68-" +
+                                                                    $33 +
+                                                                    "-" +
+                                                                    $35,
+                                                                  "sc"
+                                                                ),
                                                               attrs: {
                                                                 _i:
                                                                   "68-" +
@@ -17524,22 +17732,37 @@ var render = function () {
                                                               },
                                                             },
                                                             [
-                                                              _vm._v(
-                                                                _vm._$g(
-                                                                  "68-" +
-                                                                    $33 +
-                                                                    "-" +
-                                                                    $35,
-                                                                  "t0-0"
-                                                                )
+                                                              _c(
+                                                                "p",
+                                                                {
+                                                                  attrs: {
+                                                                    _i:
+                                                                      "69-" +
+                                                                      $33 +
+                                                                      "-" +
+                                                                      $35,
+                                                                  },
+                                                                },
+                                                                [
+                                                                  _vm._v(
+                                                                    _vm._$g(
+                                                                      "69-" +
+                                                                        $33 +
+                                                                        "-" +
+                                                                        $35,
+                                                                      "t0-0"
+                                                                    )
+                                                                  ),
+                                                                ]
                                                               ),
-                                                            ]
-                                                          ),
-                                                        ],
-                                                        1
-                                                      )
-                                                    }
-                                                  ),
+                                                            ],
+                                                            1
+                                                          )
+                                                        }
+                                                      ),
+                                                      1
+                                                    ),
+                                                  ],
                                                   1
                                                 ),
                                               ],
@@ -17551,28 +17774,28 @@ var render = function () {
                                       ],
                                       1
                                     ),
+                                    _c(
+                                      "uni-view",
+                                      {
+                                        staticStyle: {
+                                          display: "flex",
+                                          "justify-content": "center",
+                                        },
+                                        attrs: { _i: "70-" + $33 },
+                                      },
+                                      [_vm._v("显示近7天数据")]
+                                    ),
                                   ],
                                   1
-                                ),
-                                _c(
-                                  "uni-view",
-                                  {
-                                    staticStyle: {
-                                      display: "flex",
-                                      "justify-content": "center",
-                                    },
-                                    attrs: { _i: "69-" + $33 },
-                                  },
-                                  [_vm._v("显示近7天数据")]
-                                ),
-                              ],
-                              1
-                            )
-                          }
-                        ),
-                        1
-                      )
-                    : _vm._e(),
+                                )
+                              }
+                            ),
+                            1
+                          )
+                        : _vm._e(),
+                    ],
+                    1
+                  ),
                 ],
                 1
               ),
@@ -17582,7 +17805,7 @@ var render = function () {
         ],
         1
       ),
-      _c("customTabBar", { attrs: { _i: 70 } }),
+      _c("customTabBar", { attrs: { _i: 71 } }),
     ],
     1
   )
@@ -17853,7 +18076,7 @@ var render = function () {
                     {
                       staticStyle: {
                         position: "relative",
-                        top: "8px",
+                        top: "6px",
                         width: "100px",
                       },
                       attrs: { _i: 8 },
@@ -17883,7 +18106,7 @@ var render = function () {
                   _c(
                     "span",
                     { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
-                    [_vm._v("昵 称:")]
+                    [_vm._v("老 师:")]
                   ),
                   _c(
                     "uni-view",
@@ -18108,200 +18331,218 @@ var render = function () {
             )
           }),
           _c(
-            "u-popup",
+            "uni-view",
             {
               attrs: { _i: 33 },
               on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
                 },
               },
             },
             [
               _c(
-                "uni-view",
+                "u-popup",
                 {
-                  staticStyle: { height: "calc(100vh - 200px)" },
                   attrs: { _i: 34 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
                 },
                 [
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(35, "sc"), attrs: { _i: 35 } },
+                    {
+                      staticStyle: { height: "calc(100vh - 200px)" },
+                      attrs: { _i: 35 },
+                    },
                     [
                       _c(
                         "uni-view",
                         { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
-                        [_vm._v("名称: " + _vm._$g(36, "t0-0"))]
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
-                        [
-                          _c("uni-view", { attrs: { _i: 38 } }, [
-                            _vm._v(
-                              _vm._$g(38, "t0-0") + " " + _vm._$g(38, "t0-1")
-                            ),
-                          ]),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
                         [
                           _c(
-                            "table",
+                            "uni-view",
                             {
-                              staticClass: _vm._$g(40, "sc"),
-                              attrs: { _i: 40 },
+                              staticClass: _vm._$g(37, "sc"),
+                              attrs: { _i: 37 },
+                            },
+                            [_vm._v("名称: " + _vm._$g(37, "t0-0"))]
+                          ),
+                          _c(
+                            "uni-view",
+                            {
+                              staticClass: _vm._$g(38, "sc"),
+                              attrs: { _i: 38 },
                             },
                             [
-                              _c(
-                                "thead",
-                                { attrs: { _i: 41 } },
-                                [
-                                  _c(
-                                    "tr",
-                                    { attrs: { _i: 42 } },
-                                    [
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: _vm._$g(43, "sc"),
-                                          attrs: { _i: 43 },
-                                        },
-                                        [
-                                          _c("p", { attrs: { _i: 44 } }, [
-                                            _vm._v(_vm._$g(44, "t0-0")),
-                                          ]),
-                                        ],
-                                        1
-                                      ),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: _vm._$g(45, "sc"),
-                                          attrs: { _i: 45 },
-                                        },
-                                        [
-                                          _c("p", { attrs: { _i: 46 } }, [
-                                            _vm._v(_vm._$g(46, "t0-0")),
-                                          ]),
-                                        ],
-                                        1
-                                      ),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: _vm._$g(47, "sc"),
-                                          attrs: { _i: 47 },
-                                        },
-                                        [
-                                          _c("p", { attrs: { _i: 48 } }, [
-                                            _vm._v(_vm._$g(48, "t0-0")),
-                                          ]),
-                                        ],
-                                        1
-                                      ),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: _vm._$g(49, "sc"),
-                                          attrs: { _i: 49 },
-                                        },
-                                        [
-                                          _c("p", { attrs: { _i: 50 } }, [
-                                            _vm._v(_vm._$g(50, "t0-0")),
-                                          ]),
-                                        ],
-                                        1
-                                      ),
-                                    ],
-                                    1
-                                  ),
-                                ],
-                                1
-                              ),
-                              _c(
-                                "tbody",
-                                { attrs: { _i: 51 } },
-                                [
-                                  _c(
-                                    "tr",
-                                    {
-                                      staticClass: _vm._$g(52, "sc"),
-                                      attrs: { _i: 52 },
-                                    },
-                                    [
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: _vm._$g(53, "sc"),
-                                          attrs: { _i: 53 },
-                                        },
-                                        [
-                                          _c("p", { attrs: { _i: 54 } }, [
-                                            _vm._v(_vm._$g(54, "t0-0")),
-                                          ]),
-                                        ],
-                                        1
-                                      ),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: _vm._$g(55, "sc"),
-                                          attrs: { _i: 55 },
-                                        },
-                                        [
-                                          _c("p", { attrs: { _i: 56 } }, [
-                                            _vm._v(_vm._$g(56, "t0-0")),
-                                          ]),
-                                        ],
-                                        1
-                                      ),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: _vm._$g(57, "sc"),
-                                          attrs: { _i: 57 },
-                                        },
-                                        [
-                                          _c("p", { attrs: { _i: 58 } }, [
-                                            _vm._v(_vm._$g(58, "t0-0")),
-                                          ]),
-                                        ],
-                                        1
-                                      ),
-                                      _c(
-                                        "td",
-                                        {
-                                          staticClass: _vm._$g(59, "sc"),
-                                          attrs: { _i: 59 },
-                                        },
-                                        [
-                                          _c("p", { attrs: { _i: 60 } }, [
-                                            _vm._v(_vm._$g(60, "t0-0")),
-                                          ]),
-                                        ],
-                                        1
-                                      ),
-                                    ],
-                                    1
-                                  ),
-                                ],
-                                1
-                              ),
+                              _c("uni-view", { attrs: { _i: 39 } }, [
+                                _vm._v(
+                                  _vm._$g(39, "t0-0") +
+                                    " " +
+                                    _vm._$g(39, "t0-1")
+                                ),
+                              ]),
                             ],
                             1
                           ),
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(61, "sc"),
-                              attrs: { _i: 61 },
+                              staticClass: _vm._$g(40, "sc"),
+                              attrs: { _i: 40 },
                             },
                             [
+                              _c(
+                                "table",
+                                {
+                                  staticClass: _vm._$g(41, "sc"),
+                                  attrs: { _i: 41 },
+                                },
+                                [
+                                  _c(
+                                    "thead",
+                                    { attrs: { _i: 42 } },
+                                    [
+                                      _c(
+                                        "tr",
+                                        { attrs: { _i: 43 } },
+                                        [
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: _vm._$g(44, "sc"),
+                                              attrs: { _i: 44 },
+                                            },
+                                            [
+                                              _c("p", { attrs: { _i: 45 } }, [
+                                                _vm._v(_vm._$g(45, "t0-0")),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: _vm._$g(46, "sc"),
+                                              attrs: { _i: 46 },
+                                            },
+                                            [
+                                              _c("p", { attrs: { _i: 47 } }, [
+                                                _vm._v(_vm._$g(47, "t0-0")),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: _vm._$g(48, "sc"),
+                                              attrs: { _i: 48 },
+                                            },
+                                            [
+                                              _c("p", { attrs: { _i: 49 } }, [
+                                                _vm._v(_vm._$g(49, "t0-0")),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: _vm._$g(50, "sc"),
+                                              attrs: { _i: 50 },
+                                            },
+                                            [
+                                              _c("p", { attrs: { _i: 51 } }, [
+                                                _vm._v(_vm._$g(51, "t0-0")),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                        ],
+                                        1
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                  _c(
+                                    "tbody",
+                                    { attrs: { _i: 52 } },
+                                    [
+                                      _c(
+                                        "tr",
+                                        {
+                                          staticClass: _vm._$g(53, "sc"),
+                                          attrs: { _i: 53 },
+                                        },
+                                        [
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: _vm._$g(54, "sc"),
+                                              attrs: { _i: 54 },
+                                            },
+                                            [
+                                              _c("p", { attrs: { _i: 55 } }, [
+                                                _vm._v(_vm._$g(55, "t0-0")),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: _vm._$g(56, "sc"),
+                                              attrs: { _i: 56 },
+                                            },
+                                            [
+                                              _c("p", { attrs: { _i: 57 } }, [
+                                                _vm._v(_vm._$g(57, "t0-0")),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: _vm._$g(58, "sc"),
+                                              attrs: { _i: 58 },
+                                            },
+                                            [
+                                              _c("p", { attrs: { _i: 59 } }, [
+                                                _vm._v(_vm._$g(59, "t0-0")),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                          _c(
+                                            "td",
+                                            {
+                                              staticClass: _vm._$g(60, "sc"),
+                                              attrs: { _i: 60 },
+                                            },
+                                            [
+                                              _c("p", { attrs: { _i: 61 } }, [
+                                                _vm._v(_vm._$g(61, "t0-0")),
+                                              ]),
+                                            ],
+                                            1
+                                          ),
+                                        ],
+                                        1
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              ),
                               _c(
                                 "uni-view",
                                 {
@@ -18309,26 +18550,40 @@ var render = function () {
                                   attrs: { _i: 62 },
                                 },
                                 [
-                                  _c("zb-table", {
-                                    attrs: { _i: 63 },
-                                    on: {
-                                      rowClick: function ($event) {
-                                        return _vm.$handleViewEvent($event)
-                                      },
-                                      toggleRowSelection: function ($event) {
-                                        return _vm.$handleViewEvent($event)
-                                      },
-                                      toggleAllSelection: function ($event) {
-                                        return _vm.$handleViewEvent($event)
-                                      },
-                                      edit: function ($event) {
-                                        return _vm.$handleViewEvent($event)
-                                      },
-                                      dele: function ($event) {
-                                        return _vm.$handleViewEvent($event)
-                                      },
+                                  _c(
+                                    "uni-view",
+                                    {
+                                      staticClass: _vm._$g(63, "sc"),
+                                      attrs: { _i: 63 },
                                     },
-                                  }),
+                                    [
+                                      _c("zb-table", {
+                                        attrs: { _i: 64 },
+                                        on: {
+                                          rowClick: function ($event) {
+                                            return _vm.$handleViewEvent($event)
+                                          },
+                                          toggleRowSelection: function (
+                                            $event
+                                          ) {
+                                            return _vm.$handleViewEvent($event)
+                                          },
+                                          toggleAllSelection: function (
+                                            $event
+                                          ) {
+                                            return _vm.$handleViewEvent($event)
+                                          },
+                                          edit: function ($event) {
+                                            return _vm.$handleViewEvent($event)
+                                          },
+                                          dele: function ($event) {
+                                            return _vm.$handleViewEvent($event)
+                                          },
+                                        },
+                                      }),
+                                    ],
+                                    1
+                                  ),
                                 ],
                                 1
                               ),
@@ -18350,7 +18605,7 @@ var render = function () {
         ],
         2
       ),
-      _c("customTabBar", { attrs: { _i: 64 } }),
+      _c("customTabBar", { attrs: { _i: 65 } }),
     ],
     1
   )
@@ -18619,7 +18874,7 @@ var render = function () {
                     {
                       staticStyle: {
                         position: "relative",
-                        top: "8px",
+                        top: "6px",
                         width: "100px",
                       },
                       attrs: { _i: 8 },
@@ -18766,81 +19021,98 @@ var render = function () {
             )
           }),
           _c(
-            "u-popup",
+            "uni-view",
             {
               attrs: { _i: 23 },
               on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
                 },
               },
             },
             [
               _c(
-                "uni-view",
+                "u-popup",
                 {
-                  staticStyle: { height: "calc(100vh - 200px)" },
                   attrs: { _i: 24 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
                 },
                 [
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
+                    {
+                      staticStyle: { height: "calc(100vh - 200px)" },
+                      attrs: { _i: 25 },
+                    },
                     [
                       _c(
                         "uni-view",
                         { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
-                        [_vm._v("组: " + _vm._$g(26, "t0-0"))]
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
                         [
-                          _c("uni-view", { attrs: { _i: 28 } }, [
-                            _vm._v(
-                              _vm._$g(28, "t0-0") + " " + _vm._$g(28, "t0-1")
-                            ),
-                          ]),
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(29, "sc"),
-                              attrs: { _i: 29 },
+                              staticClass: _vm._$g(27, "sc"),
+                              attrs: { _i: 27 },
                             },
-                            [
-                              _vm._v(
-                                _vm._$g(29, "t0-0") + " " + _vm._$g(29, "t0-1")
-                              ),
-                            ]
+                            [_vm._v("组: " + _vm._$g(27, "t0-0"))]
                           ),
-                        ],
-                        1
-                      ),
-                      _vm._$g(30, "i")
-                        ? _c(
-                            "table",
+                          _c(
+                            "uni-view",
                             {
-                              staticClass: _vm._$g(30, "sc"),
-                              attrs: { _i: 30 },
+                              staticClass: _vm._$g(28, "sc"),
+                              attrs: { _i: 28 },
                             },
                             [
+                              _c("uni-view", { attrs: { _i: 29 } }, [
+                                _vm._v(
+                                  _vm._$g(29, "t0-0") +
+                                    " " +
+                                    _vm._$g(29, "t0-1")
+                                ),
+                              ]),
                               _c(
-                                "tbody",
-                                { attrs: { _i: 31 } },
-                                _vm._l(
-                                  _vm._$g(32, "f"),
-                                  function (val, i, $21, $31) {
-                                    return _c(
-                                      "tr",
-                                      {
-                                        key: val,
-                                        staticClass: _vm._$g("32-" + $31, "sc"),
-                                        attrs: { _i: "32-" + $31 },
-                                      },
-                                      [
-                                        _c(
-                                          "td",
+                                "uni-view",
+                                {
+                                  staticClass: _vm._$g(30, "sc"),
+                                  attrs: { _i: 30 },
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._$g(30, "t0-0") +
+                                      " " +
+                                      _vm._$g(30, "t0-1")
+                                  ),
+                                ]
+                              ),
+                            ],
+                            1
+                          ),
+                          _vm._$g(31, "i")
+                            ? _c(
+                                "table",
+                                {
+                                  staticClass: _vm._$g(31, "sc"),
+                                  attrs: { _i: 31 },
+                                },
+                                [
+                                  _c(
+                                    "tbody",
+                                    { attrs: { _i: 32 } },
+                                    _vm._l(
+                                      _vm._$g(33, "f"),
+                                      function (val, i, $21, $31) {
+                                        return _c(
+                                          "tr",
                                           {
+                                            key: val,
                                             staticClass: _vm._$g(
                                               "33-" + $31,
                                               "sc"
@@ -18849,50 +19121,73 @@ var render = function () {
                                           },
                                           [
                                             _c(
-                                              "p",
-                                              { attrs: { _i: "34-" + $31 } },
-                                              [
-                                                _vm._v(
-                                                  _vm._$g("34-" + $31, "t0-0")
+                                              "td",
+                                              {
+                                                staticClass: _vm._$g(
+                                                  "34-" + $31,
+                                                  "sc"
                                                 ),
-                                              ]
+                                                attrs: { _i: "34-" + $31 },
+                                              },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    attrs: { _i: "35-" + $31 },
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._$g(
+                                                        "35-" + $31,
+                                                        "t0-0"
+                                                      )
+                                                    ),
+                                                  ]
+                                                ),
+                                              ],
+                                              1
                                             ),
-                                          ],
-                                          1
-                                        ),
-                                        _c(
-                                          "td",
-                                          {
-                                            staticClass: _vm._$g(
-                                              "35-" + $31,
-                                              "sc"
-                                            ),
-                                            attrs: { _i: "35-" + $31 },
-                                          },
-                                          [
                                             _c(
-                                              "p",
-                                              { attrs: { _i: "36-" + $31 } },
-                                              [
-                                                _vm._v(
-                                                  _vm._$g("36-" + $31, "t0-0")
+                                              "td",
+                                              {
+                                                staticClass: _vm._$g(
+                                                  "36-" + $31,
+                                                  "sc"
                                                 ),
-                                              ]
+                                                attrs: { _i: "36-" + $31 },
+                                              },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    attrs: { _i: "37-" + $31 },
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._$g(
+                                                        "37-" + $31,
+                                                        "t0-0"
+                                                      )
+                                                    ),
+                                                  ]
+                                                ),
+                                              ],
+                                              1
                                             ),
                                           ],
                                           1
-                                        ),
-                                      ],
-                                      1
-                                    )
-                                  }
-                                ),
+                                        )
+                                      }
+                                    ),
+                                    1
+                                  ),
+                                ],
                                 1
-                              ),
-                            ],
-                            1
-                          )
-                        : _vm._e(),
+                              )
+                            : _vm._e(),
+                        ],
+                        1
+                      ),
                     ],
                     1
                   ),
@@ -18905,7 +19200,7 @@ var render = function () {
         ],
         2
       ),
-      _c("customTabBar", { attrs: { _i: 37 } }),
+      _c("customTabBar", { attrs: { _i: 38 } }),
     ],
     1
   )
@@ -19639,212 +19934,108 @@ var render = function () {
             },
           }),
           _c(
-            "u-popup",
+            "uni-view",
             {
               attrs: { _i: 58 },
               on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
                 },
               },
             },
             [
               _c(
-                "uni-view",
-                { staticStyle: { height: "60vh" }, attrs: { _i: 59 } },
+                "u-popup",
+                {
+                  attrs: { _i: 59 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
                 [
-                  _c(
-                    "u--form",
-                    { ref: "uForm", attrs: { _i: 60 } },
-                    [
-                      _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 61 } },
-                        [
-                          _c("u--input", {
-                            attrs: { _i: 62 },
-                            model: {
-                              value: _vm._$g(62, "v-model"),
-                              callback: function () {},
-                              expression: "reserveObj.studentId",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 63 } },
-                        [
-                          _c("u--input", {
-                            attrs: { _i: 64 },
-                            model: {
-                              value: _vm._$g(64, "v-model"),
-                              callback: function () {},
-                              expression: "reserveObj.nickName",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 65 } },
-                        [
-                          _c("u--input", {
-                            attrs: { _i: 66 },
-                            model: {
-                              value: _vm._$g(66, "v-model"),
-                              callback: function () {},
-                              expression: "reserveObj.creditScore",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 67 } },
-                        [
-                          _c("u--input", {
-                            attrs: { _i: 68 },
-                            model: {
-                              value: _vm._$g(68, "v-model"),
-                              callback: function () {},
-                              expression: "reserveObj.cn1",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 69 } },
-                        [
-                          _c("u--input", {
-                            attrs: { _i: 70 },
-                            model: {
-                              value: _vm._$g(70, "v-model"),
-                              callback: function () {},
-                              expression: "reserveObj.cn2",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                    ],
-                    1
-                  ),
                   _c(
                     "uni-view",
-                    {
-                      staticStyle: {
-                        display: "flex",
-                        "justify-content": "space-around",
-                        "margin-top": "60rpx",
-                      },
-                      attrs: { _i: 71 },
-                    },
-                    [
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 72 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 73 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
-                    ],
-                    1
-                  ),
-                ],
-                1
-              ),
-            ],
-            1
-          ),
-          _c(
-            "u-popup",
-            {
-              attrs: { _i: 74 },
-              on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
-                },
-              },
-            },
-            [
-              _c(
-                "uni-view",
-                { staticStyle: { height: "60vh" }, attrs: { _i: 75 } },
-                [
-                  _c(
-                    "u--form",
-                    { ref: "uForm", attrs: { _i: 76 } },
+                    { staticStyle: { height: "60vh" }, attrs: { _i: 60 } },
                     [
                       _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 77 } },
-                        [
-                          _c("u--input", {
-                            attrs: { _i: 78 },
-                            model: {
-                              value: _vm._$g(78, "v-model"),
-                              callback: function () {},
-                              expression: "groupStudentObj.studentId",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 79 } },
-                        [
-                          _c("u--input", {
-                            attrs: { _i: 80 },
-                            model: {
-                              value: _vm._$g(80, "v-model"),
-                              callback: function () {},
-                              expression: "groupStudentObj.nickName",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 81 } },
+                        "u--form",
+                        { ref: "uForm", attrs: { _i: 61 } },
                         [
                           _c(
-                            "uni-view",
-                            {
-                              staticClass: _vm._$g(82, "sc"),
-                              staticStyle: { width: "100%" },
-                              attrs: { _i: 82 },
-                            },
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 62 } },
                             [
-                              _c("uni-data-select", {
-                                attrs: { _i: 83 },
-                                on: {
-                                  change: function ($event) {
-                                    return _vm.$handleViewEvent($event)
-                                  },
-                                },
+                              _c("u--input", {
+                                attrs: { _i: 63 },
                                 model: {
-                                  value: _vm._$g(83, "v-model"),
+                                  value: _vm._$g(63, "v-model"),
                                   callback: function () {},
-                                  expression: "chosetypeGroup",
+                                  expression: "reserveObj.studentId",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 64 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 65 },
+                                model: {
+                                  value: _vm._$g(65, "v-model"),
+                                  callback: function () {},
+                                  expression: "reserveObj.nickName",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 66 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 67 },
+                                model: {
+                                  value: _vm._$g(67, "v-model"),
+                                  callback: function () {},
+                                  expression: "reserveObj.creditScore",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 68 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 69 },
+                                model: {
+                                  value: _vm._$g(69, "v-model"),
+                                  callback: function () {},
+                                  expression: "reserveObj.cn1",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 70 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 71 },
+                                model: {
+                                  value: _vm._$g(71, "v-model"),
+                                  callback: function () {},
+                                  expression: "reserveObj.cn2",
                                 },
                               }),
                             ],
@@ -19853,38 +20044,38 @@ var render = function () {
                         ],
                         1
                       ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    {
-                      staticStyle: {
-                        display: "flex",
-                        "justify-content": "space-around",
-                        "margin-top": "60rpx",
-                      },
-                      attrs: { _i: 84 },
-                    },
-                    [
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 85 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
+                      _c(
+                        "uni-view",
+                        {
+                          staticStyle: {
+                            display: "flex",
+                            "justify-content": "space-around",
+                            "margin-top": "60rpx",
                           },
+                          attrs: { _i: 72 },
                         },
-                      }),
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 86 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
+                        [
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 73 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 74 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                     ],
                     1
                   ),
@@ -19895,76 +20086,134 @@ var render = function () {
             1
           ),
           _c(
-            "u-popup",
+            "uni-view",
             {
-              attrs: { _i: 87 },
+              attrs: { _i: 75 },
               on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
                 },
               },
             },
             [
               _c(
-                "uni-view",
-                { staticStyle: { height: "30vh" }, attrs: { _i: 88 } },
+                "u-popup",
+                {
+                  attrs: { _i: 76 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
                 [
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(89, "sc"), attrs: { _i: 89 } },
-                    [_vm._v("正在为【" + _vm._$g(89, "t0-0") + "】充值")]
-                  ),
-                  _c(
-                    "u--form",
-                    { ref: "uForm", attrs: { _i: 90 } },
+                    { staticStyle: { height: "60vh" }, attrs: { _i: 77 } },
                     [
                       _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 91 } },
+                        "u--form",
+                        { ref: "uForm", attrs: { _i: 78 } },
                         [
-                          _c("u--input", {
-                            attrs: { _i: 92 },
-                            model: {
-                              value: _vm._$g(92, "v-model"),
-                              callback: function () {},
-                              expression: "rechargeObj.rechargeNum",
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 79 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 80 },
+                                model: {
+                                  value: _vm._$g(80, "v-model"),
+                                  callback: function () {},
+                                  expression: "groupStudentObj.studentId",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 81 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 82 },
+                                model: {
+                                  value: _vm._$g(82, "v-model"),
+                                  callback: function () {},
+                                  expression: "groupStudentObj.nickName",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 83 } },
+                            [
+                              _c(
+                                "uni-view",
+                                {
+                                  staticClass: _vm._$g(84, "sc"),
+                                  staticStyle: { width: "100%" },
+                                  attrs: { _i: 84 },
+                                },
+                                [
+                                  _c("uni-data-select", {
+                                    attrs: { _i: 85 },
+                                    on: {
+                                      change: function ($event) {
+                                        return _vm.$handleViewEvent($event)
+                                      },
+                                    },
+                                    model: {
+                                      value: _vm._$g(85, "v-model"),
+                                      callback: function () {},
+                                      expression: "chosetypeGroup",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _c(
+                        "uni-view",
+                        {
+                          staticStyle: {
+                            display: "flex",
+                            "justify-content": "space-around",
+                            "margin-top": "60rpx",
+                          },
+                          attrs: { _i: 86 },
+                        },
+                        [
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 87 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 88 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
                             },
                           }),
                         ],
                         1
                       ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    {
-                      staticStyle: {
-                        display: "flex",
-                        "justify-content": "space-around",
-                        "margin-top": "60rpx",
-                      },
-                      attrs: { _i: 93 },
-                    },
-                    [
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 94 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 95 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
                     ],
                     1
                   ),
@@ -19975,54 +20224,88 @@ var render = function () {
             1
           ),
           _c(
-            "u-popup",
+            "uni-view",
             {
-              attrs: { _i: 96 },
+              attrs: { _i: 89 },
               on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
                 },
               },
             },
             [
               _c(
-                "uni-view",
-                { staticStyle: { height: "30vh" }, attrs: { _i: 97 } },
+                "u-popup",
+                {
+                  attrs: { _i: 90 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
                 [
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(98, "sc"), attrs: { _i: 98 } },
-                    [_vm._v("正在为【" + _vm._$g(98, "t0-0") + "】结算")]
-                  ),
-                  _c(
-                    "u--form",
-                    { ref: "uForm", attrs: { _i: 99 } },
+                    { staticStyle: { height: "30vh" }, attrs: { _i: 91 } },
                     [
                       _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 100 } },
+                        "uni-view",
+                        { staticClass: _vm._$g(92, "sc"), attrs: { _i: 92 } },
+                        [_vm._v("正在为【" + _vm._$g(92, "t0-0") + "】充值")]
+                      ),
+                      _c(
+                        "u--form",
+                        { ref: "uForm", attrs: { _i: 93 } },
                         [
-                          _c("u--input", {
-                            attrs: { _i: 101 },
-                            model: {
-                              value: _vm._$g(101, "v-model"),
-                              callback: function () {},
-                              expression: "settlementObj.reCredit",
-                            },
-                          }),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 94 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 95 },
+                                model: {
+                                  value: _vm._$g(95, "v-model"),
+                                  callback: function () {},
+                                  expression: "rechargeObj.rechargeNum",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
                         ],
                         1
                       ),
                       _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 102 } },
+                        "uni-view",
+                        {
+                          staticStyle: {
+                            display: "flex",
+                            "justify-content": "space-around",
+                            "margin-top": "60rpx",
+                          },
+                          attrs: { _i: 96 },
+                        },
                         [
-                          _c("u--input", {
-                            attrs: { _i: 103 },
-                            model: {
-                              value: _vm._$g(103, "v-model"),
-                              callback: function () {},
-                              expression: "settlementObj.settlementNum",
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 97 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 98 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
                             },
                           }),
                         ],
@@ -20031,35 +20314,115 @@ var render = function () {
                     ],
                     1
                   ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _c(
+            "uni-view",
+            {
+              attrs: { _i: 99 },
+              on: {
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
+                },
+              },
+            },
+            [
+              _c(
+                "u-popup",
+                {
+                  attrs: { _i: 100 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
+                [
                   _c(
                     "uni-view",
-                    {
-                      staticStyle: {
-                        display: "flex",
-                        "justify-content": "space-around",
-                        "margin-top": "60rpx",
-                      },
-                      attrs: { _i: 104 },
-                    },
+                    { staticStyle: { height: "30vh" }, attrs: { _i: 101 } },
                     [
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 105 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
+                      _c(
+                        "uni-view",
+                        { staticClass: _vm._$g(102, "sc"), attrs: { _i: 102 } },
+                        [_vm._v("正在为【" + _vm._$g(102, "t0-0") + "】结算")]
+                      ),
+                      _c(
+                        "u--form",
+                        { ref: "uForm", attrs: { _i: 103 } },
+                        [
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 104 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 105 },
+                                model: {
+                                  value: _vm._$g(105, "v-model"),
+                                  callback: function () {},
+                                  expression: "settlementObj.reCredit",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 106 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 107 },
+                                model: {
+                                  value: _vm._$g(107, "v-model"),
+                                  callback: function () {},
+                                  expression: "settlementObj.settlementNum",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _c(
+                        "uni-view",
+                        {
+                          staticStyle: {
+                            display: "flex",
+                            "justify-content": "space-around",
+                            "margin-top": "60rpx",
                           },
+                          attrs: { _i: 108 },
                         },
-                      }),
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 106 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
+                        [
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 109 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 110 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                     ],
                     1
                   ),
@@ -20072,7 +20435,7 @@ var render = function () {
         ],
         1
       ),
-      _c("customTabBar", { attrs: { _i: 107 } }),
+      _c("customTabBar", { attrs: { _i: 111 } }),
     ],
     1
   )
@@ -20714,6 +21077,11 @@ var render = function () {
                     [
                       _c("uni-data-select", {
                         attrs: { _i: 8 },
+                        on: {
+                          change: function ($event) {
+                            return _vm.$handleViewEvent($event)
+                          },
+                        },
                         model: {
                           value: _vm._$g(8, "v-model"),
                           callback: function () {},
@@ -21152,220 +21520,305 @@ var render = function () {
               )
             : _vm._e(),
           _c(
-            "u-popup",
+            "uni-view",
             {
               attrs: { _i: 53 },
               on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
                 },
               },
             },
             [
               _c(
-                "uni-view",
+                "u-popup",
                 {
-                  staticClass: _vm._$g(54, "sc"),
-                  staticStyle: { height: "50vh" },
                   attrs: { _i: 54 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
                 },
                 [
                   _c(
-                    "u--form",
-                    { ref: "uForm", attrs: { _i: 55 } },
+                    "uni-view",
+                    {
+                      staticClass: _vm._$g(55, "sc"),
+                      staticStyle: { height: "50vh" },
+                      attrs: { _i: 55 },
+                    },
                     [
                       _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(56, "sc"), attrs: { _i: 56 } },
-                        [_vm._v("老师编辑")]
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(57, "sc"), attrs: { _i: 57 } },
+                        "u--form",
+                        { ref: "uForm", attrs: { _i: 56 } },
                         [
                           _c(
-                            "u-form-item",
+                            "uni-view",
                             {
-                              ref: "item1",
-                              staticStyle: { width: "49%" },
+                              staticClass: _vm._$g(57, "sc"),
+                              attrs: { _i: 57 },
+                            },
+                            [_vm._v("老师编辑")]
+                          ),
+                          _c(
+                            "uni-view",
+                            {
+                              staticClass: _vm._$g(58, "sc"),
                               attrs: { _i: 58 },
                             },
                             [
-                              _c("uni-view", { attrs: { _i: 59 } }, [
-                                _vm._v(_vm._$g(59, "t0-0")),
-                              ]),
-                            ],
-                            1
-                          ),
-                          _c(
-                            "u-form-item",
-                            {
-                              ref: "item1",
-                              staticStyle: {
-                                width: "49%",
-                                "margin-left": "2%",
-                              },
-                              attrs: { _i: 60 },
-                            },
-                            [
-                              _c("u-switch", {
-                                staticStyle: {
-                                  position: "relative",
-                                  top: "4px",
-                                  left: "3px",
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: { width: "49%" },
+                                  attrs: { _i: 59 },
                                 },
-                                attrs: { _i: 61 },
-                                on: {
-                                  change: function ($event) {
-                                    return _vm.$handleViewEvent($event)
+                                [
+                                  _c("uni-view", { attrs: { _i: 60 } }, [
+                                    _vm._v(_vm._$g(60, "t0-0")),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: {
+                                    width: "49%",
+                                    "margin-left": "2%",
                                   },
+                                  attrs: { _i: 61 },
                                 },
-                                model: {
-                                  value: _vm._$g(61, "v-model"),
-                                  callback: function () {},
-                                  expression: "teacherObj.bound",
-                                },
-                              }),
+                                [
+                                  _c("u-switch", {
+                                    staticStyle: {
+                                      position: "relative",
+                                      top: "4px",
+                                      left: "3px",
+                                    },
+                                    attrs: { _i: 62 },
+                                    on: {
+                                      change: function ($event) {
+                                        return _vm.$handleViewEvent($event)
+                                      },
+                                    },
+                                    model: {
+                                      value: _vm._$g(62, "v-model"),
+                                      callback: function () {},
+                                      expression: "teacherObj.bound",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
                             ],
                             1
                           ),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(62, "sc"), attrs: { _i: 62 } },
-                        [
                           _c(
-                            "u-form-item",
+                            "uni-view",
                             {
-                              ref: "item1",
-                              staticStyle: { width: "49%" },
+                              staticClass: _vm._$g(63, "sc"),
                               attrs: { _i: 63 },
                             },
                             [
-                              _c("uni-view", { attrs: { _i: 64 } }, [
-                                _vm._v(_vm._$g(64, "t0-0")),
-                              ]),
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: { width: "49%" },
+                                  attrs: { _i: 64 },
+                                },
+                                [
+                                  _c("uni-view", { attrs: { _i: 65 } }, [
+                                    _vm._v(_vm._$g(65, "t0-0")),
+                                  ]),
+                                ],
+                                1
+                              ),
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: {
+                                    width: "49%",
+                                    "margin-left": "2%",
+                                    position: "relative",
+                                    top: "3px",
+                                  },
+                                  attrs: { _i: 66 },
+                                },
+                                [
+                                  _c("v-uni-text", { attrs: { _i: 67 } }, [
+                                    _vm._v(_vm._$g(67, "t0-0")),
+                                  ]),
+                                ],
+                                1
+                              ),
                             ],
                             1
                           ),
                           _c(
-                            "u-form-item",
+                            "uni-view",
                             {
-                              ref: "item1",
-                              staticStyle: {
-                                width: "49%",
-                                "margin-left": "2%",
-                                position: "relative",
-                                top: "3px",
-                              },
-                              attrs: { _i: 65 },
-                            },
-                            [
-                              _c("v-uni-text", { attrs: { _i: 66 } }, [
-                                _vm._v(_vm._$g(66, "t0-0")),
-                              ]),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(67, "sc"), attrs: { _i: 67 } },
-                        [
-                          _c(
-                            "u-form-item",
-                            {
-                              ref: "item1",
-                              staticStyle: { width: "49%" },
+                              staticClass: _vm._$g(68, "sc"),
                               attrs: { _i: 68 },
                             },
                             [
-                              _c("u--input", {
-                                staticStyle: { height: "18px" },
-                                attrs: { _i: 69 },
-                                model: {
-                                  value: _vm._$g(69, "v-model"),
-                                  callback: function () {},
-                                  expression: "teacherObj.ratio",
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: { width: "49%" },
+                                  attrs: { _i: 69 },
                                 },
-                              }),
+                                [
+                                  _c("u--input", {
+                                    staticStyle: { height: "18px" },
+                                    attrs: { _i: 70 },
+                                    model: {
+                                      value: _vm._$g(70, "v-model"),
+                                      callback: function () {},
+                                      expression: "teacherObj.ratio",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: {
+                                    width: "49%",
+                                    "margin-left": "2%",
+                                  },
+                                  attrs: { _i: 71 },
+                                },
+                                [
+                                  _c("u--input", {
+                                    staticStyle: { height: "18px" },
+                                    attrs: { _i: 72 },
+                                    model: {
+                                      value: _vm._$g(72, "v-model"),
+                                      callback: function () {},
+                                      expression: "teacherObj.cs",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
                             ],
                             1
                           ),
                           _c(
-                            "u-form-item",
+                            "uni-view",
                             {
-                              ref: "item1",
-                              staticStyle: {
-                                width: "49%",
-                                "margin-left": "2%",
-                              },
-                              attrs: { _i: 70 },
-                            },
-                            [
-                              _c("u--input", {
-                                staticStyle: { height: "18px" },
-                                attrs: { _i: 71 },
-                                model: {
-                                  value: _vm._$g(71, "v-model"),
-                                  callback: function () {},
-                                  expression: "teacherObj.cs",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(72, "sc"), attrs: { _i: 72 } },
-                        [
-                          _c(
-                            "u-form-item",
-                            {
-                              ref: "item1",
-                              staticStyle: { width: "49%" },
+                              staticClass: _vm._$g(73, "sc"),
                               attrs: { _i: 73 },
                             },
                             [
-                              _c("u--input", {
-                                staticStyle: { height: "18px" },
-                                attrs: { _i: 74 },
-                                model: {
-                                  value: _vm._$g(74, "v-model"),
-                                  callback: function () {},
-                                  expression: "teacherObj.er",
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: { width: "49%" },
+                                  attrs: { _i: 74 },
                                 },
-                              }),
+                                [
+                                  _c("u--input", {
+                                    staticStyle: { height: "18px" },
+                                    attrs: { _i: 75 },
+                                    model: {
+                                      value: _vm._$g(75, "v-model"),
+                                      callback: function () {},
+                                      expression: "teacherObj.er",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: {
+                                    width: "49%",
+                                    "margin-left": "2%",
+                                  },
+                                  attrs: { _i: 76 },
+                                },
+                                [
+                                  _c("u--input", {
+                                    staticStyle: { height: "18px" },
+                                    attrs: { _i: 77 },
+                                    model: {
+                                      value: _vm._$g(77, "v-model"),
+                                      callback: function () {},
+                                      expression: "teacherObj.deposit",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
                             ],
                             1
                           ),
                           _c(
-                            "u-form-item",
+                            "uni-view",
                             {
-                              ref: "item1",
-                              staticStyle: {
-                                width: "49%",
-                                "margin-left": "2%",
-                              },
-                              attrs: { _i: 75 },
+                              staticClass: _vm._$g(78, "sc"),
+                              attrs: { _i: 78 },
                             },
                             [
-                              _c("u--input", {
-                                staticStyle: { height: "18px" },
-                                attrs: { _i: 76 },
-                                model: {
-                                  value: _vm._$g(76, "v-model"),
-                                  callback: function () {},
-                                  expression: "teacherObj.deposit",
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: { width: "49%" },
+                                  attrs: { _i: 79 },
                                 },
-                              }),
+                                [
+                                  _c("u--input", {
+                                    staticStyle: { height: "18px" },
+                                    attrs: { _i: 80 },
+                                    model: {
+                                      value: _vm._$g(80, "v-model"),
+                                      callback: function () {},
+                                      expression: "teacherObj.yozsr",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
+                              _c(
+                                "u-form-item",
+                                {
+                                  ref: "item1",
+                                  staticStyle: {
+                                    width: "49%",
+                                    "margin-left": "2%",
+                                  },
+                                  attrs: { _i: 81 },
+                                },
+                                [
+                                  _c("u--input", {
+                                    staticStyle: { height: "18px" },
+                                    attrs: { _i: 82 },
+                                    model: {
+                                      value: _vm._$g(82, "v-model"),
+                                      callback: function () {},
+                                      expression: "teacherObj.qwl",
+                                    },
+                                  }),
+                                ],
+                                1
+                              ),
                             ],
                             1
                           ),
@@ -21374,86 +21827,36 @@ var render = function () {
                       ),
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(77, "sc"), attrs: { _i: 77 } },
+                        {
+                          staticStyle: {
+                            display: "flex",
+                            "justify-content": "space-around",
+                            "margin-top": "60rpx",
+                          },
+                          attrs: { _i: 83 },
+                        },
                         [
-                          _c(
-                            "u-form-item",
-                            {
-                              ref: "item1",
-                              staticStyle: { width: "49%" },
-                              attrs: { _i: 78 },
-                            },
-                            [
-                              _c("u--input", {
-                                staticStyle: { height: "18px" },
-                                attrs: { _i: 79 },
-                                model: {
-                                  value: _vm._$g(79, "v-model"),
-                                  callback: function () {},
-                                  expression: "teacherObj.yozsr",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
-                          _c(
-                            "u-form-item",
-                            {
-                              ref: "item1",
-                              staticStyle: {
-                                width: "49%",
-                                "margin-left": "2%",
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 84 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
                               },
-                              attrs: { _i: 80 },
                             },
-                            [
-                              _c("u--input", {
-                                staticStyle: { height: "18px" },
-                                attrs: { _i: 81 },
-                                model: {
-                                  value: _vm._$g(81, "v-model"),
-                                  callback: function () {},
-                                  expression: "teacherObj.qwl",
-                                },
-                              }),
-                            ],
-                            1
-                          ),
+                          }),
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 85 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
                         ],
                         1
                       ),
-                    ],
-                    1
-                  ),
-                  _c(
-                    "uni-view",
-                    {
-                      staticStyle: {
-                        display: "flex",
-                        "justify-content": "space-around",
-                        "margin-top": "60rpx",
-                      },
-                      attrs: { _i: 82 },
-                    },
-                    [
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 83 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 84 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
                     ],
                     1
                   ),
@@ -21466,7 +21869,7 @@ var render = function () {
         ],
         1
       ),
-      _c("customTabBar", { attrs: { _i: 85 } }),
+      _c("customTabBar", { attrs: { _i: 86 } }),
     ],
     1
   )
@@ -21742,7 +22145,7 @@ var render = function () {
                     {
                       staticStyle: {
                         position: "relative",
-                        top: "8px",
+                        top: "6px",
                         width: "100px",
                       },
                       attrs: { _i: 8 },
@@ -21968,76 +22371,98 @@ var render = function () {
               )
             : _vm._e(),
           _c(
-            "u-popup",
+            "uni-view",
             {
               attrs: { _i: 31 },
               on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
                 },
               },
             },
             [
               _c(
-                "uni-view",
+                "u-popup",
                 {
-                  staticStyle: { height: "calc(100vh - 200px)" },
                   attrs: { _i: 32 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
                 },
                 [
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(33, "sc"), attrs: { _i: 33 } },
+                    {
+                      staticStyle: { height: "calc(100vh - 200px)" },
+                      attrs: { _i: 33 },
+                    },
                     [
                       _c(
                         "uni-view",
                         { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
-                        [_vm._v(_vm._$g(34, "t0-0") + _vm._$g(34, "t0-1"))]
-                      ),
-                      _c(
-                        "uni-view",
-                        { attrs: { _i: 35 } },
                         [
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(36, "sc"),
-                              attrs: { _i: 36 },
+                              staticClass: _vm._$g(35, "sc"),
+                              attrs: { _i: 35 },
                             },
-                            [_vm._v(_vm._$g(36, "t0-0") + _vm._$g(36, "t0-1"))]
+                            [_vm._v(_vm._$g(35, "t0-0") + _vm._$g(35, "t0-1"))]
+                          ),
+                          _c(
+                            "uni-view",
+                            { attrs: { _i: 36 } },
+                            [
+                              _c(
+                                "uni-view",
+                                {
+                                  staticClass: _vm._$g(37, "sc"),
+                                  attrs: { _i: 37 },
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._$g(37, "t0-0") + _vm._$g(37, "t0-1")
+                                  ),
+                                ]
+                              ),
+                              _c(
+                                "uni-view",
+                                {
+                                  staticClass: _vm._$g(38, "sc"),
+                                  attrs: { _i: 38 },
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._$g(38, "t0-0") + _vm._$g(38, "t0-1")
+                                  ),
+                                ]
+                              ),
+                            ],
+                            1
                           ),
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(37, "sc"),
-                              attrs: { _i: 37 },
+                              staticClass: _vm._$g(39, "sc"),
+                              attrs: { _i: 39 },
                             },
-                            [_vm._v(_vm._$g(37, "t0-0") + _vm._$g(37, "t0-1"))]
+                            [
+                              _c("zb-table", {
+                                attrs: { _i: 40 },
+                                on: {
+                                  edit: function ($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  },
+                                },
+                              }),
+                            ],
+                            1
                           ),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "uni-view",
-                        { staticClass: _vm._$g(38, "sc"), attrs: { _i: 38 } },
-                        [
-                          _c("zb-table", {
-                            attrs: { _i: 39 },
-                            on: {
-                              toggleRowSelection: function ($event) {
-                                return _vm.$handleViewEvent($event)
-                              },
-                              toggleAllSelection: function ($event) {
-                                return _vm.$handleViewEvent($event)
-                              },
-                              edit: function ($event) {
-                                return _vm.$handleViewEvent($event)
-                              },
-                              dele: function ($event) {
-                                return _vm.$handleViewEvent($event)
-                              },
-                            },
-                          }),
                         ],
                         1
                       ),
@@ -22053,7 +22478,7 @@ var render = function () {
         ],
         1
       ),
-      _c("customTabBar", { attrs: { _i: 40 } }),
+      _c("customTabBar", { attrs: { _i: 41 } }),
     ],
     1
   )
@@ -22304,16 +22729,24 @@ var render = function () {
             [
               _c(
                 "uni-view",
-                { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
-                [_vm._v("分组名:")]
-              ),
-              _c(
-                "uni-view",
-                { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                {
+                  staticClass: _vm._$g(6, "sc"),
+                  staticStyle: { display: "flex" },
+                  attrs: { _i: 6 },
+                },
                 [
                   _c(
                     "uni-view",
-                    { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
+                    { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                    [_vm._v("分组名:")]
+                  ),
+                  _c(
+                    "uni-view",
+                    {
+                      staticClass: _vm._$g(8, "sc"),
+                      staticStyle: { width: "100%" },
+                      attrs: { _i: 8 },
+                    },
                     [
                       _c(
                         "u-input",
@@ -22354,71 +22787,70 @@ var render = function () {
                 ],
                 1
               ),
+              _c(
+                "uni-view",
+                {
+                  staticStyle: {
+                    position: "relative",
+                    top: "1px",
+                    "margin-left": "5px",
+                  },
+                  attrs: { _i: 12 },
+                },
+                [
+                  _c(
+                    "u-button",
+                    {
+                      staticStyle: { height: "30px", width: "76px" },
+                      attrs: { _i: 13 },
+                      on: {
+                        click: function ($event) {
+                          return _vm.$handleViewEvent($event)
+                        },
+                      },
+                    },
+                    [_vm._v("新增分组")]
+                  ),
+                ],
+                1
+              ),
             ],
             1
           ),
-          _vm._$g(12, "i")
-            ? _c(
-                "uni-view",
-                { staticStyle: { "margin-top": "15px" }, attrs: { _i: 12 } },
-                [_c("u-empty", { attrs: { _i: 13 } })],
-                1
-              )
-            : _vm._e(),
           _vm._$g(14, "i")
             ? _c(
                 "uni-view",
-                { attrs: { _i: 14 } },
-                _vm._l(_vm._$g(15, "f"), function (item, index, $20, $30) {
+                { staticStyle: { "margin-top": "15px" }, attrs: { _i: 14 } },
+                [_c("u-empty", { attrs: { _i: 15 } })],
+                1
+              )
+            : _vm._e(),
+          _vm._$g(16, "i")
+            ? _c(
+                "uni-view",
+                { attrs: { _i: 16 } },
+                _vm._l(_vm._$g(17, "f"), function (item, index, $20, $30) {
                   return _c(
                     "uni-view",
                     {
                       key: item,
-                      staticClass: _vm._$g("15-" + $30, "sc"),
+                      staticClass: _vm._$g("17-" + $30, "sc"),
                       staticStyle: { "font-size": "14px" },
-                      attrs: { _i: "15-" + $30 },
+                      attrs: { _i: "17-" + $30 },
                     },
                     [
                       _c(
                         "uni-view",
                         {
-                          staticClass: _vm._$g("16-" + $30, "sc"),
-                          attrs: { _i: "16-" + $30 },
+                          staticClass: _vm._$g("18-" + $30, "sc"),
+                          attrs: { _i: "18-" + $30 },
                         },
                         [
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g("17-" + $30, "sc"),
-                              staticStyle: { width: "20%" },
-                              attrs: { _i: "17-" + $30 },
-                            },
-                            [
-                              _vm._v(
-                                _vm._$g("17-" + $30, "t0-0") +
-                                  _vm._$g("17-" + $30, "t0-1")
-                              ),
-                            ]
-                          ),
-                          _c(
-                            "uni-view",
-                            {
-                              staticClass: _vm._$g("18-" + $30, "sc"),
-                              staticStyle: { width: "30%" },
-                              attrs: { _i: "18-" + $30 },
-                            },
-                            [
-                              _vm._v(
-                                _vm._$g("18-" + $30, "t0-0") +
-                                  _vm._$g("18-" + $30, "t0-1")
-                              ),
-                            ]
-                          ),
-                          _c(
-                            "uni-view",
-                            {
                               staticClass: _vm._$g("19-" + $30, "sc"),
-                              staticStyle: { width: "25%" },
+                              staticStyle: { width: "20%" },
                               attrs: { _i: "19-" + $30 },
                             },
                             [
@@ -22432,12 +22864,40 @@ var render = function () {
                             "uni-view",
                             {
                               staticClass: _vm._$g("20-" + $30, "sc"),
-                              staticStyle: { display: "flex" },
+                              staticStyle: { width: "30%" },
                               attrs: { _i: "20-" + $30 },
                             },
                             [
+                              _vm._v(
+                                _vm._$g("20-" + $30, "t0-0") +
+                                  _vm._$g("20-" + $30, "t0-1")
+                              ),
+                            ]
+                          ),
+                          _c(
+                            "uni-view",
+                            {
+                              staticClass: _vm._$g("21-" + $30, "sc"),
+                              staticStyle: { width: "25%" },
+                              attrs: { _i: "21-" + $30 },
+                            },
+                            [
+                              _vm._v(
+                                _vm._$g("21-" + $30, "t0-0") +
+                                  _vm._$g("21-" + $30, "t0-1")
+                              ),
+                            ]
+                          ),
+                          _c(
+                            "uni-view",
+                            {
+                              staticClass: _vm._$g("22-" + $30, "sc"),
+                              staticStyle: { display: "flex" },
+                              attrs: { _i: "22-" + $30 },
+                            },
+                            [
                               _c("u-button", {
-                                attrs: { _i: "21-" + $30 },
+                                attrs: { _i: "23-" + $30 },
                                 on: {
                                   click: function ($event) {
                                     return _vm.$handleViewEvent($event)
@@ -22446,7 +22906,7 @@ var render = function () {
                               }),
                               _c("u-button", {
                                 staticStyle: { "margin-left": "5px" },
-                                attrs: { _i: "22-" + $30 },
+                                attrs: { _i: "24-" + $30 },
                                 on: {
                                   click: function ($event) {
                                     return _vm.$handleViewEvent($event)
@@ -22467,64 +22927,113 @@ var render = function () {
               )
             : _vm._e(),
           _c(
-            "u-popup",
+            "uni-view",
             {
-              attrs: { _i: 23 },
+              attrs: { _i: 25 },
               on: {
-                close: function ($event) {
-                  return _vm.$handleViewEvent($event)
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
                 },
               },
             },
             [
               _c(
-                "uni-view",
-                { staticStyle: { height: "40vh" }, attrs: { _i: 24 } },
+                "u-popup",
+                {
+                  attrs: { _i: 26 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
                 [
                   _c(
-                    "u--form",
-                    { ref: "uForm", attrs: { _i: 25 } },
+                    "uni-view",
+                    { staticStyle: { height: "40vh" }, attrs: { _i: 27 } },
                     [
                       _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 26 } },
+                        "u--form",
+                        { ref: "uForm", attrs: { _i: 28 } },
                         [
-                          _c("u--input", {
-                            attrs: { _i: 27 },
-                            model: {
-                              value: _vm._$g(27, "v-model"),
-                              callback: function () {},
-                              expression: "model1.userInfo.gId",
-                            },
-                          }),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 29 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 30 },
+                                model: {
+                                  value: _vm._$g(30, "v-model"),
+                                  callback: function () {},
+                                  expression: "model1.userInfo.gId",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 31 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 32 },
+                                model: {
+                                  value: _vm._$g(32, "v-model"),
+                                  callback: function () {},
+                                  expression: "model1.userInfo.name",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 33 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 34 },
+                                model: {
+                                  value: _vm._$g(34, "v-model"),
+                                  callback: function () {},
+                                  expression: "model1.userInfo.cs",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
                         ],
                         1
                       ),
                       _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 28 } },
+                        "uni-view",
+                        {
+                          staticStyle: {
+                            display: "flex",
+                            "justify-content": "space-around",
+                            "margin-top": "60rpx",
+                          },
+                          attrs: { _i: 35 },
+                        },
                         [
-                          _c("u--input", {
-                            attrs: { _i: 29 },
-                            model: {
-                              value: _vm._$g(29, "v-model"),
-                              callback: function () {},
-                              expression: "model1.userInfo.name",
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 36 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
                             },
                           }),
-                        ],
-                        1
-                      ),
-                      _c(
-                        "u-form-item",
-                        { ref: "item1", attrs: { _i: 30 } },
-                        [
-                          _c("u--input", {
-                            attrs: { _i: 31 },
-                            model: {
-                              value: _vm._$g(31, "v-model"),
-                              callback: function () {},
-                              expression: "model1.userInfo.cs",
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 37 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
                             },
                           }),
                         ],
@@ -22533,35 +23042,110 @@ var render = function () {
                     ],
                     1
                   ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _c(
+            "uni-view",
+            {
+              attrs: { _i: 38 },
+              on: {
+                touchmove: function ($event) {
+                  return _vm.$handleViewEvent($event, {
+                    stop: true,
+                    prevent: true,
+                  })
+                },
+              },
+            },
+            [
+              _c(
+                "u-popup",
+                {
+                  attrs: { _i: 39 },
+                  on: {
+                    close: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
+                },
+                [
                   _c(
                     "uni-view",
-                    {
-                      staticStyle: {
-                        display: "flex",
-                        "justify-content": "space-around",
-                        "margin-top": "60rpx",
-                      },
-                      attrs: { _i: 32 },
-                    },
+                    { staticStyle: { height: "40vh" }, attrs: { _i: 40 } },
                     [
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 33 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
+                      _c(
+                        "u--form",
+                        { ref: "uForm", attrs: { _i: 41 } },
+                        [
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 42 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 43 },
+                                model: {
+                                  value: _vm._$g(43, "v-model"),
+                                  callback: function () {},
+                                  expression: "addGroupData.gn",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _c(
+                            "u-form-item",
+                            { ref: "item1", attrs: { _i: 44 } },
+                            [
+                              _c("u--input", {
+                                attrs: { _i: 45 },
+                                model: {
+                                  value: _vm._$g(45, "v-model"),
+                                  callback: function () {},
+                                  expression: "addGroupData.cs",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _c(
+                        "uni-view",
+                        {
+                          staticStyle: {
+                            display: "flex",
+                            "justify-content": "space-around",
+                            "margin-top": "60rpx",
                           },
+                          attrs: { _i: 46 },
                         },
-                      }),
-                      _c("u-button", {
-                        staticStyle: { width: "30%" },
-                        attrs: { _i: 34 },
-                        on: {
-                          click: function ($event) {
-                            return _vm.$handleViewEvent($event)
-                          },
-                        },
-                      }),
+                        [
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 47 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
+                          _c("u-button", {
+                            staticStyle: { width: "30%" },
+                            attrs: { _i: 48 },
+                            on: {
+                              click: function ($event) {
+                                return _vm.$handleViewEvent($event)
+                              },
+                            },
+                          }),
+                        ],
+                        1
+                      ),
                     ],
                     1
                   ),
@@ -22572,7 +23156,7 @@ var render = function () {
             1
           ),
           _c("u-modal", {
-            attrs: { _i: 35 },
+            attrs: { _i: 49 },
             on: {
               confirm: function ($event) {
                 return _vm.$handleViewEvent($event)
@@ -22585,7 +23169,7 @@ var render = function () {
         ],
         1
       ),
-      _c("customTabBar", { attrs: { _i: 36 } }),
+      _c("customTabBar", { attrs: { _i: 50 } }),
     ],
     1
   )
@@ -22694,7 +23278,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-c28f71fe] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-c28f71fe] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-c28f71fe] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.search-box[data-v-c28f71fe] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.search-box .time-line[data-v-c28f71fe] {\r\n  position: relative;\r\n  top: 8px;\r\n  margin: 0 10px;\n}\n.text[data-v-c28f71fe] {\r\n  font-size: 12px;\r\n  color: #666;\r\n  margin-top: 5px;\n}\n.uni-px-5[data-v-c28f71fe] {\r\n  padding-left: 10px;\r\n  padding-right: 10px;\n}\n.uni-pb-5[data-v-c28f71fe] {\r\n  padding-bottom: 10px;\n}\n.query-content[data-v-c28f71fe] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.query-content .query-content-select[data-v-c28f71fe] {\r\n  width: 15%;\r\n  position: relative;\r\n  top: 5px;\n}\n.query-content .query-content-input[data-v-c28f71fe] {\r\n  margin-left: 1%;\r\n  width: 100%;\n}\n[data-v-c28f71fe] .u-input--radius,[data-v-c28f71fe] .u-input--square {\r\n  padding: 4px 9px !important;\n}\n.claim-content[data-v-c28f71fe] {\r\n  background: #f2f2f2;\r\n  margin-top: 5px;\r\n  padding: 5px 8px;\r\n  line-height: 26px;\n}\n.claim-content .claim-content-top[data-v-c28f71fe] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.claim-content .claim-content-top .claim-content-top-right[data-v-c28f71fe] {\r\n  padding-right: 10px;\n}\n.claim-content .claim-content-bottom[data-v-c28f71fe] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-right: 0px;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-c28f71fe] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-c28f71fe] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-c28f71fe] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.search-box[data-v-c28f71fe] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.search-box .time-line[data-v-c28f71fe] {\r\n  position: relative;\r\n  top: 8px;\r\n  margin: 0 10px;\n}\n.text[data-v-c28f71fe] {\r\n  font-size: 12px;\r\n  color: #666;\r\n  margin-top: 5px;\n}\n.uni-px-5[data-v-c28f71fe] {\r\n  padding-left: 10px;\r\n  padding-right: 10px;\n}\n.uni-pb-5[data-v-c28f71fe] {\r\n  padding-bottom: 10px;\n}\n.query-content[data-v-c28f71fe] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.query-content .query-content-select[data-v-c28f71fe] {\r\n  width: 70px;\r\n  position: relative;\r\n  top: 5px;\n}\n.query-content .query-content-input[data-v-c28f71fe] {\r\n  margin-left: 2%;\r\n  width: 100%;\n}\n[data-v-c28f71fe] .u-input--radius,[data-v-c28f71fe] .u-input--square {\r\n  padding: 4px 9px !important;\n}\n.claim-content[data-v-c28f71fe] {\r\n  background: #f2f2f2;\r\n  margin-top: 5px;\r\n  padding: 5px 8px;\r\n  line-height: 26px;\n}\n.claim-content .claim-content-top[data-v-c28f71fe] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.claim-content .claim-content-top .claim-content-top-right[data-v-c28f71fe] {\r\n  padding-right: 10px;\n}\n.claim-content .claim-content-bottom[data-v-c28f71fe] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-right: 0px;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 

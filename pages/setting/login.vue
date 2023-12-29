@@ -111,6 +111,8 @@
 								// 登录成功后保存token
 								if(res.data._tk){
 									uni.setStorageSync("wp_token",res.data._tk);
+									uni.setStorageSync("wp_account",this.form.userName);
+									uni.setStorageSync("wp_open_notify",true);
 								}
 								this.$refs.uToast.show({
 									type: "success",

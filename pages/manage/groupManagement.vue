@@ -6,11 +6,11 @@
 		<u-swiper />
 		<view>
 			<view class="query-content">
-				<view class="query-content-select">
-					分组名: 
-				</view>
-				<view class="query-content-input">
-					<view class="u-demo-block__content">
+				<view class="query-content-input" style="display: flex;">
+					<view class="query-content-select">
+						分组名: 
+					</view>
+					<view class="u-demo-block__content" style="width: 100%;">
 						<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
 						<!-- #ifndef APP-NVUE -->
 						<u-input placeholder="请输入" v-model="searchForm.gn">
@@ -29,6 +29,9 @@
 						</u--input>
 						<!-- #endif -->
 					</view>
+				</view>
+				<view class="" style="position: relative;top: 1px;margin-left: 5px;">
+					<u-button type="primary" size="mini" @click="openAddGroupAchieve" style="height: 30px; width: 76px;">新增分组</u-button>
 				</view>
 			</view>
 			<!-- 无数据时 -->
@@ -60,53 +63,96 @@
 			</view>
 			
 			<!-- 额备 -->
-			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalGroupAchieve" mode="bottom" :round="12" @close="closeModelGroupAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
-				<view style="height: 40vh;">
-					<u--form
-							labelPosition="left"
-							:model="model1"
-							ref="uForm"
-							labelWidth="200rpx"
-					>
-					<u-form-item
-							label="分组ID"
-							ref="item1"
-							borderBottom
-					>
-						<u--input
-								v-model="model1.userInfo.gId"
-								border="none"
-								disabled
-						></u--input>
-					</u-form-item>
-					<u-form-item
-							label="分组名称"
-							ref="item1"
-							borderBottom
-					>
-						<u--input
-								v-model="model1.userInfo.name"
-								border="none"
-								disabled
-						></u--input>
-					</u-form-item>
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalGroupAchieve" mode="bottom" :round="12" @close="closeModelGroupAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: 40vh;">
+						<u--form
+								labelPosition="left"
+								:model="model1"
+								ref="uForm"
+								labelWidth="200rpx"
+						>
 						<u-form-item
-								label="分组信额"
+								label="分组ID"
 								ref="item1"
 								borderBottom
 						>
 							<u--input
-									v-model="model1.userInfo.cs"
+									v-model="model1.userInfo.gId"
 									border="none"
+									disabled
 							></u--input>
 						</u-form-item>
-					</u--form>
-					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
-						<u-button type="primary" text="确定" @click="submitForm" style="width: 30%;"></u-button>
-						<u-button type="info" text="取消" @click="closeModelGroupAchieve" style="width: 30%;"></u-button>
+						<u-form-item
+								label="分组名称"
+								ref="item1"
+								borderBottom
+						>
+							<u--input
+									v-model="model1.userInfo.name"
+									border="none"
+									disabled
+							></u--input>
+						</u-form-item>
+							<u-form-item
+									label="分组信额"
+									ref="item1"
+									borderBottom
+							>
+								<u--input
+										v-model="model1.userInfo.cs"
+										border="none"
+								></u--input>
+							</u-form-item>
+						</u--form>
+						<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+							<u-button type="primary" text="确定" @click="submitForm" style="width: 30%;"></u-button>
+							<u-button type="info" text="取消" @click="closeModelGroupAchieve" style="width: 30%;"></u-button>
+						</view>
 					</view>
-				</view>
-			</u-popup>
+				</u-popup>
+			</view>
+			
+			<!-- 新增分组 -->
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showAddGroupAchieve" mode="bottom" :round="12" @close="closeAddGroupAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: 40vh;">
+						<u--form
+								labelPosition="left"
+								:model="model1"
+								ref="uForm"
+								labelWidth="200rpx"
+						>
+						<u-form-item
+								label="分组名称"
+								ref="item1"
+								borderBottom
+						>
+							<u--input
+									v-model="addGroupData.gn"
+									border="none"
+									placeholder="请输入分组名称"
+							></u--input>
+						</u-form-item>
+							<u-form-item
+									label="分组信额"
+									ref="item1"
+									borderBottom
+							>
+								<u--input
+										v-model="addGroupData.cs"
+										border="none"
+										placeholder="请输入信额"
+								></u--input>
+							</u-form-item>
+						</u--form>
+						<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+							<u-button type="primary" text="新增" @click="submitAddGroup" style="width: 30%;"></u-button>
+							<u-button type="info" text="取消" @click="closeAddGroupAchieve" style="width: 30%;"></u-button>
+						</view>
+					</view>
+				</u-popup>
+			</view>
 			<!-- 移除模态框 -->
 			<u-modal :show="removeModel" :content='removeContent' @confirm="removeConfirm" @cancel="removeCancel" showCancelButton></u-modal>
 		</view>
@@ -125,6 +171,7 @@
 			return {
 				pickerShow: false,
 				showModalGroupAchieve: false,
+				showAddGroupAchieve: false,
 				valueTime: Number(new Date()),
 				startTime: "",
 				endTime: "",
@@ -144,6 +191,10 @@
 						cs: '',
 					},
 				},
+				addGroupData:{
+					cs:"",
+					gn:"",
+				}
 			}
 		},
 		components: {
@@ -255,6 +306,50 @@
 			removeCancel(){
 				this.removeModel = false;
 			},
+			
+			// 防止弹出层滑动
+			stopPenetrate(){
+				return;
+			},
+			
+			// 新增分组
+			// 打开分组弹出层
+			openAddGroupAchieve(item){
+				this.showAddGroupAchieve = true;
+			},
+			// 关闭新增分组弹出层
+			closeAddGroupAchieve(item){
+				this.showAddGroupAchieve = false;
+			},
+			// 提交
+			submitAddGroup(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					cs: Number(this.addGroupData.cs),
+					gn: this.addGroupData.gn,
+				}
+				if(!this.addGroupData.gn){
+					this.$api.msg("请输入分组名称...");
+				}else if(!this.addGroupData.cs && this.addGroupData.cs !==0){
+					this.$api.msg("请输入额备值...");
+				}else{
+					uni.$u.http.post('/app/api/sys/group/edit', params).then(res => {
+						if(res.code == 0){
+							this.showAddGroupAchieve = false;
+							this.getGroupManageList();
+							setTimeout(()=>{
+								this.$api.msg("分组新增成功");
+							},200)
+						}else{
+							this.$api.msg(res.msg);
+							this.showAddGroupAchieve = false;
+						}
+					}).catch((err) =>{
+						//隐藏加载框
+						uni.hideLoading();
+					})
+				}
+			},
 		},
 		created() {
 			this.getGroupManageList();
@@ -294,13 +389,13 @@
 		margin-top: 10px;
 
 		.query-content-select {
-			width: 15%;
+			width: 70px;
 			position: relative;
 			top: 5px;
 		}
 
 		.query-content-input {
-			margin-left: 1%; 
+			margin-left: 2%; 
 			width: 100%;
 		}
 	}

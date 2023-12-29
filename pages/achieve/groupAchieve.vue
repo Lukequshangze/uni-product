@@ -10,7 +10,7 @@
 					@cancel="pickerClose" closeOnClickOverlay>
 				</u-datetime-picker>
 				<view class="time-component" style="display: flex;">
-					<p style="position: relative;top: 8px;width: 100px">查询时间：</p>
+					<p style="position: relative;top: 6px;width: 100px">查询时间：</p>
 					<view class="time-component-input-all" @click="selectStartTime">
 						{{ searchForm.dailyDate ? searchForm.dailyDate : "请选择时间" }}
 					</view>
@@ -47,38 +47,40 @@
 				</view>
 				
 				<!-- 详情 -->
-				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalGroupAchieve" mode="bottom" :round="12" @close="closePopupGroupAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
-					<view style="height: calc(100vh - 200px);">
-						<view class="u-pop-box">
-							<view class="pop-box-name">
-								组: {{ groupDetailInfo.groupName }}
-							</view>
-							<!-- 总成绩 总hejin -->
-							<view class="achieve-box">
-								<view class="">
-									{{ groupDetailInfo.anLabel }} {{ groupDetailInfo.an }}
+				<view class="" @touchmove.stop.prevent="stopPenetrate">
+					<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalGroupAchieve" mode="bottom" :round="12" @close="closePopupGroupAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+						<view style="height: calc(100vh - 200px);">
+							<view class="u-pop-box">
+								<view class="pop-box-name">
+									组: {{ groupDetailInfo.groupName }}
 								</view>
-								<view class="achieve-box-last">
-									{{ groupDetailInfo.tcsLabel }} {{ groupDetailInfo.tcs }}
+								<!-- 总成绩 总hejin -->
+								<view class="achieve-box">
+									<view class="">
+										{{ groupDetailInfo.anLabel }} {{ groupDetailInfo.an }}
+									</view>
+									<view class="achieve-box-last">
+										{{ groupDetailInfo.tcsLabel }} {{ groupDetailInfo.tcs }}
+									</view>
 								</view>
+								
+								<!-- 列表 -->
+								<table class="table table_wrap" v-if="groupDetailInfo.tableItemVoList && groupDetailInfo.tableItemVoList.length>0">
+									<tbody>
+										<tr class="table_tr" v-for="(val,i) in groupDetailInfo.tableItemVoList" :key="i">
+											<td class="table_content">
+												<p>{{ val.levelStr }}</p>
+											</td>
+											<td class="table_content">
+												<p>{{ val.value }}</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</view>
-							
-							<!-- 列表 -->
-							<table class="table table_wrap" v-if="groupDetailInfo.tableItemVoList && groupDetailInfo.tableItemVoList.length>0">
-								<tbody>
-									<tr class="table_tr" v-for="(val,i) in groupDetailInfo.tableItemVoList" :key="i">
-										<td class="table_content">
-											<p>{{ val.levelStr }}</p>
-										</td>
-										<td class="table_content">
-											<p>{{ val.value }}</p>
-										</td>
-									</tr>
-								</tbody>
-							</table>
 						</view>
-					</view>
-				</u-popup>
+					</u-popup>
+				</view>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -217,7 +219,11 @@
 			// 关闭
 			closePopupGroupAchieve(){
 				this.showModalGroupAchieve = false;
-			}
+			},
+			// 防止弹出层滑动
+			stopPenetrate(){
+				return;
+			},
 		},
 		created() {
 			this.getGroupList();

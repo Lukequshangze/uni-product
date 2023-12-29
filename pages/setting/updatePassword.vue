@@ -3,6 +3,9 @@
 	<view class="content">
 		<NoticeBar />
 		<u--form labelPosition="left" :model="formData" ref="uForm" labelWidth="90">
+			<u-form-item label="账号:" borderBottom ref="item1">
+				<u--input v-model="formData.account" disabled border="none"></u--input>
+			</u-form-item>	
 			<u-form-item label="原密码:" prop="formData.oldPassWord" borderBottom ref="item1">
 				<u--input v-model="formData.oldPassWord" border="none"></u--input>
 			</u-form-item>	
@@ -33,6 +36,7 @@
 		data() {
 			return {
 				formData:{
+					account:uni.getStorageSync("wp_account"),
 					oldPassWord:"",
 					newPassWord:"",
 					confirmPassword:"",

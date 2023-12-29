@@ -10,7 +10,7 @@
 					@cancel="pickerClose" closeOnClickOverlay>
 				</u-datetime-picker>
 				<view class="time-component" style="display: flex;">
-					<p style="position: relative;top: 8px;width: 100px">查询时间：</p>
+					<p style="position: relative;top: 6px;width: 100px">查询时间：</p>
 					<view class="time-component-input-all" @click="selectStartTime">
 						{{ searchForm.dailyDate ? searchForm.dailyDate : "请选择时间" }}
 					</view>
@@ -73,31 +73,32 @@
 					</view>
 				</view>
 			</view>
-			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModal" mode="bottom" :round="12" @close="closePopup" closeable closeOnClickOverlay safeAreaInsetBottom>
-				<view style="height: calc(100vh - 200px);">
-					<view class="u-pop-box">
-						<view class="pop-box-name">
-							{{ activeData.sIdLabel }}{{activeData.sId}}
-						</view>
-						<view>
-							<view class="pop-box-settle">
-								{{ activeData.cnLabel }}{{activeData.cn ? activeData.cn : '-'}}
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModal" mode="bottom" :round="12" @close="closePopup" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: calc(100vh - 200px);">
+						<view class="u-pop-box">
+							<view class="pop-box-name">
+								{{ activeData.sIdLabel }}{{activeData.sId}}
 							</view>
-							<view class="pop-box-settle">
-								{{ activeData.anLabel }}{{activeData.an}}
+							<view>
+								<view class="pop-box-settle">
+									{{ activeData.cnLabel }}{{activeData.cn ? activeData.cn : '-'}}
+								</view>
+								<view class="pop-box-settle">
+									{{ activeData.anLabel }}{{activeData.an}}
+								</view>
 							</view>
-						</view>
-					
-						<view class="search-table">
-							<!-- 表格 -->
-							<zb-table :show-header="true" :columns="column" :stripe="true" :fit="false"
-								@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
-								@edit="buttonEdit" @dele="dele" :data="activeData.courseResultDetailVoList">
-							</zb-table>
+						
+							<view class="search-table">
+								<!-- 表格 -->
+								<zb-table :show-header="true" :columns="column" :stripe="true" :fit="false"
+									:border="true" @edit="buttonEdit" :data="activeData.courseResultDetailVoList">
+								</zb-table>
+							</view>
 						</view>
 					</view>
-				</view>
-			</u-popup>
+				</u-popup>
+			</view>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -133,10 +134,10 @@
 				datalist: [],
 				indexList: [],
 				column:[
-					{ name: 'course', label: '课程'},
-					{ name: 'bs', label: '带入' },
-					{ name: 'pbn', label: '手数' },
-					{ name: 'cs', label: '成绩' },
+					{ name: 'course', label: '课程',width:210},
+					{ name: 'bs', label: '带入',width:70, },
+					{ name: 'pbn', label: '手数',width:70,  },
+					{ name: 'cs', label: '成绩1',width:70,  },
 				],
 				
 				chosetype: "",
@@ -166,7 +167,7 @@
 			uSwiper,
 		},
 		onLoad() {
-
+	
 		},
 		onShow() {
 			this.$store.commit("changeTabbarIndex", 0);
@@ -281,6 +282,10 @@
 				}else{
 					this.$api.msg("已加载全部数据");
 				}
+			},
+			// 防止弹出层滑动
+			stopPenetrate(){
+				return;
 			},
 
 		},

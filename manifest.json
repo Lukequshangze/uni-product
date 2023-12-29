@@ -47,7 +47,8 @@
             },
             /* SDK配置 */
             "sdkConfigs" : {
-                "ad" : {}
+                "ad" : {},
+                "push" : {}
             },
             "icons" : {
                 "android" : {

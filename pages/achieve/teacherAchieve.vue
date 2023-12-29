@@ -10,13 +10,13 @@
 					@cancel="pickerClose" closeOnClickOverlay>
 				</u-datetime-picker>
 				<view class="time-component" style="display: flex;">
-					<p style="position: relative;top: 8px;width: 100px">查询时间：</p>
+					<p style="position: relative;top: 6px;width: 100px">查询时间：</p>
 					<view class="time-component-input-all" @click="selectStartTime">
 						{{ searchForm.dailyDate ? searchForm.dailyDate : "请选择时间" }}
 					</view>
 				</view>
 				<view class="search-cond">
-					<span class="search-nk">昵 称: </span>
+					<span class="search-nk">老 师: </span>
 					  <view class="u-demo-block__content" style="width: calc(100% - 50px);">
 						<!-- 注意：由于兼容性差异，如果需要使用前后插槽，nvue下需使用u--input，非nvue下需使用u-input -->
 						<!-- #ifndef APP-NVUE -->
@@ -84,79 +84,80 @@
 					</view>
 				</view>
 			</view>
-			
-			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalTeacherAchieve" mode="bottom" :round="12" @close="closePopupTeacherAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
-				<view style="height: calc(100vh - 200px);">
-					<view class="u-pop-box">
-						<view class="pop-box-name">
-							名称: {{ teacherAchieveInfo.an }}
-						</view>
-						<!-- 总成绩 总hejin -->
-						<view class="achieve-box">
-							<view class="">
-								{{ teacherAchieveInfo.totalLabel }} {{ teacherAchieveInfo.total }}
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalTeacherAchieve" mode="bottom" :round="12" @close="closePopupTeacherAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: calc(100vh - 200px);">
+						<view class="u-pop-box">
+							<view class="pop-box-name">
+								名称: {{ teacherAchieveInfo.an }}
 							</view>
-						</view>
-						<!-- 列表 -->
-						<view class="info-table-detail">
-							<!-- 上表 -->
-							<table class="table">
-								<thead> <!-- thead标签在这里已经不代表表头了-->
-									<tr>  <!-- 每个tr标签的第一个td标签为表头-->
-										<td class="table_content">
-											<p>{{ teacherAchieveInfo.tbsLabel }}</p>
-										</td>
-										<td class="table_content">
-											<p>{{ teacherAchieveInfo.sbLabel }}</p>
-										</td>
-										<td class="table_content">
-											<p>{{ teacherAchieveInfo.yozishLabel }}</p>
-										</td>
-										<td class="table_content">
-											<p>{{ teacherAchieveInfo.rewardLabel }}</p>
-										</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr class="table_tr">
-										<td class="table_content">
-										    <p>{{ teacherAchieveInfo.tbs }}</p>
-										</td>
-										<td class="table_content">
-										    <p>{{ teacherAchieveInfo.sb }}</p>
-										</td>
-										<td class="table_content">
-										    <p>{{ teacherAchieveInfo.yozish }}</p>
-										</td>
-										<td class="table_content">
-										    <p>{{ teacherAchieveInfo.reward }}</p>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<!-- 下表 -->
-							<view class="table_wrap">
-								<view class="teacher-table">
-									<!-- 表格 -->
-									<zb-table
-										:show-header="true"
-										:columns="dataTableTitle"
-										:stripe="true"
-										:fit="false"
-										@rowClick="rowClick"
-										@toggleRowSelection="toggleRowSelection"
-										@toggleAllSelection="toggleAllSelection"
-										:border="true"
-										@edit="buttonEdit"
-										@dele="dele"
-										:data="dataTableValue">
-									</zb-table>
+							<!-- 总成绩 总hejin -->
+							<view class="achieve-box">
+								<view class="">
+									{{ teacherAchieveInfo.totalLabel }} {{ teacherAchieveInfo.total }}
+								</view>
+							</view>
+							<!-- 列表 -->
+							<view class="info-table-detail">
+								<!-- 上表 -->
+								<table class="table">
+									<thead> <!-- thead标签在这里已经不代表表头了-->
+										<tr>  <!-- 每个tr标签的第一个td标签为表头-->
+											<td class="table_content">
+												<p>{{ teacherAchieveInfo.tbsLabel }}</p>
+											</td>
+											<td class="table_content">
+												<p>{{ teacherAchieveInfo.sbLabel }}</p>
+											</td>
+											<td class="table_content">
+												<p>{{ teacherAchieveInfo.yozishLabel }}</p>
+											</td>
+											<td class="table_content">
+												<p>{{ teacherAchieveInfo.rewardLabel }}</p>
+											</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="table_tr">
+											<td class="table_content">
+												<p>{{ teacherAchieveInfo.tbs }}</p>
+											</td>
+											<td class="table_content">
+												<p>{{ teacherAchieveInfo.sb }}</p>
+											</td>
+											<td class="table_content">
+												<p>{{ teacherAchieveInfo.yozish }}</p>
+											</td>
+											<td class="table_content">
+												<p>{{ teacherAchieveInfo.reward }}</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<!-- 下表 -->
+								<view class="table_wrap">
+									<view class="teacher-table">
+										<!-- 表格 -->
+										<zb-table
+											:show-header="true"
+											:columns="dataTableTitle"
+											:stripe="true"
+											:fit="false"
+											@rowClick="rowClick"
+											@toggleRowSelection="toggleRowSelection"
+											@toggleAllSelection="toggleAllSelection"
+											:border="true"
+											@edit="buttonEdit"
+											@dele="dele"
+											:data="dataTableValue">
+										</zb-table>
+									</view>
 								</view>
 							</view>
 						</view>
 					</view>
-				</view>
-			</u-popup>
+				</u-popup>
+			</view>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -180,7 +181,10 @@
 				datalist: [],
 				searchForm:{
 					nk:"",  // 昵称
-					dailyDate: "",
+					dailyDate: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				indexList: [],
 				teacherAchieveInfo: {},
@@ -273,7 +277,6 @@
 						  a.label=valueList[i];
 						  column.push(a);
 						}
-						console.log("column",column)
 						// ------------ end ------------
 						// 将表内容字段修改为和表头一样，对应数据
 						column.forEach(item=>{
@@ -283,11 +286,11 @@
 							if(item.name === "perLabel"){
 								item.name = "per";
 							}
-							if(item.name === "tbsLabel"){
-								item.name = "tbs";
-							}
 							if(item.name === "tpbLabel"){
 								item.name = "tpb";
+							}
+							if(item.name === "tbsLabel"){
+								item.name = "tbs";
 							}
 						})
 						this.column = column;
@@ -365,6 +368,10 @@
 			// 关闭弹出层
 			closePopupTeacherAchieve(){
 				this.showModalTeacherAchieve = false;
+			},
+			// 防止弹出层滑动
+			stopPenetrate(){
+				return;
 			},
 		},
 		created(){

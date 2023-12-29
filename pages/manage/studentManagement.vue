@@ -134,187 +134,195 @@
 			<!-- 解除绑定分组 -->
 			<u-modal :show="secureModel" :content='secureContent' @confirm="secureConfirm" @cancel="secureCancel" showCancelButton></u-modal>
 			<!-- 额备弹出层 -->
-			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalReserveAchieve" mode="bottom" :round="12" @close="closeModelReserveAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
-				<view style="height: 60vh;">
-					<u--form
-							labelPosition="left"
-							:model="reserveObj"
-							ref="uForm"
-							labelWidth="200rpx"
-					>
-					<u-form-item
-							label="学生ID"
-							ref="item1"
-							borderBottom
-					>
-						<u--input
-								v-model="reserveObj.studentId"
-								border="none"
-								disabled
-						></u--input>
-					</u-form-item>
-					<u-form-item
-							label="学生名称"
-							ref="item1"
-							borderBottom
-					>
-						<u--input
-								v-model="reserveObj.nickName"
-								border="none"
-								disabled
-						></u--input>
-					</u-form-item>
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalReserveAchieve" mode="bottom" :round="12" @close="closeModelReserveAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: 60vh;">
+						<u--form
+								labelPosition="left"
+								:model="reserveObj"
+								ref="uForm"
+								labelWidth="200rpx"
+						>
 						<u-form-item
-								label="学生信额"
+								label="学生ID"
 								ref="item1"
 								borderBottom
 						>
 							<u--input
-									v-model="reserveObj.creditScore"
+									v-model="reserveObj.studentId"
 									border="none"
+									disabled
 							></u--input>
 						</u-form-item>
 						<u-form-item
-								label="学生备注1"
+								label="学生名称"
 								ref="item1"
 								borderBottom
 						>
 							<u--input
-									v-model="reserveObj.cn1"
+									v-model="reserveObj.nickName"
 									border="none"
+									disabled
 							></u--input>
 						</u-form-item>
-						<u-form-item
-								label="学生备注2"
-								ref="item1"
-								borderBottom
-						>
-							<u--input
-									v-model="reserveObj.cn2"
-									border="none"
-							></u--input>
-						</u-form-item>
-					</u--form>
-					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
-						<u-button type="primary" text="确定" @click="submitReserveForm" style="width: 30%;"></u-button>
-						<u-button type="info" text="取消" @click="closeModelReserveAchieve" style="width: 30%;"></u-button>
+							<u-form-item
+									label="学生信额"
+									ref="item1"
+									borderBottom
+							>
+								<u--input
+										v-model="reserveObj.creditScore"
+															border="none"
+								></u--input>
+							</u-form-item>
+							<u-form-item
+									label="学生备注1"
+									ref="item1"
+									borderBottom
+							>
+								<u--input
+										v-model="reserveObj.cn1"
+										border="none"
+								></u--input>
+							</u-form-item>
+							<u-form-item
+									label="学生备注2"
+									ref="item1"
+									borderBottom
+							>
+								<u--input
+										v-model="reserveObj.cn2"
+										border="none"
+								></u--input>
+							</u-form-item>
+						</u--form>
+						<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+							<u-button type="primary" text="确定" @click="submitReserveForm" style="width: 30%;"></u-button>
+							<u-button type="info" text="取消" @click="closeModelReserveAchieve" style="width: 30%;"></u-button>
+						</view>
 					</view>
-				</view>
-			</u-popup>
+				</u-popup>	
+			</view>
 			
 			<!-- 分组弹出层 -->
-			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalGroupStudent" mode="bottom" :round="12" @close="closeModelGroupStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
-				<view style="height: 60vh;">
-					<u--form
-							labelPosition="left"
-							:model="groupStudentObj"
-							ref="uForm"
-							labelWidth="200rpx"
-					>
-					<u-form-item
-							label="学生ID"
-							ref="item1"
-							borderBottom
-					>
-						<u--input
-								v-model="groupStudentObj.studentId"
-								border="none"
-								disabled
-						></u--input>
-					</u-form-item>
-					<u-form-item
-							label="学生名称"
-							ref="item1"
-							borderBottom
-					>
-						<u--input
-								v-model="groupStudentObj.nickName"
-								border="none"
-								disabled
-						></u--input>
-					</u-form-item>
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalGroupStudent" mode="bottom" :round="12" @close="closeModelGroupStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: 60vh;">
+						<u--form
+								labelPosition="left"
+								:model="groupStudentObj"
+								ref="uForm"
+								labelWidth="200rpx"
+						>
 						<u-form-item
-								label="选择分组"
+								label="学生ID"
 								ref="item1"
 								borderBottom
 						>
-							<view class="query-content-select" style="width: 100%;">
-								<uni-data-select v-model="chosetypeGroup" :localdata="studentSelectGroupList"
-									@change="changeStudentSelect"></uni-data-select>
-							</view>
+							<u--input
+									v-model="groupStudentObj.studentId"
+									border="none"
+									disabled
+							></u--input>
 						</u-form-item>
-					</u--form>
-					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
-						<u-button type="primary" text="确定" @click="submitGroupStudentForm" style="width: 30%;"></u-button>
-						<u-button type="info" text="取消" @click="closeModelGroupStudent" style="width: 30%;"></u-button>
+						<u-form-item
+								label="学生名称"
+								ref="item1"
+								borderBottom
+						>
+							<u--input
+									v-model="groupStudentObj.nickName"
+									border="none"
+									disabled
+							></u--input>
+						</u-form-item>
+							<u-form-item
+									label="选择分组"
+									ref="item1"
+									borderBottom
+							>
+								<view class="query-content-select" style="width: 100%;">
+									<uni-data-select v-model="chosetypeGroup" :localdata="studentSelectGroupList"
+										@change="changeStudentSelect"></uni-data-select>
+								</view>
+							</u-form-item>
+						</u--form>
+						<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+							<u-button type="primary" text="确定" @click="submitGroupStudentForm" style="width: 30%;"></u-button>
+							<u-button type="info" text="取消" @click="closeModelGroupStudent" style="width: 30%;"></u-button>
+						</view>
 					</view>
-				</view>
-			</u-popup>
-			
+				</u-popup>
+			</view>
+				
 			<!-- 充值弹出层 -->
-			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalRechargeStudent" mode="bottom" :round="12" @close="closeModelRechargeStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
-				<view style="height: 30vh;">
-					<view class="recharge-title">
-						正在为【{{ rechargeObj.nickName }}】充值
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalRechargeStudent" mode="bottom" :round="12" @close="closeModelRechargeStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: 30vh;">
+						<view class="recharge-title">
+							正在为【{{ rechargeObj.nickName }}】充值
+						</view>
+						<u--form
+								labelPosition="left"
+								:model="rechargeObj"
+								ref="uForm"
+								labelWidth="200rpx"
+						>
+						<u-form-item
+								label="追加充值额度:"
+								ref="item1"
+						>
+							<u--input
+									v-model="rechargeObj.rechargeNum"
+							></u--input>
+						</u-form-item>
+						</u--form>
+						<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+							<u-button type="primary" text="确定" @click="submitRechargeForm" style="width: 30%;"></u-button>
+							<u-button type="info" text="取消" @click="closeModelRechargeStudent" style="width: 30%;"></u-button>
+						</view>
 					</view>
-					<u--form
-							labelPosition="left"
-							:model="rechargeObj"
-							ref="uForm"
-							labelWidth="200rpx"
-					>
-					<u-form-item
-							label="追加充值额度:"
-							ref="item1"
-					>
-						<u--input
-								v-model="rechargeObj.rechargeNum"
-						></u--input>
-					</u-form-item>
-					</u--form>
-					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
-						<u-button type="primary" text="确定" @click="submitRechargeForm" style="width: 30%;"></u-button>
-						<u-button type="info" text="取消" @click="closeModelRechargeStudent" style="width: 30%;"></u-button>
-					</view>
-				</view>
-			</u-popup>
+				</u-popup>
+			</view>
 			
 			<!-- 结算弹出层 -->
-			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalSettleStudent" mode="bottom" :round="12" @close="closeModelSettleStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
-				<view style="height: 30vh;">
-					<view class="recharge-title">
-						正在为【{{ settlementObj.nickName }}】结算
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalSettleStudent" mode="bottom" :round="12" @close="closeModelSettleStudent" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: 30vh;">
+						<view class="recharge-title">
+							正在为【{{ settlementObj.nickName }}】结算
+						</view>
+						<u--form
+								labelPosition="left"
+								:model="settlementObj"
+								ref="uForm"
+								labelWidth="200rpx"
+						>
+						<u-form-item
+								label="可结算额度"
+								ref="item1"
+						>
+							<u--input
+									v-model="settlementObj.reCredit"
+									disabled
+							></u--input>
+						</u-form-item>
+						<u-form-item
+								label="结算额度:"
+								ref="item1"
+						>
+							<u--input
+									v-model="settlementObj.settlementNum"
+							></u--input>
+						</u-form-item>
+						</u--form>
+						<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+							<u-button type="primary" text="确定" @click="submitSettleForm" style="width: 30%;"></u-button>
+							<u-button type="info" text="取消" @click="closeModelSettleStudent" style="width: 30%;"></u-button>
+						</view>
 					</view>
-					<u--form
-							labelPosition="left"
-							:model="settlementObj"
-							ref="uForm"
-							labelWidth="200rpx"
-					>
-					<u-form-item
-							label="可结算额度"
-							ref="item1"
-					>
-						<u--input
-								v-model="settlementObj.reCredit"
-								disabled
-						></u--input>
-					</u-form-item>
-					<u-form-item
-							label="结算额度:"
-							ref="item1"
-					>
-						<u--input
-								v-model="settlementObj.settlementNum"
-						></u--input>
-					</u-form-item>
-					</u--form>
-					<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
-						<u-button type="primary" text="确定" @click="submitSettleForm" style="width: 30%;"></u-button>
-						<u-button type="info" text="取消" @click="closeModelSettleStudent" style="width: 30%;"></u-button>
-					</view>
-				</view>
-			</u-popup>
+				</u-popup>
+			</view>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -355,7 +363,7 @@
 				removeObjData: {},
 				blockObjData: {},
 				
-				chosetype: "",
+				chosetype: 1,
 				studentSelect: [{
 						value: 0,
 						text: "ID"
@@ -444,22 +452,22 @@
 			},
 			// 查询
 			getStudentManage(type){
-				if(this.selectType === 0){
+				if(this.chosetype === 0){
 					this.searchForm.uid = Number(this.searchForm.valueData);
 					this.searchForm.nk = "";
 					this.searchForm.cn = "";
 					this.searchForm.an = "";
-				}else if(this.selectType === 1){
+				}else if(this.chosetype === 1){
 					this.searchForm.nk = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.cn = "";
 					this.searchForm.an = "";
-				}else if(this.selectType === 2){
+				}else if(this.chosetype === 2){
 					this.searchForm.cn = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.an = "";
 					this.searchForm.nk = "";
-				}else if(this.selectType === 3){
+				}else if(this.chosetype === 3){
 					this.searchForm.an = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.nk = "";
@@ -804,6 +812,11 @@
 						uni.hideLoading();
 					})
 				}
+			},
+			
+			// 防止弹出层滑动
+			stopPenetrate(){
+				return;
 			},
 		},
 		created(){

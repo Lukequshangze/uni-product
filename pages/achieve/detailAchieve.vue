@@ -10,7 +10,7 @@
 					@cancel="pickerClose" closeOnClickOverlay>
 				</u-datetime-picker>
 				<view class="time-component" style="display: flex;">
-					<p style="position: relative;top: 8px;width: 100px">查询时间：</p>
+					<p style="position: relative;top: 6px;width: 100px">查询时间：</p>
 					<view class="time-component-input-all" @click="selectStartTime">
 						{{ searchForm.dailyDate ? searchForm.dailyDate : "请选择时间" }}
 					</view>
@@ -99,67 +99,69 @@
 				</view>
 			</view>
 		</view>
-		<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalDetailAchieve" mode="bottom" :round="12" @close="closePopupDetailAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
-			<view style="height: calc(100vh - 200px);">
-				<view class="u-pop-box">
-					<view class="pop-box-name">
-						用户: {{ detailAchieveInfo.nickName }}
-					</view>
-					<!-- 总成绩 总hejin -->
-					<view class="achieve-box">
-						<view class="">
-							{{ detailAchieveInfo.tcsLabel }} {{ detailAchieveInfo.tcs }}
+		<view class="" @touchmove.stop.prevent="stopPenetrate">
+			<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalDetailAchieve" mode="bottom" :round="12" @close="closePopupDetailAchieve" closeable closeOnClickOverlay safeAreaInsetBottom>
+				<view style="height: calc(100vh - 200px);">
+					<view class="u-pop-box">
+						<view class="pop-box-name">
+							用户: {{ detailAchieveInfo.nickName }}
 						</view>
-						<view class="achieve-box-last">
-							{{ detailAchieveInfo.tbsLabel }} {{ detailAchieveInfo.tbs }}
-						</view>
-					</view>
-					
-					<view class="achieve-label">
-						<view class="">
+						<!-- 总成绩 总hejin -->
+						<view class="achieve-box">
 							<view class="">
-								{{ detailAchieveInfo.cnLabel }} {{ detailAchieveInfo.cn }}
+								{{ detailAchieveInfo.tcsLabel }} {{ detailAchieveInfo.tcs }}
 							</view>
-							<view class="">
-								{{ detailAchieveInfo.anLabel }} {{ detailAchieveInfo.an }}
+							<view class="achieve-box-last">
+								{{ detailAchieveInfo.tbsLabel }} {{ detailAchieveInfo.tbs }}
 							</view>
 						</view>
-					</view>
-					
-					<!-- 列表 -->
-					<view class="info-table-detail" v-if="detailAchieveInfo.tableItemVoList && detailAchieveInfo.tableItemVoList.length>0">
-						<view class="table_wrap" v-for="(item, index) in detailAchieveInfo.tableItemVoList" :key="index">
-							<view class="table-time">
-								{{ item.dailyDate }}
-							</view>
-							<view class="detail-table">
-								<view class="table_wrap">
-									<table class="table">
-										<thead> <!-- thead标签在这里已经不代表表头了-->
-											<tr>  <!-- 每个tr标签的第一个td标签为表头-->
-												<td class="table_content" v-for="(val,i) in item.tableTitle" :key="i">
-													<p>{{ val }}</p>
-												</td>
-											</tr>
-										</thead>
-										<tbody>
-											<tr class="table_tr">
-												<td class="table_content" v-for="(tem,i) in item.tableValue" :key="i">
-													<p>{{ tem }}</p>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+						
+						<view class="achieve-label">
+							<view class="">
+								<view class="">
+									{{ detailAchieveInfo.cnLabel }} {{ detailAchieveInfo.cn }}
+								</view>
+								<view class="">
+									{{ detailAchieveInfo.anLabel }} {{ detailAchieveInfo.an }}
 								</view>
 							</view>
-							<view style="display: flex;justify-content: center;">
-								显示近7天数据
+						</view>
+						
+						<!-- 列表 -->
+						<view class="info-table-detail" v-if="detailAchieveInfo.tableItemVoList && detailAchieveInfo.tableItemVoList.length>0">
+							<view class="table_wrap" v-for="(item, index) in detailAchieveInfo.tableItemVoList" :key="index">
+								<view class="table-time">
+									{{ item.dailyDate }}
+								</view>
+								<view class="detail-table">
+									<view class="table_wrap">
+										<table class="table">
+											<thead> <!-- thead标签在这里已经不代表表头了-->
+												<tr>  <!-- 每个tr标签的第一个td标签为表头-->
+													<td class="table_content" v-for="(val,i) in item.tableTitle" :key="i">
+														<p>{{ val }}</p>
+													</td>
+												</tr>
+											</thead>
+											<tbody>
+												<tr class="table_tr">
+													<td class="table_content" v-for="(tem,i) in item.tableValue" :key="i">
+														<p>{{ tem }}</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</view>
+								</view>
+								<view style="display: flex;justify-content: center;">
+									显示近7天数据
+								</view>
 							</view>
 						</view>
 					</view>
 				</view>
-			</view>
-		</u-popup>
+			</u-popup>
+		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
 	</view>
@@ -194,7 +196,7 @@
 				detailAchieveInfo: {},
 				indexList: [],
 				
-				chosetype: 0,
+				chosetype: 1,
 				studentSelect: [{
 						value: 0,
 						text: "ID"
@@ -253,22 +255,22 @@
 			},
 			// 获取学生成绩
 			getDetailAchieve(type){
-				if(this.selectType === 0){
+				if(this.chosetype === 0){
 					this.searchForm.uid = Number(this.searchForm.valueData);
 					this.searchForm.nk = "";
 					this.searchForm.cn = "";
 					this.searchForm.an = "";
-				}else if(this.selectType === 1){
+				}else if(this.chosetype === 1){
 					this.searchForm.nk = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.cn = "";
 					this.searchForm.an = "";
-				}else if(this.selectType === 2){
+				}else if(this.chosetype === 2){
 					this.searchForm.cn = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.an = "";
 					this.searchForm.nk = "";
-				}else if(this.selectType === 3){
+				}else if(this.chosetype === 3){
 					this.searchForm.an = this.searchForm.valueData;
 					this.searchForm.uid = "";
 					this.searchForm.nk = "";
@@ -340,6 +342,10 @@
 			// 关闭弹出层
 			closePopupDetailAchieve(){
 				this.showModalDetailAchieve = false;
+			},
+			// 防止弹出层滑动
+			stopPenetrate(){
+				return;
 			},
 		},
 		created() {

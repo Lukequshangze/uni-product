@@ -2,7 +2,7 @@
 	  <view>
 	    <view class="content-notify">
 			<view class=""></view>
-	    	<view class="" style="display: flex;">
+	    	<view class="" style="display: flex;margin-right: 30px;">
 				<!-- 认领 -->
 				<view class="">
 					<text class="notify-num">{{ claimMsgNum }}</text>
@@ -10,8 +10,16 @@
 				</view>
 				<!-- 带入 -->
 				<view class="" style="margin-left: 20px;">
-					<text class="notify-num">{{ bringMsgNum }}</text>
+					<text class="notify-num" style="margin-right: 5px;">{{ bringMsgNum }}</text>
 					<image class="notify-image" src="@/static/icon/notify-claim.png" mode="" @click="toBringPage"></image>
+				</view>
+				
+				<!-- 删除 -->
+				<view class="" style="margin-left: 10px;margin-top: 5px">
+					<u-button @click="add" size="mini">认领+1</u-button>
+				</view>
+				<view class="" style="margin-left: 5px;margin-top: 5px;">
+					<u-button @click="addb" size="mini">带入+1</u-button>
 				</view>
 	    	</view>
 	    </view>
@@ -26,8 +34,9 @@
 		data(){
 			return {
 				msgList: [],
-				bringMsgNum: 0,   // 带入消息数量
-				claimMsgNum: 0,   // 认领消息数量
+				bringMsgNum: null,   // 带入消息数量
+				claimMsgNum: null,   // 认领消息数量
+				wp_open_notify: true,
 			}
 		},
 		methods: {
@@ -56,6 +65,7 @@
 								}else if(item.business == 2){
 									this.bringMsgNum = item.mesc;
 								}
+								this.wp_open_notify = uni.getStorageSync("wp_open_notify");
 							})
 						}
 					}
@@ -65,9 +75,46 @@
 					uni.hideLoading();
 				})
 			},
+			add(){
+				this.claimMsgNum += 1;
+				this.wp_open_notify = uni.getStorageSync("wp_open_notify");
+			},
+			addb(){
+				this.bringMsgNum += 1;
+				this.wp_open_notify = uni.getStorageSync("wp_open_notify");
+			},
+			claimNotify(){
+				console.log("认领1")
+				let main = plus.android.runtimeMainActivity();
+				let RingtoneManager = plus.android.importClass("android.media.RingtoneManager");
+				let uri = RingtoneManager.getActualDefaultRingtoneUri(main, RingtoneManager
+													.TYPE_NOTIFICATION);
+				let MediaPlayer = plus.android.importClass("android.media.MediaPlayer");
+				let player = MediaPlayer.create(main, uri);
+				player.setLooping(false);
+				player.prepare();
+				player.start();
+			},
+		},
+		watch: {
+			"claimMsgNum"(newVal,oldVal){
+				if(newVal && oldVal){
+					if(newVal > oldVal && this.wp_open_notify === true){
+						this.claimNotify();
+					}
+				}
+			},
+			"bringMsgNum"(newVal,oldVal){
+				if(newVal && oldVal){
+					if(newVal > oldVal && this.wp_open_notify === true){
+						this.claimNotify();
+					}
+				}
+			}
 		},
 		created(){
 			this.getMsgNumber();
+			this.wp_open_notify = uni.getStorageSync("wp_open_notify");
 		},
 	}
 </script>
@@ -83,18 +130,18 @@
 		}
 		.notify-num{
 			position: relative;
-			left: 6px;
+			left: 40px;
 			top: -2px;
-			border: 1px solid #f50d0d;
 			border-radius: 20px;
 			font-size: 10px;
 			padding: 0 3px;
-			color: #f50d0d;
+			color: #fff;
 			background: #fff;
 			z-index: 2;
 			min-width: 12px;
 			text-align: center;
 			display: inline-block;
+			background: rgb(245, 108, 108);
 		}
 	}
 	.clear-both{

@@ -902,7 +902,8 @@ export default {
     },
     //验证字符串是否是数字
     checkNumber(theObj) {
-      var reg = /^[0-9]+.?[0-9]*$/;
+	  // 修改正则,支持负数排序
+      var reg = /^[-0-9]+.?[0-9]*$/;
       if (reg.test(theObj)) {
         return true;
       }
@@ -927,8 +928,9 @@ export default {
       // #endif
     },
     sortData(item){
+		console.log("item",item)
       let key = item.name
-
+		console.log("this.data",this.data)
       if(item.sorterMode==='_asc'){
         this.data.sort((a,b)=>{
           if(this.checkNumber(a[key])){
