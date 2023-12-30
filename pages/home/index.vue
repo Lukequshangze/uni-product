@@ -1,7 +1,7 @@
 <template>
 	<!-- 认领页面 -->
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef"/>
 		<menuBar />
 		<u-swiper />
 		<u-datetime-picker
@@ -64,15 +64,6 @@
 						<view class="">
 							{{ item.content }}
 						</view>
-						<!-- <view class="claim-content-top-left">
-							<span>学生:</span>
-							<span>【
-								<span style="color: #D9001B;">{{ item.name }}</span>
-							】</span>
-						</view>
-						<view class="claim-content-top-right">
-							<span>申请加入班级</span>
-						</view> -->
 					</view>
 					<view class="claim-content-bottom-right">
 						<span style="display: inline-block;">
@@ -84,33 +75,6 @@
 			<!-- 领取模态框 -->
 			<u-modal :show="agreeModel" :content='sureContent' @confirm="agreeConfirm" @cancel="agreeCancel" showCancelButton></u-modal>
 		</view>
-		<!-- <view class="u-page">
-			<u-list
-				@scrolltolower="scrolltolower"
-			>
-				<u-list-item
-					v-for="(item, index) in indexList"
-					:key="index"
-				>
-					<u-cell>
-						<view class="" slot="icon" style="width: 100%;">
-							<view class="">
-								<span>学生：【</span>
-								<span>{{ item.name }}</span>
-								<span>】申请加入班级</span>
-							</view>
-							<view class="">
-								<span>{{item.time}}</span>
-								<span style="display: inline-block;">
-									<button>认领</button>
-								</span>
-							</view>
-						</view>
-						
-					</u-cell>
-				</u-list-item>
-			</u-list>
-		</view> -->
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
 	</view>
@@ -144,6 +108,7 @@
 				agreeObjData: {},
 				sureContent:"确认领取？",
 				startTimeVal: "起始时间 ",
+				timer: null,
 			}
 		},
 		components:{
@@ -190,7 +155,7 @@
 			// 选择起始时间
 			selectStartTime() {
 				// 只是解决软键盘的闪现
-				var interval = setInterval(function(){
+				var interval = setInterval( () =>{
 				    uni.hideKeyboard();//隐藏软键盘
 				    console.log('刷新')
 			    },20);
@@ -319,9 +284,27 @@
 			agreeCancel(){
 				this.agreeModel = false;
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
 		},
 		created() {
 			this.getClaimList();
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>

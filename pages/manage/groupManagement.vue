@@ -1,7 +1,7 @@
 <template>
 	<!-- 分组管理 -->
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef"/>
 		<menuBar />
 		<u-swiper />
 		<view>
@@ -43,16 +43,16 @@
 				</u-empty>
 			</view>
 			<view class="" v-if="!indexList || indexList.length > 0">
-				<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
+				<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 12px;">
 					<view class="claim-content-bottom">
 						<view class="left-range" style="width: 20%;">
-							{{ item.gIdLabel }}{{ item.gId }}
+							{{ item.gIdLabel }} {{ item.gId }}
 						</view>
-						<view class="left-range" style="width: 30%;">
-							{{ item.gnLabel }}{{ item.gn }}
+						<view class="left-range" style="width: 40%;">
+							{{ item.gnLabel }} {{ item.gn }}
 						</view>
 						<view class="left-range" style="width: 25%;">
-							{{ item.csLabel }}{{ item.cs }}
+							{{ item.csLabel }} {{ item.cs }}
 						</view>
 						<view class="left-range" style="display: flex">
 							<u-button type="primary" text="额备" @click="openModelGroupAchieve(item)" size="mini"></u-button>
@@ -194,7 +194,8 @@
 				addGroupData:{
 					cs:"",
 					gn:"",
-				}
+				},
+				timer: null,
 			}
 		},
 		components: {
@@ -350,9 +351,27 @@
 					})
 				}
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
 		},
 		created() {
 			this.getGroupManageList();
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>

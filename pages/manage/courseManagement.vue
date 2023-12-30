@@ -1,7 +1,7 @@
 <template>
 	<!-- 课程管理 -->
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef"/>
 		<menuBar />
 		<u-swiper />
 		<view>
@@ -58,8 +58,8 @@
 			<view class="" v-if="!indexList || indexList.length>0">
 				<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 14px;">
 					<view class="claim-content-bottom">
-						<view class="left-range" style="width: 36%;">
-							{{ item.sIdLabel }}{{ item.sId }}
+						<view class="left-range text-color-d" style="width: 36%;">
+							{{ item.sn }}
 						</view>
 						<view class="left-range" style="width: 27%;">
 							{{ item.anLabel }}{{ item.an }}
@@ -158,6 +158,7 @@
 						text: "所属"
 					},
 				],
+				timer: null,
 			}
 		},
 		components: {
@@ -287,10 +288,28 @@
 			stopPenetrate(){
 				return;
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
 
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
 		},
 		created() {
 			this.getCourseManageList();
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>

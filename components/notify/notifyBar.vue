@@ -2,25 +2,25 @@
 	  <view>
 	    <view class="content-notify">
 			<view class=""></view>
-	    	<view class="" style="display: flex;margin-right: 30px;">
+	    	<view class="" style="display: flex;margin-right: 10px;">
 				<!-- 认领 -->
-				<view class="">
-					<text class="notify-num">{{ claimMsgNum }}</text>
+				<view class="notify-box">
 					<image class="notify-image" src="@/static/icon/notify-bring.png" mode="" @click="toCapPage"></image>
+					<text class="notify-num">{{ claimMsgNum ? claimMsgNum : 0 }}</text>
 				</view>
 				<!-- 带入 -->
-				<view class="" style="margin-left: 20px;">
-					<text class="notify-num" style="margin-right: 5px;">{{ bringMsgNum }}</text>
+				<view class="notify-box">
 					<image class="notify-image" src="@/static/icon/notify-claim.png" mode="" @click="toBringPage"></image>
+					<text class="notify-num" style="margin-right: 0px;">{{ bringMsgNum ? bringMsgNum : 0 }}</text>
 				</view>
 				
 				<!-- 删除 -->
-				<view class="" style="margin-left: 10px;margin-top: 5px">
+				<!--<view class="" style="margin-left: 10px;margin-top: 5px">
 					<u-button @click="add" size="mini">认领+1</u-button>
 				</view>
 				<view class="" style="margin-left: 5px;margin-top: 5px;">
 					<u-button @click="addb" size="mini">带入+1</u-button>
-				</view>
+				</view> -->
 	    	</view>
 	    </view>
 		<view class="clear-both">
@@ -75,14 +75,14 @@
 					uni.hideLoading();
 				})
 			},
-			add(){
-				this.claimMsgNum += 1;
-				this.wp_open_notify = uni.getStorageSync("wp_open_notify");
-			},
-			addb(){
-				this.bringMsgNum += 1;
-				this.wp_open_notify = uni.getStorageSync("wp_open_notify");
-			},
+			// add(){
+			// 	this.claimMsgNum += 1;
+			// 	this.wp_open_notify = uni.getStorageSync("wp_open_notify");
+			// },
+			// addb(){
+			// 	this.bringMsgNum += 1;
+			// 	this.wp_open_notify = uni.getStorageSync("wp_open_notify");
+			// },
 			claimNotify(){
 				console.log("认领1")
 				let main = plus.android.runtimeMainActivity();
@@ -113,7 +113,7 @@
 			}
 		},
 		created(){
-			this.getMsgNumber();
+			// this.getMsgNumber();
 			this.wp_open_notify = uni.getStorageSync("wp_open_notify");
 		},
 	}
@@ -123,25 +123,28 @@
 	.content-notify{
 		display: flex;
 		justify-content: space-between;
-		.notify-image {
-			height: 23px;
-			width: 23px;
-			padding: 2px 10px 0 0;
-		}
-		.notify-num{
-			position: relative;
-			left: 40px;
-			top: -2px;
-			border-radius: 20px;
-			font-size: 10px;
-			padding: 0 3px;
-			color: #fff;
-			background: #fff;
-			z-index: 2;
-			min-width: 12px;
-			text-align: center;
-			display: inline-block;
-			background: rgb(245, 108, 108);
+		.notify-box{
+			min-width: 60px;
+			.notify-image {
+				height: 23px;
+				width: 23px;
+				padding: 2px 10px 0 0;
+			}
+			.notify-num{
+				position: relative;
+				left: -20px;
+				top: -2px;
+				border-radius: 20px;
+				font-size: 10px;
+				padding: 0 3px;
+				color: #fff;
+				background: #fff;
+				z-index: 2;
+				min-width: 20px;
+				text-align: center;
+				display: inline-block;
+				background: rgb(245, 108, 108);
+			}
 		}
 	}
 	.clear-both{

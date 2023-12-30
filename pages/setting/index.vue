@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef" />
 		<u-cell-group style="margin-top: 10px">
 			<u-cell
 			    title="修改密码"
@@ -39,7 +39,8 @@
 			return {
 				title: '设置',
 				logoutModel: false,
-				removeContent: "确认退出登录？"
+				removeContent: "确认退出登录？",
+				timer: null,
 			}
 		},
 		components:{
@@ -77,6 +78,24 @@
 			logoutCancel(){
 				this.logoutModel = false;
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<!-- 老师成绩 -->
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef"/>
 		<menuBar />
 		<u-swiper />
 		<view>
@@ -90,6 +90,9 @@
 						<view class="u-pop-box">
 							<view class="pop-box-name">
 								名称: {{ teacherAchieveInfo.an }}
+							</view>
+							<view class="pop-box-dailyDate">
+								{{ teacherAchieveInfo.daily }}
 							</view>
 							<!-- 总成绩 总hejin -->
 							<view class="achieve-box">
@@ -211,7 +214,8 @@
 				],
 				
 				column:[],
-				dataVal:[]  
+				dataVal:[],
+				timer: null, 
 			}
 		},
 		components: {
@@ -265,8 +269,8 @@
 						for(let i=0;i<this.selfAchieveList.length;i++){
 							obj.levelLabel = this.selfAchieveList[i].levelLabel;
 							obj.perLabel = this.selfAchieveList[i].perLabel;
-							obj.tbsLabel = this.selfAchieveList[i].tbsLabel;
 							obj.tpbLabel = this.selfAchieveList[i].tpbLabel;
+							obj.tbsLabel = this.selfAchieveList[i].tbsLabel;
 						}
 						let keyList = Object.keys(obj);
 						let valueList = Object.values(obj);
@@ -336,8 +340,8 @@
 					// 取出需要的key合并为数组  作为表头 ------------ start ------------
 					for(let i=0;i<this.teacherAchieveInfo.levelItemVoList.length;i++){
 						obj.levelLabel = this.teacherAchieveInfo.levelItemVoList[i].levelLabel;
-						obj.scoreLabel = this.teacherAchieveInfo.levelItemVoList[i].scoreLabel;
 						obj.tppbnLabel = this.teacherAchieveInfo.levelItemVoList[i].tppbnLabel;
+						obj.scoreLabel = this.teacherAchieveInfo.levelItemVoList[i].scoreLabel;
 					}
 					let keyList = Object.keys(obj);
 					let valueList = Object.values(obj);
@@ -373,9 +377,27 @@
 			stopPenetrate(){
 				return;
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
 		},
 		created(){
 			this.getTeacherAchieve();
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>
@@ -463,6 +485,12 @@
 			font-weight: bold;
 			color: #000;
 			text-align: center;
+		}
+		.pop-box-dailyDate{
+			font-size: 18px;
+			color: #333;
+			text-align: center;
+			margin-top: 10px;
 		}
 		.achieve-box{
 			display: flex;

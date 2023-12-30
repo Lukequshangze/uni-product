@@ -1,7 +1,7 @@
 <template>
 	<!-- 本人成绩 -->
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef"/>
 		<menuBar />
 		<u-swiper />
 		<view>
@@ -118,6 +118,7 @@
 						text: "所属"
 					},
 				],
+				timer: null,
 			}
 		},
 		components: {
@@ -339,9 +340,27 @@
 					this.$api.msg("已加载全部数据");
 				}
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
 		},
 		created() {
 			this.getSelfAchieveList();
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>

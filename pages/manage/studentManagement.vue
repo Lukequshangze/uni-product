@@ -1,7 +1,7 @@
 <template>
 	<!-- 学生管理 -->
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef"/>
 		<menuBar />
 		<u-swiper />
 		<view>
@@ -181,7 +181,7 @@
 									borderBottom
 							>
 								<u--input
-										v-model="reserveObj.cn1"
+										v-model="reserveObj.cn"
 										border="none"
 								></u--input>
 							</u-form-item>
@@ -385,7 +385,7 @@
 				// 额备
 				showModalReserveAchieve: false,
 				reserveObj:{
-					cn1: "",
+					cn: "",
 					cn2: "",
 				},
 				
@@ -411,6 +411,7 @@
 				settlementObj:{
 					settlementNum: "",
 				},
+				timer: null,
 			}
 		},
 		components: {
@@ -605,7 +606,7 @@
 					studentId: this.reserveObj.studentId,
 					nickName: this.reserveObj.nickName,
 					cs: this.reserveObj.creditScore,   // 信额
-					cn1: this.reserveObj.cn1,
+					cn1: this.reserveObj.cn,
 					cn2: this.reserveObj.cn2,
 				}
 				if(!this.reserveObj.creditScore && this.reserveObj.creditScore !==0){
@@ -818,9 +819,27 @@
 			stopPenetrate(){
 				return;
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
 		},
 		created(){
 			this.getStudentManage();
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>

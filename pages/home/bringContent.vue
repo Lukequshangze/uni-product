@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef"/>
 		<menuBar />
 		<u-swiper />
 		<u-datetime-picker
@@ -123,6 +123,7 @@
 				agreeObjData: {},
 				sureContent:"确认同意？",
 				agreeType: "",  // agree同意  cancel拒绝
+				timer: null,
 			}
 		},
 		components:{
@@ -293,9 +294,26 @@
 			agreeCancel(){
 				this.agreeModel = false;
 			},
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
 		},
 		created() {
 			this.getBringList();
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>

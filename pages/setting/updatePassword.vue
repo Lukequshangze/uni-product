@@ -1,7 +1,7 @@
 <template>
 	<!-- 修改密码    密码校验还未添加-->
 	<view class="content">
-		<NoticeBar />
+		<!-- <NoticeBar /> -->
 		<u--form labelPosition="left" :model="formData" ref="uForm" labelWidth="90">
 			<u-form-item label="账号:" borderBottom ref="item1">
 				<u--input v-model="formData.account" disabled border="none"></u--input>

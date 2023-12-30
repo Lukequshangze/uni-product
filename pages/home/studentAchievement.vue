@@ -1,7 +1,7 @@
 <template>
 	<!-- 学生成绩 -->
 	<view class="content">
-		<NoticeBar />
+		<NoticeBar ref="noticeRef"/>
 		<menuBar />
 		<u-swiper />
 		<view class="search-box time-component">
@@ -229,6 +229,7 @@
 						label: '成绩',
 					},
 				],
+				timer: null,
 			}
 		},
 		components:{
@@ -351,9 +352,27 @@
 			stopPenetrate(){
 				return;
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
 		},
 		created() {
 			this.getStudentAchieve();
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>

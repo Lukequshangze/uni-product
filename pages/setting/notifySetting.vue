@@ -1,7 +1,7 @@
 <template>
 	<!-- 修改密码    密码校验还未添加-->
 	<view>
-		<NoticeBar v-if="notifyShow"/>
+		<NoticeBar v-if="notifyShow" ref="noticeRef"/>
 		<view class="content">
 			<u--form labelPosition="left" :model="formData" ref="uForm" labelWidth="130">
 				<u-form-item label="接收新消息通知:" prop="formData.receiveNotify" borderBottom ref="item1">
@@ -50,7 +50,8 @@
 				notifyShow: true,
 				modalShow: false,
 				modalTitle: '提示',
-				modalContent: '确认是否修改？'
+				modalContent: '确认是否修改？',
+				timer: null,
 			}
 		},
 		components: {
@@ -92,6 +93,24 @@
 					}
 				});
 			},
+			// 调用消息组件中的方法
+			getNoticeData(){
+				this.$refs.noticeRef.getMsgNumber();
+			}
+		},
+		mounted() {
+			// 循环消息事件
+			let that = this;
+			that.getNoticeData();
+			console.log("that.$refs.noticeRef",that.$refs.noticeRef)
+			that.timer = setInterval( () => { 
+				that.getNoticeData();
+			}, 5000);	
+		},
+		onHide() {
+			if(this.timer){
+				clearInterval(this.timer);
+			}
 		}
 	}
 </script>
