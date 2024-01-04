@@ -1110,11 +1110,11 @@ export default {
   overflow-wrap: break-word;
   border-bottom: 1px solid #e8e8e8;
   transition: background 0.3s;
-  padding-right: 20px;
+  padding-right: 5px;
   word-break:keep-all;           /* 不换行 */
-  white-space:nowrap;          /* 不换行 */
+  // white-space:nowrap;          /* 不换行 */
   overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
-  text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+  // text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
   overflow-wrap: break-word;
 }
 .zb-table{
@@ -1147,14 +1147,14 @@ export default {
     flex-shrink: 0;
     width: 100px;
     padding-left: 8px;
-    height: 40px;
+    min-height: 40px;
     line-height: 40px;
-	padding-right: 20px;
+	padding-right: 5px;
     box-sizing: border-box;
     word-break:keep-all;           /* 不换行 */
-    white-space:nowrap;          /* 不换行 */
+    // white-space:nowrap;          /* 不换行 */
     overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
-    text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+    // text-overflow:ellipsis;         /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
     overflow-wrap: break-word;
     border-bottom: 1px solid #e8e8e8;
     //transition: background 0.3s;

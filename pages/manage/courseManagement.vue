@@ -129,7 +129,10 @@
 					limit: 20,
 					gn: "",
 					valueData: "",
-					dailyDate: "",
+					dailyDate: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				datalist: [],
 				indexList: [],
@@ -269,7 +272,7 @@
 						}
 						uni.hideLoading();
 					}else{
-						this.$api.msg("加载失败");
+						this.$api.msg(err.msg);
 					}
 				}).catch((err) =>{
 					//隐藏加载框

@@ -88,8 +88,14 @@
 				searchForm:{
 					mark:"",  // 昵称
 					dailyDate: null,
-					startTime: "",
-					endTime: "",
+					startTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
+					endTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				selfAchieveList:[
 					{
@@ -327,7 +333,7 @@
 						uni.hideLoading();
 					}
 				}).catch((err) =>{
-					this.$api.msg("加载失败");
+					this.$api.msg(err.msg);
 					//隐藏加载框
 					uni.hideLoading();
 				})

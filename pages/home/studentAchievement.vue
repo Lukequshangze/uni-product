@@ -149,9 +149,7 @@
 						</view>
 						<view class="search-table">
 							<!-- 表格 -->
-							<zb-table :show-header="true" :columns="column" :stripe="true" :fit="false"
-								@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
-								@edit="buttonEdit" @dele="dele" :data="activeData.detailItemVoList">
+							<zb-table :show-header="true" :columns="column" :stripe="true" :border="true" :data="activeData.detailItemVoList">
 							</zb-table>
 						</view>
 					</view>
@@ -187,7 +185,10 @@
 					valueData:"",
 					page: 1,
 					limit: 20,
-					dailyDate: null,
+					dailyDate: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				indexList: [],
 				chosetype: 1,
@@ -213,19 +214,23 @@
 						name: 'daily',
 						label: '日期',
 						fixed: false,
+						width: 100,
 						emptyString: '--'
 					},
 					{
 						name: 'club',
 						label: '班级',
+						width: 80,
 						emptyString: '--'
 					},
 					{
 						name: 'handsum',
+						width: 80,
 						label: '手数',
 					},
 					{
 						name: 'record',
+						width: 80,
 						label: '成绩',
 					},
 				],
@@ -315,7 +320,7 @@
 						uni.hideLoading();
 					}
 				}).catch((err) =>{
-					this.$api.msg("加载失败");
+					this.$api.msg(err.msg);
 					//隐藏加载框
 					uni.hideLoading();
 				})

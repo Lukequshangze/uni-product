@@ -12204,7 +12204,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-35b7ff72] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-35b7ff72] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-35b7ff72] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.text-color-d[data-v-35b7ff72] {\r\n  color: #d9001B;\n}\n.sorter-table[data-v-35b7ff72] {\r\n  position: absolute;\r\n  right: 6px;\r\n  top: 50%;\r\n  -webkit-transform: translateY(-50%);\r\n          transform: translateY(-50%);\n}\n.sorter-table .sorter-table-icon[data-v-35b7ff72] {\r\n  width: 0;\r\n  height: 0;\r\n  color: #dcdcdc;\r\n  border-right: 4px solid transparent;\r\n  border-left: 4px solid transparent;\n}\n.sorter-table .sorter-table-icon[data-v-35b7ff72]:first-child {\r\n  border-bottom: 5px solid currentColor;\n}\n.sorter-table .sorter-table-icon[data-v-35b7ff72]:last-child {\r\n  margin-top: 1.5px;\r\n  border-top: 5px solid currentColor;\n}\n.sorter-table .sorting_desc[data-v-35b7ff72] {\r\n  color: #2979ff;\n}\n.sorter-table .sorting_asc[data-v-35b7ff72] {\r\n  color: #2979ff;\n}\n.checkbox-item[data-v-35b7ff72] {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  width: 100%;\r\n  height: 100%;\n}\n.no-data[data-v-35b7ff72] {\r\n  width: 100%;\r\n  height: 410rpx;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.item-th[data-v-35b7ff72] {\r\n  position: relative;\r\n  flex-shrink: 0;\r\n  width: 100px;\r\n  overflow-wrap: break-word;\r\n  border-bottom: 1px solid #e8e8e8;\r\n  transition: background 0.3s;\r\n  padding-right: 20px;\r\n  word-break: keep-all;\r\n  /* 不换行 */\r\n  white-space: nowrap;\r\n  /* 不换行 */\r\n  overflow: hidden;\r\n  /* 内容超出宽度时隐藏超出部分的内容 */\r\n  text-overflow: ellipsis;\r\n  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/\r\n  overflow-wrap: break-word;\n}\n.zb-table[data-v-35b7ff72] {\r\n  height: 100%;\r\n  overflow: hidden;\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  font-size: 12px;\r\n  position: relative;\n}\n.zb-table .zb-table-content[data-v-35b7ff72] {\r\n  position: relative;\r\n  overflow: hidden;\n}\n.zb-table .zb-table-fixed[data-v-35b7ff72] {\r\n  min-width: 100%;\n}\n.zb-table .zb-table-body[data-v-35b7ff72] {\r\n  position: relative;\r\n  background: #fff;\r\n  transition: opacity 0.3s;\n}\n.zb-table .item-tr[data-v-35b7ff72] {\r\n  display: flex;\n}\n.zb-table .item-td[data-v-35b7ff72] {\r\n  flex-shrink: 0;\r\n  width: 100px;\r\n  padding-left: 8px;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  padding-right: 20px;\r\n  box-sizing: border-box;\r\n  word-break: keep-all;\r\n  /* 不换行 */\r\n  white-space: nowrap;\r\n  /* 不换行 */\r\n  overflow: hidden;\r\n  /* 内容超出宽度时隐藏超出部分的内容 */\r\n  text-overflow: ellipsis;\r\n  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/\r\n  overflow-wrap: break-word;\r\n  border-bottom: 1px solid #e8e8e8;\r\n  border-left: 1px solid #e8e8e8;\n}\n.zb-table .zb-table-fixed-left .zb-table-header[data-v-35b7ff72] {\r\n  overflow-y: hidden;\n}\n.zb-table .zb-table-header[data-v-35b7ff72] {\r\n  overflow: hidden;\r\n  background: #fafafa;\n}\n.zb-table .zb-table-header .item-th[data-v-35b7ff72] {\r\n  padding-left: 8px;\r\n  line-height: 39px;\r\n  height: 40px;\r\n  box-sizing: border-box;\r\n  border-left: 1px solid #e8e8e8;\n}\n.zb-table .zb-table-fixed-left .zb-table-fixed[data-v-35b7ff72] {\r\n  background: #fff;\n}\n.zb-table .zb-table-fixed-right .zb-table-fixed[data-v-35b7ff72] {\r\n  background: #fff;\n}\n.zb-table .zb-table-body-inner[data-v-35b7ff72] {\r\n  height: 100%;\n}\n.zb-table .zb-table-fixed-left[data-v-35b7ff72] {\r\n  position: absolute;\r\n  top: 0;\r\n  z-index: 1;\r\n  overflow: hidden;\r\n  border-radius: 0;\r\n  height: 100%;\n}\n.zb-table .odd[data-v-35b7ff72] {\r\n  background-color: rgba(249, 249, 249, 0.6);\r\n  width: 100%;\n}\n.zb-table .even[data-v-35b7ff72] {\r\n  background-color: white;\r\n  width: 100%;\n}\n.scroll-left-fixed .zb-table-fixed-left[data-v-35b7ff72] {\r\n  left: 0;\r\n  box-shadow: 6px 0 6px -4px #ccc;\n}\n.zb-table-applet[data-v-35b7ff72] {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: column;\r\n  font-size: 12px;\n}\n.zb-table-applet .zb-table-content[data-v-35b7ff72] {\r\n  flex: 1;\r\n  overflow: hidden;\r\n  position: relative;\n}\n.zb-table-applet .zb-table-fixed[data-v-35b7ff72] {\r\n  min-width: 100%;\r\n  width: -webkit-fit-content;\r\n  width: fit-content;\n}\n.zb-table-applet .zb-table-body[data-v-35b7ff72] {\r\n  position: relative;\r\n  background: #fff;\r\n  transition: opacity 0.3s;\n}\n.zb-table-applet .item-tr[data-v-35b7ff72] {\r\n  display: flex;\n}\n.zb-table-applet .item-td[data-v-35b7ff72] {\r\n  flex-shrink: 0;\r\n  width: 100px;\r\n  padding-left: 8px;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  padding-right: 20px;\r\n  box-sizing: border-box;\r\n  word-break: keep-all;\r\n  /* 不换行 */\r\n  white-space: nowrap;\r\n  /* 不换行 */\r\n  overflow: hidden;\r\n  /* 内容超出宽度时隐藏超出部分的内容 */\r\n  text-overflow: ellipsis;\r\n  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/\r\n  overflow-wrap: break-word;\r\n  border-bottom: 1px solid #e8e8e8;\r\n  border-left: 1px solid #e8e8e8;\n}\n.zb-table-applet .zb-table-header[data-v-35b7ff72] {\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\n}\n.zb-table-applet .zb-table-header .item-th[data-v-35b7ff72] {\r\n  padding-left: 8px;\r\n  line-height: 39px;\r\n  height: 40px;\r\n  box-sizing: border-box;\r\n  background: #fafafa;\r\n  text-align: center !important;\n}\n.zb-table-applet .zb-table-header .zb-stick-side[data-v-35b7ff72] {\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  top: 0;\r\n  left: 0;\r\n  z-index: 2;\r\n  box-sizing: border-box;\r\n  background: #fafafa;\n}\n.zb-table-applet .zb-table-fixed-left .zb-table-fixed[data-v-35b7ff72] {\r\n  background: #fff;\n}\n.zb-table-applet .zb-table-fixed-right .zb-table-fixed[data-v-35b7ff72] {\r\n  background: #fff;\n}\n.zb-table-applet .zb-table-fixed-header .zb-table-body-inner[data-v-35b7ff72] {\r\n  height: 100%;\n}\n.zb-table-applet .zb-table-fixed-left[data-v-35b7ff72] {\r\n  position: absolute;\r\n  top: 0;\r\n  z-index: 1;\r\n  overflow: hidden;\r\n  border-radius: 0;\r\n  height: 100%;\n}\n.zb-table-applet .scroll-left-fixed .zb-table-fixed-left[data-v-35b7ff72] {\r\n  left: 0;\r\n  box-shadow: 6px 0 6px -4px #ccc;\n}\n.zb-table-applet .odd[data-v-35b7ff72] {\r\n  background-color: rgba(249, 249, 249, 0.6);\r\n  width: 100%;\n}\n.zb-table-applet .even[data-v-35b7ff72] {\r\n  background-color: white;\r\n  width: 100%;\n}\n.zb-table-applet .zb-table-tbody .zb-stick-side[data-v-35b7ff72] {\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 1;\r\n  box-sizing: border-box;\r\n  background: white;\n}\n.zb-table-applet .zb-table-tbody .odd[data-v-35b7ff72] {\r\n  background: #f9f9f9;\r\n  width: 100%;\n}\n.zb-table-applet .zb-table-tbody .even[data-v-35b7ff72] {\r\n  background: white;\r\n  width: 100%;\n}\n.zb-table-applet .current-row .item-td[data-v-35b7ff72] {\r\n  background-color: #ecf5ff;\n}\n.current-row .item-td[data-v-35b7ff72] {\r\n  background-color: #ecf5ff;\n}\n.zb-table-header[data-v-35b7ff72] {\r\n  height: 40px;\n}\n.scrollPosition[data-v-35b7ff72] {\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  height: 100%;\r\n  background: red;\r\n  z-index: 999;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-35b7ff72] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-35b7ff72] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-35b7ff72] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.text-color-d[data-v-35b7ff72] {\r\n  color: #d9001B;\n}\n.sorter-table[data-v-35b7ff72] {\r\n  position: absolute;\r\n  right: 6px;\r\n  top: 50%;\r\n  -webkit-transform: translateY(-50%);\r\n          transform: translateY(-50%);\n}\n.sorter-table .sorter-table-icon[data-v-35b7ff72] {\r\n  width: 0;\r\n  height: 0;\r\n  color: #dcdcdc;\r\n  border-right: 4px solid transparent;\r\n  border-left: 4px solid transparent;\n}\n.sorter-table .sorter-table-icon[data-v-35b7ff72]:first-child {\r\n  border-bottom: 5px solid currentColor;\n}\n.sorter-table .sorter-table-icon[data-v-35b7ff72]:last-child {\r\n  margin-top: 1.5px;\r\n  border-top: 5px solid currentColor;\n}\n.sorter-table .sorting_desc[data-v-35b7ff72] {\r\n  color: #2979ff;\n}\n.sorter-table .sorting_asc[data-v-35b7ff72] {\r\n  color: #2979ff;\n}\n.checkbox-item[data-v-35b7ff72] {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  width: 100%;\r\n  height: 100%;\n}\n.no-data[data-v-35b7ff72] {\r\n  width: 100%;\r\n  height: 410rpx;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.item-th[data-v-35b7ff72] {\r\n  position: relative;\r\n  flex-shrink: 0;\r\n  width: 100px;\r\n  overflow-wrap: break-word;\r\n  border-bottom: 1px solid #e8e8e8;\r\n  transition: background 0.3s;\r\n  padding-right: 5px;\r\n  word-break: keep-all;\r\n  /* 不换行 */\r\n  overflow: hidden;\r\n  /* 内容超出宽度时隐藏超出部分的内容 */\r\n  overflow-wrap: break-word;\n}\n.zb-table[data-v-35b7ff72] {\r\n  height: 100%;\r\n  overflow: hidden;\r\n  width: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  font-size: 12px;\r\n  position: relative;\n}\n.zb-table .zb-table-content[data-v-35b7ff72] {\r\n  position: relative;\r\n  overflow: hidden;\n}\n.zb-table .zb-table-fixed[data-v-35b7ff72] {\r\n  min-width: 100%;\n}\n.zb-table .zb-table-body[data-v-35b7ff72] {\r\n  position: relative;\r\n  background: #fff;\r\n  transition: opacity 0.3s;\n}\n.zb-table .item-tr[data-v-35b7ff72] {\r\n  display: flex;\n}\n.zb-table .item-td[data-v-35b7ff72] {\r\n  flex-shrink: 0;\r\n  width: 100px;\r\n  padding-left: 8px;\r\n  min-height: 40px;\r\n  line-height: 40px;\r\n  padding-right: 5px;\r\n  box-sizing: border-box;\r\n  word-break: keep-all;\r\n  /* 不换行 */\r\n  overflow: hidden;\r\n  /* 内容超出宽度时隐藏超出部分的内容 */\r\n  overflow-wrap: break-word;\r\n  border-bottom: 1px solid #e8e8e8;\r\n  border-left: 1px solid #e8e8e8;\n}\n.zb-table .zb-table-fixed-left .zb-table-header[data-v-35b7ff72] {\r\n  overflow-y: hidden;\n}\n.zb-table .zb-table-header[data-v-35b7ff72] {\r\n  overflow: hidden;\r\n  background: #fafafa;\n}\n.zb-table .zb-table-header .item-th[data-v-35b7ff72] {\r\n  padding-left: 8px;\r\n  line-height: 39px;\r\n  height: 40px;\r\n  box-sizing: border-box;\r\n  border-left: 1px solid #e8e8e8;\n}\n.zb-table .zb-table-fixed-left .zb-table-fixed[data-v-35b7ff72] {\r\n  background: #fff;\n}\n.zb-table .zb-table-fixed-right .zb-table-fixed[data-v-35b7ff72] {\r\n  background: #fff;\n}\n.zb-table .zb-table-body-inner[data-v-35b7ff72] {\r\n  height: 100%;\n}\n.zb-table .zb-table-fixed-left[data-v-35b7ff72] {\r\n  position: absolute;\r\n  top: 0;\r\n  z-index: 1;\r\n  overflow: hidden;\r\n  border-radius: 0;\r\n  height: 100%;\n}\n.zb-table .odd[data-v-35b7ff72] {\r\n  background-color: rgba(249, 249, 249, 0.6);\r\n  width: 100%;\n}\n.zb-table .even[data-v-35b7ff72] {\r\n  background-color: white;\r\n  width: 100%;\n}\n.scroll-left-fixed .zb-table-fixed-left[data-v-35b7ff72] {\r\n  left: 0;\r\n  box-shadow: 6px 0 6px -4px #ccc;\n}\n.zb-table-applet[data-v-35b7ff72] {\r\n  height: 100%;\r\n  width: 100%;\r\n  position: relative;\r\n  display: flex;\r\n  flex-direction: column;\r\n  font-size: 12px;\n}\n.zb-table-applet .zb-table-content[data-v-35b7ff72] {\r\n  flex: 1;\r\n  overflow: hidden;\r\n  position: relative;\n}\n.zb-table-applet .zb-table-fixed[data-v-35b7ff72] {\r\n  min-width: 100%;\r\n  width: -webkit-fit-content;\r\n  width: fit-content;\n}\n.zb-table-applet .zb-table-body[data-v-35b7ff72] {\r\n  position: relative;\r\n  background: #fff;\r\n  transition: opacity 0.3s;\n}\n.zb-table-applet .item-tr[data-v-35b7ff72] {\r\n  display: flex;\n}\n.zb-table-applet .item-td[data-v-35b7ff72] {\r\n  flex-shrink: 0;\r\n  width: 100px;\r\n  padding-left: 8px;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  padding-right: 20px;\r\n  box-sizing: border-box;\r\n  word-break: keep-all;\r\n  /* 不换行 */\r\n  white-space: nowrap;\r\n  /* 不换行 */\r\n  overflow: hidden;\r\n  /* 内容超出宽度时隐藏超出部分的内容 */\r\n  text-overflow: ellipsis;\r\n  /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/\r\n  overflow-wrap: break-word;\r\n  border-bottom: 1px solid #e8e8e8;\r\n  border-left: 1px solid #e8e8e8;\n}\n.zb-table-applet .zb-table-header[data-v-35b7ff72] {\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  top: 0;\r\n  z-index: 2;\n}\n.zb-table-applet .zb-table-header .item-th[data-v-35b7ff72] {\r\n  padding-left: 8px;\r\n  line-height: 39px;\r\n  height: 40px;\r\n  box-sizing: border-box;\r\n  background: #fafafa;\r\n  text-align: center !important;\n}\n.zb-table-applet .zb-table-header .zb-stick-side[data-v-35b7ff72] {\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  top: 0;\r\n  left: 0;\r\n  z-index: 2;\r\n  box-sizing: border-box;\r\n  background: #fafafa;\n}\n.zb-table-applet .zb-table-fixed-left .zb-table-fixed[data-v-35b7ff72] {\r\n  background: #fff;\n}\n.zb-table-applet .zb-table-fixed-right .zb-table-fixed[data-v-35b7ff72] {\r\n  background: #fff;\n}\n.zb-table-applet .zb-table-fixed-header .zb-table-body-inner[data-v-35b7ff72] {\r\n  height: 100%;\n}\n.zb-table-applet .zb-table-fixed-left[data-v-35b7ff72] {\r\n  position: absolute;\r\n  top: 0;\r\n  z-index: 1;\r\n  overflow: hidden;\r\n  border-radius: 0;\r\n  height: 100%;\n}\n.zb-table-applet .scroll-left-fixed .zb-table-fixed-left[data-v-35b7ff72] {\r\n  left: 0;\r\n  box-shadow: 6px 0 6px -4px #ccc;\n}\n.zb-table-applet .odd[data-v-35b7ff72] {\r\n  background-color: rgba(249, 249, 249, 0.6);\r\n  width: 100%;\n}\n.zb-table-applet .even[data-v-35b7ff72] {\r\n  background-color: white;\r\n  width: 100%;\n}\n.zb-table-applet .zb-table-tbody .zb-stick-side[data-v-35b7ff72] {\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  left: 0;\r\n  z-index: 1;\r\n  box-sizing: border-box;\r\n  background: white;\n}\n.zb-table-applet .zb-table-tbody .odd[data-v-35b7ff72] {\r\n  background: #f9f9f9;\r\n  width: 100%;\n}\n.zb-table-applet .zb-table-tbody .even[data-v-35b7ff72] {\r\n  background: white;\r\n  width: 100%;\n}\n.zb-table-applet .current-row .item-td[data-v-35b7ff72] {\r\n  background-color: #ecf5ff;\n}\n.current-row .item-td[data-v-35b7ff72] {\r\n  background-color: #ecf5ff;\n}\n.zb-table-header[data-v-35b7ff72] {\r\n  height: 40px;\n}\n.scrollPosition[data-v-35b7ff72] {\r\n  position: absolute;\r\n  right: 0;\r\n  top: 0;\r\n  height: 100%;\r\n  background: red;\r\n  z-index: 999;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -13072,25 +13072,7 @@ var render = function () {
                       _c(
                         "uni-view",
                         { staticClass: _vm._$g(71, "sc"), attrs: { _i: 71 } },
-                        [
-                          _c("zb-table", {
-                            attrs: { _i: 72 },
-                            on: {
-                              toggleRowSelection: function ($event) {
-                                return _vm.$handleViewEvent($event)
-                              },
-                              toggleAllSelection: function ($event) {
-                                return _vm.$handleViewEvent($event)
-                              },
-                              edit: function ($event) {
-                                return _vm.$handleViewEvent($event)
-                              },
-                              dele: function ($event) {
-                                return _vm.$handleViewEvent($event)
-                              },
-                            },
-                          }),
-                        ],
+                        [_c("zb-table", { attrs: { _i: 72 } })],
                         1
                       ),
                     ],
@@ -18745,9 +18727,12 @@ try {
     uDatetimePicker:
       __webpack_require__(/*! @/uni_modules/uview-ui/components/u-datetime-picker/u-datetime-picker.vue */ 33)
         .default,
-    uEmpty: __webpack_require__(/*! @/uni_modules/uview-ui/components/u-empty/u-empty.vue */ 121)
-      .default,
+    uniDataSelect:
+      __webpack_require__(/*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 252)
+        .default,
     uButton: __webpack_require__(/*! @/uni_modules/uview-ui/components/u-button/u-button.vue */ 113)
+      .default,
+    uEmpty: __webpack_require__(/*! @/uni_modules/uview-ui/components/u-empty/u-empty.vue */ 121)
       .default,
     uPopup: __webpack_require__(/*! @/uni_modules/uview-ui/components/u-popup/u-popup.vue */ 39)
       .default,
@@ -18840,48 +18825,107 @@ var render = function () {
                 ],
                 1
               ),
+              _c(
+                "uni-view",
+                { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
+                [
+                  _c(
+                    "uni-view",
+                    {
+                      staticClass: _vm._$g(11, "sc"),
+                      staticStyle: { width: "50px" },
+                      attrs: { _i: 11 },
+                    },
+                    [_vm._v("级别:")]
+                  ),
+                  _c(
+                    "uni-view",
+                    {
+                      staticClass: _vm._$g(12, "sc"),
+                      staticStyle: { width: "100%" },
+                      attrs: { _i: 12 },
+                    },
+                    [
+                      _c("uni-data-select", {
+                        attrs: { _i: 13 },
+                        on: {
+                          change: function ($event) {
+                            return _vm.$handleViewEvent($event)
+                          },
+                        },
+                        model: {
+                          value: _vm._$g(13, "v-model"),
+                          callback: function () {},
+                          expression: "choseTypeLevel",
+                        },
+                      }),
+                    ],
+                    1
+                  ),
+                  _c(
+                    "uni-view",
+                    { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                    [
+                      _c(
+                        "u-button",
+                        {
+                          attrs: { _i: 15 },
+                          on: {
+                            click: function ($event) {
+                              return _vm.$handleViewEvent($event)
+                            },
+                          },
+                        },
+                        [_vm._v("查询")]
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
             ],
             1
           ),
-          _vm._$g(10, "i")
+          _vm._$g(16, "i")
             ? _c(
                 "uni-view",
-                { staticStyle: { "margin-top": "15px" }, attrs: { _i: 10 } },
-                [_c("u-empty", { attrs: { _i: 11 } })],
+                { staticStyle: { "margin-top": "15px" }, attrs: { _i: 16 } },
+                [_c("u-empty", { attrs: { _i: 17 } })],
                 1
               )
             : _vm._e(),
-          _vm._l(_vm._$g(12, "f"), function (item, index, $20, $30) {
+          _vm._l(_vm._$g(18, "f"), function (item, index, $20, $30) {
             return _c(
               "uni-view",
               {
                 key: item,
-                staticClass: _vm._$g("12-" + $30, "sc"),
+                staticClass: _vm._$g("18-" + $30, "sc"),
                 staticStyle: { "font-size": "14px" },
-                attrs: { _i: "12-" + $30 },
+                attrs: { _i: "18-" + $30 },
               },
               [
                 _c(
                   "uni-view",
                   {
-                    staticClass: _vm._$g("13-" + $30, "sc"),
-                    attrs: { _i: "13-" + $30 },
+                    staticClass: _vm._$g("19-" + $30, "sc"),
+                    attrs: { _i: "19-" + $30 },
                   },
                   [
                     _c(
                       "uni-view",
                       {
-                        staticClass: _vm._$g("14-" + $30, "sc"),
-                        attrs: { _i: "14-" + $30 },
+                        staticClass: _vm._$g("20-" + $30, "sc"),
+                        attrs: { _i: "20-" + $30 },
                       },
                       [
                         _c(
                           "span",
                           {
                             staticStyle: { color: "#d9001B" },
-                            attrs: { _i: "15-" + $30 },
+                            attrs: { _i: "21-" + $30 },
                           },
-                          [_vm._v(_vm._$g("15-" + $30, "t0-0"))]
+                          [_vm._v(_vm._$g("21-" + $30, "t0-0"))]
                         ),
                       ],
                       1
@@ -18889,12 +18933,12 @@ var render = function () {
                     _c(
                       "uni-view",
                       {
-                        staticClass: _vm._$g("16-" + $30, "sc"),
-                        attrs: { _i: "16-" + $30 },
+                        staticClass: _vm._$g("22-" + $30, "sc"),
+                        attrs: { _i: "22-" + $30 },
                       },
                       [
-                        _c("span", { attrs: { _i: "17-" + $30 } }, [
-                          _vm._v(_vm._$g("17-" + $30, "t0-0")),
+                        _c("span", { attrs: { _i: "23-" + $30 } }, [
+                          _vm._v(_vm._$g("23-" + $30, "t0-0")),
                         ]),
                       ],
                       1
@@ -18905,48 +18949,48 @@ var render = function () {
                 _c(
                   "uni-view",
                   {
-                    staticClass: _vm._$g("18-" + $30, "sc"),
-                    attrs: { _i: "18-" + $30 },
+                    staticClass: _vm._$g("24-" + $30, "sc"),
+                    attrs: { _i: "24-" + $30 },
                   },
                   [
                     _c(
                       "uni-view",
                       {
-                        staticClass: _vm._$g("19-" + $30, "sc"),
+                        staticClass: _vm._$g("25-" + $30, "sc"),
                         staticStyle: { width: "45%" },
-                        attrs: { _i: "19-" + $30 },
+                        attrs: { _i: "25-" + $30 },
                       },
                       [
                         _vm._v(
-                          _vm._$g("19-" + $30, "t0-0") +
-                            _vm._$g("19-" + $30, "t0-1")
+                          _vm._$g("25-" + $30, "t0-0") +
+                            _vm._$g("25-" + $30, "t0-1")
                         ),
                       ]
                     ),
                     _c(
                       "uni-view",
                       {
-                        staticClass: _vm._$g("20-" + $30, "sc"),
+                        staticClass: _vm._$g("26-" + $30, "sc"),
                         staticStyle: { width: "45%" },
-                        attrs: { _i: "20-" + $30 },
+                        attrs: { _i: "26-" + $30 },
                       },
                       [
                         _vm._v(
-                          _vm._$g("20-" + $30, "t0-0") +
-                            _vm._$g("20-" + $30, "t0-1")
+                          _vm._$g("26-" + $30, "t0-0") +
+                            _vm._$g("26-" + $30, "t0-1")
                         ),
                       ]
                     ),
                     _c(
                       "uni-view",
                       {
-                        staticClass: _vm._$g("21-" + $30, "sc"),
+                        staticClass: _vm._$g("27-" + $30, "sc"),
                         staticStyle: { width: "10%" },
-                        attrs: { _i: "21-" + $30 },
+                        attrs: { _i: "27-" + $30 },
                       },
                       [
                         _c("u-button", {
-                          attrs: { _i: "22-" + $30 },
+                          attrs: { _i: "28-" + $30 },
                           on: {
                             click: function ($event) {
                               return _vm.$handleViewEvent($event)
@@ -18966,7 +19010,7 @@ var render = function () {
           _c(
             "uni-view",
             {
-              attrs: { _i: 23 },
+              attrs: { _i: 29 },
               on: {
                 touchmove: function ($event) {
                   return _vm.$handleViewEvent($event, {
@@ -18980,7 +19024,7 @@ var render = function () {
               _c(
                 "u-popup",
                 {
-                  attrs: { _i: 24 },
+                  attrs: { _i: 30 },
                   on: {
                     close: function ($event) {
                       return _vm.$handleViewEvent($event)
@@ -18992,96 +19036,96 @@ var render = function () {
                     "uni-view",
                     {
                       staticStyle: { height: "calc(100vh - 200px)" },
-                      attrs: { _i: 25 },
+                      attrs: { _i: 31 },
                     },
                     [
                       _c(
                         "uni-view",
-                        { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+                        { staticClass: _vm._$g(32, "sc"), attrs: { _i: 32 } },
                         [
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(27, "sc"),
-                              attrs: { _i: 27 },
+                              staticClass: _vm._$g(33, "sc"),
+                              attrs: { _i: 33 },
                             },
-                            [_vm._v("组: " + _vm._$g(27, "t0-0"))]
+                            [_vm._v("组: " + _vm._$g(33, "t0-0"))]
                           ),
                           _c(
                             "uni-view",
                             {
-                              staticClass: _vm._$g(28, "sc"),
-                              attrs: { _i: 28 },
+                              staticClass: _vm._$g(34, "sc"),
+                              attrs: { _i: 34 },
                             },
                             [
-                              _c("uni-view", { attrs: { _i: 29 } }, [
+                              _c("uni-view", { attrs: { _i: 35 } }, [
                                 _vm._v(
-                                  _vm._$g(29, "t0-0") +
+                                  _vm._$g(35, "t0-0") +
                                     " " +
-                                    _vm._$g(29, "t0-1")
+                                    _vm._$g(35, "t0-1")
                                 ),
                               ]),
                               _c(
                                 "uni-view",
                                 {
-                                  staticClass: _vm._$g(30, "sc"),
-                                  attrs: { _i: 30 },
+                                  staticClass: _vm._$g(36, "sc"),
+                                  attrs: { _i: 36 },
                                 },
                                 [
                                   _vm._v(
-                                    _vm._$g(30, "t0-0") +
+                                    _vm._$g(36, "t0-0") +
                                       " " +
-                                      _vm._$g(30, "t0-1")
+                                      _vm._$g(36, "t0-1")
                                   ),
                                 ]
                               ),
                             ],
                             1
                           ),
-                          _vm._$g(31, "i")
+                          _vm._$g(37, "i")
                             ? _c(
                                 "table",
                                 {
-                                  staticClass: _vm._$g(31, "sc"),
-                                  attrs: { _i: 31 },
+                                  staticClass: _vm._$g(37, "sc"),
+                                  attrs: { _i: 37 },
                                 },
                                 [
                                   _c(
                                     "tbody",
-                                    { attrs: { _i: 32 } },
+                                    { attrs: { _i: 38 } },
                                     _vm._l(
-                                      _vm._$g(33, "f"),
+                                      _vm._$g(39, "f"),
                                       function (val, i, $21, $31) {
                                         return _c(
                                           "tr",
                                           {
                                             key: val,
                                             staticClass: _vm._$g(
-                                              "33-" + $31,
+                                              "39-" + $31,
                                               "sc"
                                             ),
-                                            attrs: { _i: "33-" + $31 },
+                                            attrs: { _i: "39-" + $31 },
                                           },
                                           [
                                             _c(
                                               "td",
                                               {
                                                 staticClass: _vm._$g(
-                                                  "34-" + $31,
+                                                  "40-" + $31,
                                                   "sc"
                                                 ),
-                                                attrs: { _i: "34-" + $31 },
+                                                attrs: { _i: "40-" + $31 },
                                               },
                                               [
                                                 _c(
                                                   "p",
                                                   {
-                                                    attrs: { _i: "35-" + $31 },
+                                                    attrs: { _i: "41-" + $31 },
                                                   },
                                                   [
                                                     _vm._v(
                                                       _vm._$g(
-                                                        "35-" + $31,
+                                                        "41-" + $31,
                                                         "t0-0"
                                                       )
                                                     ),
@@ -19094,21 +19138,21 @@ var render = function () {
                                               "td",
                                               {
                                                 staticClass: _vm._$g(
-                                                  "36-" + $31,
+                                                  "42-" + $31,
                                                   "sc"
                                                 ),
-                                                attrs: { _i: "36-" + $31 },
+                                                attrs: { _i: "42-" + $31 },
                                               },
                                               [
                                                 _c(
                                                   "p",
                                                   {
-                                                    attrs: { _i: "37-" + $31 },
+                                                    attrs: { _i: "43-" + $31 },
                                                   },
                                                   [
                                                     _vm._v(
                                                       _vm._$g(
-                                                        "37-" + $31,
+                                                        "43-" + $31,
                                                         "t0-0"
                                                       )
                                                     ),
@@ -19143,7 +19187,7 @@ var render = function () {
         ],
         2
       ),
-      _c("customTabBar", { attrs: { _i: 38 } }),
+      _c("customTabBar", { attrs: { _i: 44 } }),
     ],
     1
   )
@@ -19252,7 +19296,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-7329f4ce] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-7329f4ce] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-7329f4ce] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.text-color-d[data-v-7329f4ce] {\r\n  color: #d9001B;\n}\n.search-box[data-v-7329f4ce] {\r\n  margin: 10px 0;\n}\n.text[data-v-7329f4ce] {\r\n  font-size: 12px;\r\n  color: #666;\r\n  margin-top: 5px;\n}\n.uni-px-5[data-v-7329f4ce] {\r\n  padding-left: 10px;\r\n  padding-right: 10px;\n}\n.uni-pb-5[data-v-7329f4ce] {\r\n  padding-bottom: 10px;\n}\n.query-content[data-v-7329f4ce] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.query-content .query-content-select[data-v-7329f4ce] {\r\n  width: 29%;\n}\n.query-content .query-content-input[data-v-7329f4ce] {\r\n  margin-left: 1%;\r\n  width: 69%;\n}\n[data-v-7329f4ce] .u-input--radius,[data-v-7329f4ce] .u-input--square {\r\n  padding: 4px 9px !important;\n}\n.claim-content[data-v-7329f4ce] {\r\n  background: #f2f2f2;\r\n  margin-top: 5px;\r\n  padding: 5px 8px;\r\n  line-height: 26px;\n}\n.claim-content .claim-content-top[data-v-7329f4ce] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.claim-content .claim-content-top .claim-content-top-right[data-v-7329f4ce] {\r\n  padding-right: 10px;\n}\n.claim-content .claim-content-bottom[data-v-7329f4ce] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-right: 10px;\n}\n.u-pop-box .pop-box-name[data-v-7329f4ce] {\r\n  font-size: 22px;\r\n  font-weight: bold;\r\n  color: #000;\r\n  text-align: center;\n}\n.u-pop-box .achieve-box[data-v-7329f4ce] {\r\n  display: flex;\r\n  justify-content: center;\r\n  margin-top: 10px;\n}\n.u-pop-box .achieve-box .achieve-box-last[data-v-7329f4ce] {\r\n  margin-left: 30px;\n}\n.u-pop-box .achieve-label[data-v-7329f4ce] {\r\n  display: flex;\r\n  justify-content: center;\r\n  margin-top: 5px;\r\n  line-height: 25px;\n}\n.u-pop-box .info-table-detail[data-v-7329f4ce] {\r\n  margin-top: 10px;\n}\n.u-pop-box .info-table-detail .table-time[data-v-7329f4ce] {\r\n  font-weight: bold;\r\n  font-size: 18px;\r\n  display: flex;\r\n  justify-content: center;\n}\n.table[data-v-7329f4ce] {\r\n  border-collapse: collapse;\r\n  width: 50%;\r\n  margin: 20px auto;\n}\n.table_title[data-v-7329f4ce] {\r\n  padding: 10px;\r\n  left: 0px;\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  font-weight: bold;\r\n  text-align: center;\r\n  border-right: 1px solid #e8e8e8;\n}\n.table_title p[data-v-7329f4ce], .table_content p[data-v-7329f4ce] {\r\n  font-size: 12px;\n}\n.table_content[data-v-7329f4ce] {\r\n  padding: 10px;\n}\n.table_content[data-v-7329f4ce]:not(:last-child) {\r\n  border-right: 1px solid #e8e8e8;\n}\n.table_tr[data-v-7329f4ce] {\r\n  border: 1px solid #e8e8e8;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/*\r\n\t公共样式配置，需要时引入即可\r\n*/\r\n/* 需要放到文件最上面 */\r\n/*\r\n 以下变量是默认值，如不需要修改可以不用给下面的变量重新赋值\r\n */\r\n/*\r\n 导入uview的样式变量参数\r\n */\r\n/* 水平间距 */\n.time-component .time-component-input[data-v-7329f4ce] {\r\n  width: 48%;\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.time-component .time-component-line[data-v-7329f4ce] {\r\n  width: 2%;\r\n  position: relative;\r\n  top: 0px;\r\n  left: 2px;\r\n  color: #555;\n}\n.time-component .time-component-input-all[data-v-7329f4ce] {\r\n  width: calc(100% - 100px);\r\n  border: 1px solid #dadbde;\r\n  padding: 3px 6px;\r\n  height: 22px;\r\n  margin-top: 3px;\r\n  color: #555;\r\n  font-size: 12px;\r\n  line-height: 22px;\n}\n.text-color-d[data-v-7329f4ce] {\r\n  color: #d9001B;\n}\n.search-box[data-v-7329f4ce] {\r\n  margin: 10px 0;\n}\n.text[data-v-7329f4ce] {\r\n  font-size: 12px;\r\n  color: #666;\r\n  margin-top: 5px;\n}\n.uni-px-5[data-v-7329f4ce] {\r\n  padding-left: 10px;\r\n  padding-right: 10px;\n}\n.uni-pb-5[data-v-7329f4ce] {\r\n  padding-bottom: 10px;\n}\n.query-content[data-v-7329f4ce] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.query-content .query-content-select[data-v-7329f4ce] {\r\n  width: 29%;\n}\n.query-content .query-content-input[data-v-7329f4ce] {\r\n  margin-left: 1%;\r\n  width: 69%;\n}\n[data-v-7329f4ce] .u-input--radius,[data-v-7329f4ce] .u-input--square {\r\n  padding: 4px 9px !important;\n}\n.claim-content[data-v-7329f4ce] {\r\n  background: #f2f2f2;\r\n  margin-top: 5px;\r\n  padding: 5px 8px;\r\n  line-height: 26px;\n}\n.claim-content .claim-content-top[data-v-7329f4ce] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.claim-content .claim-content-top .claim-content-top-right[data-v-7329f4ce] {\r\n  padding-right: 10px;\n}\n.claim-content .claim-content-bottom[data-v-7329f4ce] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  padding-right: 10px;\n}\n.u-pop-box .pop-box-name[data-v-7329f4ce] {\r\n  font-size: 22px;\r\n  font-weight: bold;\r\n  color: #000;\r\n  text-align: center;\n}\n.u-pop-box .achieve-box[data-v-7329f4ce] {\r\n  display: flex;\r\n  justify-content: center;\r\n  margin-top: 10px;\n}\n.u-pop-box .achieve-box .achieve-box-last[data-v-7329f4ce] {\r\n  margin-left: 30px;\n}\n.u-pop-box .achieve-label[data-v-7329f4ce] {\r\n  display: flex;\r\n  justify-content: center;\r\n  margin-top: 5px;\r\n  line-height: 25px;\n}\n.u-pop-box .info-table-detail[data-v-7329f4ce] {\r\n  margin-top: 10px;\n}\n.u-pop-box .info-table-detail .table-time[data-v-7329f4ce] {\r\n  font-weight: bold;\r\n  font-size: 18px;\r\n  display: flex;\r\n  justify-content: center;\n}\n.table[data-v-7329f4ce] {\r\n  border-collapse: collapse;\r\n  width: 50%;\r\n  margin: 20px auto;\n}\n.table_title[data-v-7329f4ce] {\r\n  padding: 10px;\r\n  left: 0px;\r\n  position: -webkit-sticky;\r\n  position: sticky;\r\n  font-weight: bold;\r\n  text-align: center;\r\n  border-right: 1px solid #e8e8e8;\n}\n.table_title p[data-v-7329f4ce], .table_content p[data-v-7329f4ce] {\r\n  font-size: 12px;\n}\n.table_content[data-v-7329f4ce] {\r\n  padding: 10px;\n}\n.table_content[data-v-7329f4ce]:not(:last-child) {\r\n  border-right: 1px solid #e8e8e8;\n}\n.table_tr[data-v-7329f4ce] {\r\n  border: 1px solid #e8e8e8;\n}\n.level-group[data-v-7329f4ce] {\r\n  display: flex;\r\n  margin-top: 10px;\n}\n.level-group .level-content-title[data-v-7329f4ce] {\r\n  position: relative;\r\n  top: 5px;\r\n  width: 60px;\n}\n.level-group .level-content-select[data-v-7329f4ce] {\r\n  margin-left: 10px;\r\n  width: calc( 100% - 90px) !important;\n}\n.level-group .level-content-btn[data-v-7329f4ce] {\r\n  width: 60px;\r\n  margin-left: 10px;\r\n  position: relative;\r\n  top: 5px;\n}\n.level-group .level-content-btn[data-v-7329f4ce]  .u-button {\r\n  height: 30px;\r\n  font-size: 12px;\r\n  text-align: center;\r\n  align-items: center;\r\n  width: 60px;\r\n  position: relative;\r\n  top: -3px;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -21491,7 +21535,7 @@ var render = function () {
                     "uni-view",
                     {
                       staticClass: _vm._$g(55, "sc"),
-                      staticStyle: { height: "50vh" },
+                      staticStyle: { height: "75vh" },
                       attrs: { _i: 55 },
                     },
                     [

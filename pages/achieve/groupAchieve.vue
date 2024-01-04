@@ -15,6 +15,16 @@
 						{{ searchForm.dailyDate ? searchForm.dailyDate : "请选择时间" }}
 					</view>
 				</view>
+				<view class="level-group">
+					<view class="level-content-title" style="width: 50px;">级别: </view>
+					<view class="level-content-select" style="width: 100%;">
+						<uni-data-select v-model="choseTypeLevel" :localdata="groupLevelSelect"
+							@change="changeGroupLevelSelect"></uni-data-select>
+					</view>
+					<view class="level-content-btn">
+						<u-button type="primary" @click="getGroupList">查询</u-button>
+					</view>
+				</view>
 				</view>
 				<!-- 无数据时 -->
 				<view style="margin-top: 15px;" class="" v-if="!indexList || indexList.length===0">
@@ -101,7 +111,10 @@
 				endTime: "",
 				inputType: "start",
 				searchForm:{
-					dailyDate: null,
+					dailyDate: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				datalist: [],
 				indexList: [],
@@ -109,6 +122,8 @@
 				showModalGroupAchieve: false,
 				
 				chosetype: 0,
+				choseTypeLevel: "0",
+				groupLevelSelect: [],
 				studentSelect: [{
 						value: 0,
 						text: "ID"
@@ -194,6 +209,7 @@
 				let params = {
 					_tk: uni.getStorageSync("wp_token"),
 					dailyDate: this.searchForm.dailyDate,
+					code: this.choseTypeLevel,
 				}
 				uni.showLoading({
 					title: '加载中'
@@ -204,7 +220,30 @@
 						//隐藏加载框
 						uni.hideLoading();
 					}else{
-						this.$api.msg("加载失败");
+						this.$api.msg(err.msg);
+					}
+				}).catch((err) =>{
+					//隐藏加载框
+					uni.hideLoading();
+				})
+			},
+			
+			// 获取级别信息
+			getLevelList(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+				}
+				uni.showLoading({
+					title: '加载中'
+				});
+				uni.$u.http.post('/app/api/main/init', params).then(res => {
+					if(res.code == 0){
+						let courseTypesList = res.data.courseTypes;
+						this.groupLevelSelect = courseTypesList.map(item=>{
+							return {value: item.code, text: item.name}
+						})
+					}else{
+						this.$api.msg(err.msg);
 					}
 				}).catch((err) =>{
 					//隐藏加载框
@@ -241,6 +280,7 @@
 		},
 		created() {
 			this.getGroupList();
+			this.getLevelList();
 		},
 		onHide() {
 			if(this.timer){
@@ -375,5 +415,33 @@
 		
 		.table_tr{
 			border: 1px solid rgb(232, 232, 232);
+		}
+		.level-group{
+			display: flex;
+			margin-top: 10px;
+			.level-content-title{
+				position: relative;
+				top: 5px;
+				width: 60px
+			}
+			.level-content-select{
+				margin-left: 10px;
+				width: calc( 100% - 90px )!important;
+			}
+			.level-content-btn{
+				width: 60px;
+				margin-left: 10px;
+				position: relative;
+				top: 5px;
+				::v-deep .u-button{
+					height: 30px;
+					font-size: 12px;
+					text-align: center;
+					align-items: center;
+					width: 60px;
+					position: relative;
+					top: -3px;
+				}
+			}
 		}
 </style>

@@ -132,7 +132,7 @@
 			<!-- 编辑弹出层 -->
 			<view class="" @touchmove.stop.prevent="stopPenetrate">
 				<u-popup customStyle="padding:40px 5px 0 5px" :show="showModalTeacherEdit" mode="bottom" :round="12" @close="closeModelTeacher" closeable closeOnClickOverlay safeAreaInsetBottom>
-					<view style="height: 50vh;" class="teacher-edit">
+					<view style="height: 75vh;" class="teacher-edit">
 						<u--form
 								labelPosition="left"
 								:model="teacherObj"
@@ -269,7 +269,7 @@
 				studentSelect: [
 					{
 						value: 1,
-						text: "老师名称"
+						text: "名称"
 					}
 				],
 				teacherObj: {
@@ -353,7 +353,7 @@
 						})
 						uni.hideLoading();
 					}else{
-						this.$api.msg("加载失败");
+						this.$api.msg(err.msg);
 					}
 				}).catch((err) =>{
 					//隐藏加载框

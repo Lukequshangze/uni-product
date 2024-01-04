@@ -100,8 +100,14 @@
 					valueData:"",
 					page: 1,
 					limit: 20,
-					startTime: "",
-					endTime: "",
+					startTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
+					endTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				indexList: [],
 				agreeModel: false,
@@ -223,7 +229,7 @@
 						uni.hideLoading();
 					}
 				}).catch((err) =>{
-					this.$api.msg("加载失败");
+					this.$api.msg(err.msg);
 					//隐藏加载框
 					uni.hideLoading();
 				})
@@ -246,7 +252,7 @@
 				uni.$u.http.post('/app/api/main/init', params).then(res => {
 					
 				}).catch((err) =>{
-					this.$api.msg("加载失败");
+					this.$api.msg(err.msg);
 					//隐藏加载框
 					uni.hideLoading();
 				})

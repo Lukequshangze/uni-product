@@ -114,8 +114,14 @@
 					valueData:"",
 					page: 1,
 					limit: 20,
-					startTime: "",
-					endTime: "",
+					startTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
+					endTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				indexList: [],
 				

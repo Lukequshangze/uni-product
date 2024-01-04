@@ -95,8 +95,14 @@
 					valueData:"",
 					page: 1,
 					limit: 20,
-					startTime: "",
-					endTime: "",
+					startTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
+					endTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				
 				chosetype: 1,
@@ -104,10 +110,10 @@
 				total: 0,
 				
 				column:[
-				  { name: 'dailyDate', label: '时间',fixed:false,emptyString:'--' },
-				  { name: 'nickname', label: '名称',emptyString:'--'},
-				  { name: 'logInfo', label: '内容'},
-				  { name: 'status', label: '状态'},
+				  { name: 'dailyDate', label: '时间',fixed:false,emptyString:'--',width: 100 },
+				  { name: 'nickname', label: '名称',emptyString:'--',width: 80},
+				  { name: 'logInfo', label: '内容',width: 100},
+				  { name: 'status', label: '状态',width: 80},
 				],
 				data:[
 				  {

@@ -225,7 +225,7 @@
 						this.indexList = res.data.itemVoList;
 						uni.hideLoading();
 					}else{
-						this.$api.msg("加载失败");
+						this.$api.msg(err.msg);
 					}
 				}).catch((err) =>{
 					//隐藏加载框

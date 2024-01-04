@@ -187,7 +187,10 @@
 					valueData:"",
 					page: 1,
 					limit: 20,
-					dailyDate: "",
+					dailyDate: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 				datalist: [],
 				tableTitle: [],

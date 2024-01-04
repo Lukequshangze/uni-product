@@ -86,8 +86,14 @@
 					valueData:"",
 					page: 1,
 					limit: 20,
-					startTime: "",
-					endTime: "",
+					startTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
+					endTime: this.dateFormatter(
+						"yyyy-MM-dd",
+						new Date()
+					),
 				},
 
 				datalist: [],
@@ -95,6 +101,7 @@
 				column: [{
 						name: 'nickname',
 						label: '名称',
+						width: 120,
 						emptyString: '--'
 					},
 					{
@@ -112,6 +119,7 @@
 					{
 						name: 'totalscore',
 						label: '成绩',
+						width: 80,
 						sorter: true
 					},
 				],

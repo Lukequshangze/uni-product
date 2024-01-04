@@ -566,14 +566,14 @@
 				let params = {
 					_tk: uni.getStorageSync("wp_token"),
 					studentId: this.blockObjData.studentId,
-					isBlack: 0,
+					isBlack: 1,
 				}
 				uni.$u.http.post('/app/api/sys/player/black/edit', params).then(res => {
 					if(res.code == 0){
 						this.getStudentManage("update");   // 刷新列表
 						this.blockModel = false;  // 关闭model框
 						setTimeout(()=>{
-							this.$api.msg("当前学生已拉入黑名单");
+							this.$api.msg("成功将该学生拉入黑名单");
 						},200)
 					}else{
 						this.$api.msg(res.msg);
