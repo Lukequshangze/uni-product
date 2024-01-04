@@ -3,6 +3,9 @@
 		<NoticeBar ref="noticeRef" />
 		<u-cell-group style="margin-top: 10px">
 			<u-cell
+			    :title="nickName"
+			></u-cell>
+			<u-cell
 			    title="修改密码"
 			    isLink
 			    url="/pages/setting/updatePassword"
@@ -41,6 +44,7 @@
 				logoutModel: false,
 				removeContent: "确认退出登录？",
 				timer: null,
+				nickName: ""
 			}
 		},
 		components:{
@@ -91,6 +95,9 @@
 			that.timer = setInterval( () => { 
 				that.getNoticeData();
 			}, 5000);	
+		},
+		created() {
+			this.nickName = uni.getStorageSync("wp_account");
 		},
 		onHide() {
 			if(this.timer){
