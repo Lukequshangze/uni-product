@@ -52,13 +52,13 @@
             },
             "icons" : {
                 "android" : {
-                    "hdpi" : "D:/HTProject/nativesphere-ui/src/assets/image/icon/middle_pg.png",
-                    "xhdpi" : "D:/HTProject/nativesphere-ui/src/assets/image/icon/middle_pg.png",
-                    "xxhdpi" : "D:/HTProject/nativesphere-ui/src/assets/image/icon/middle_pg.png",
-                    "xxxhdpi" : "D:/HTProject/nativesphere-ui/src/assets/image/icon/middle_pg.png"
+                    "hdpi" : "/Users/qushangze/Documents/project/端口/middle_pg.png",
+                    "xhdpi" : "/Users/qushangze/Documents/project/端口/middle_pg.png",
+                    "xxhdpi" : "/Users/qushangze/Documents/project/端口/middle_pg.png",
+                    "xxxhdpi" : "/Users/qushangze/Documents/project/端口/middle_pg.png"
                 },
                 "ios" : {
-                    "appstore" : "D:/HTProject/nativesphere-ui/src/assets/image/icon/middle_pg.png"
+                    "appstore" : "/Users/qushangze/Documents/project/端口/middle_pg.png"
                 }
             },
             "splashscreen" : {

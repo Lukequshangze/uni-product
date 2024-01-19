@@ -54,12 +54,46 @@
 						<view class="left-range" style="width: 25%;">
 							{{ item.csLabel }} {{ item.cs }}
 						</view>
-						<view class="left-range" style="display: flex">
+						<view class="left-range" style="display: flex;margin-top: 3px;">
 							<u-button type="primary" text="额备" @click="openModelGroupAchieve(item)" size="mini"></u-button>
 							<u-button type="primary" text="移除" @click="openRemoveBtn(item)" size="mini" style="margin-left: 5px;"></u-button>
+							<u-button type="primary" text="查看学生" @click="viewGroupStudent(item)" style="margin-left: 5px;" size="mini"></u-button>
 						</view>
 					</view>
 				</view>
+			</view>
+			
+			<!-- 分组下学生信息 -->
+			<view class="" @touchmove.stop.prevent="stopPenetrate">
+				<u-popup customStyle="padding:40px 5px 0 5px" :show="showGroupStudentModal" mode="bottom" :round="12" @close="closeModelStudentGroup" closeable closeOnClickOverlay safeAreaInsetBottom>
+					<view style="height: 60vh;">
+						<view class="student-info">
+							{{ groupInfo.gn }} 分组下学生信息
+						</view>
+						<view class="" style="margin-top: 40px;" v-if="!studentList || studentList.length == 0">
+							<u-empty use-solt
+								mode="data"
+								icon="../../static/icon/no-data-img.png"
+							>
+							</u-empty>
+						</view>
+						<view class="" v-for="(item,i) in studentList" :key="i">
+							<view class="student-group">
+								<view class="" style="width: 45%;">
+									学生ID：{{ item.studentId }}
+								</view>
+								<view class="" style="width: 45%;">
+									学生姓名：{{ item.nickName }}
+								</view>
+								<u-button type="primary" text="解除绑定" @click="openSecure(item)" size="mini" style="width: 30px;"></u-button>
+							</view>
+						</view>
+						<view class="" style="display: flex;justify-content: space-around;margin-top: 60rpx;">
+							<u-button type="primary" text="确定" @click="closeModelStudentGroup" style="width: 30%;"></u-button>
+							<u-button type="info" text="取消" @click="closeModelStudentGroup" style="width: 30%;"></u-button>
+						</view>
+					</view>
+				</u-popup>
 			</view>
 			
 			<!-- 额备 -->
@@ -155,6 +189,8 @@
 			</view>
 			<!-- 移除模态框 -->
 			<u-modal :show="removeModel" :content='removeContent' @confirm="removeConfirm" @cancel="removeCancel" showCancelButton></u-modal>
+			<!-- 解除绑定模态框 -->
+			<u-modal :show="secureModel" :content='secureContent' @confirm="secureConfirm" @cancel="secureCancel" showCancelButton></u-modal>
 		</view>
 		<!-- 底部导航栏组件 -->
 		<customTabBar></customTabBar>
@@ -171,6 +207,7 @@
 			return {
 				pickerShow: false,
 				showModalGroupAchieve: false,
+				showGroupStudentModal: false,
 				showAddGroupAchieve: false,
 				valueTime: Number(new Date()),
 				startTime: "",
@@ -184,6 +221,9 @@
 				removeContent:"确认移除此分组？",
 				removeModel: false,
 				removeObjData: {},
+				
+				secureModel: false,
+				secureContent: "确认解除绑定？",
 				model1: {
 					userInfo: {
 						name: '',
@@ -196,6 +236,11 @@
 					gn:"",
 				},
 				timer: null,
+				studentList: [],
+				groupInfo: {},
+				page: 1,
+				limit: 20,
+				totalStudent: 0,
 			}
 		},
 		components: {
@@ -239,6 +284,82 @@
 				this.model1.userInfo.gId = item.gId;
 				this.model1.userInfo.name = item.gn;
 				this.model1.userInfo.cs = item.cs;
+			},
+			
+			// 查看分组下的学生信息
+			viewGroupStudent(item){
+				this.groupInfo = item;
+				this.showGroupStudentModal = true;
+				// 获取学生信息
+				this.getStudentByGroup(item);
+			},
+			
+			// 获取学生信息
+			getStudentByGroup(item){
+				console.log("item",item);
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					gId: item.gId,
+					page: this.page,
+					limit: this.limit,
+					start: 0,
+				}
+				uni.$u.http.post('/app/api/sys/group/player', params).then(res => {
+					if(res.code == 0){
+						this.totalStudent = res.data.count;
+						this.studentList = res.data.itemVoList;
+					}else{
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
+			},
+			
+			async onReachBottom() {
+				if(this.totalStudent > this.page * this.limit){
+					this.page += 1;
+					this.getStudentByGroup("more");
+				}else{
+					this.$api.msg("已加载全部数据");
+				}
+			},
+			
+			// 关闭学生信息弹出层
+			closeModelStudentGroup(){
+				this.showGroupStudentModal = false;
+			},
+			
+			// 解除绑定
+			openSecure(item){
+				this.secureModel = true;
+				this.studentInfo = item;
+			},
+			// 解除绑定取消事件
+			secureCancel(){
+				this.secureModel = false;
+			},
+			// 确认解除绑定
+			secureConfirm(){
+				let params = {
+					_tk: uni.getStorageSync("wp_token"),
+					studentId: this.studentInfo.studentId,
+					gId: this.groupInfo.gId,
+					gName: this.groupInfo.gn,
+				}
+				uni.$u.http.post('/app/api/sys/player/group/unbind', params).then(res => {
+					if(res.code == 0){
+						this.getStudentByGroup(this.groupInfo);   // 刷新列表
+						this.secureModel = false;  // 关闭model框
+						setTimeout(()=>{
+							this.$api.msg("解绑成功");
+						},200)
+					}else{
+						this.$api.msg(res.msg);
+					}
+				}).catch((err) =>{
+					console.log("err",err)
+				})
 			},
 			
 			// 关闭额备弹出层
@@ -449,5 +570,21 @@
 		.left-range{
 			
 		}
+	}
+	.student-info{
+		display: flex;
+		justify-content: center;
+		font-size: 18px;
+		font-weight: bold;
+		margin: 5px 0 15px 0;
+	}
+	.student-group{
+		display: flex;
+		justify-content: space-between;
+		background: #f2f2f2;
+		margin-top: 5px;
+		padding: 5px 8px;
+		line-height: 26px;
+		font-size: 12px;
 	}
 </style>
