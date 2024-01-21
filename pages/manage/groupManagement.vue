@@ -45,19 +45,19 @@
 			<view class="" v-if="!indexList || indexList.length > 0">
 				<view class="claim-content" v-for="(item, index) in indexList" :key="index" style="font-size: 12px;">
 					<view class="claim-content-bottom">
-						<view class="left-range" style="width: 20%;">
+						<view class="left-range" style="width: 15%;">
 							{{ item.gIdLabel }} {{ item.gId }}
 						</view>
 						<view class="left-range" style="width: 40%;">
 							{{ item.gnLabel }} {{ item.gn }}
 						</view>
-						<view class="left-range" style="width: 25%;">
+						<view class="left-range" style="width: 30%;">
 							{{ item.csLabel }} {{ item.cs }}
 						</view>
 						<view class="left-range" style="display: flex;margin-top: 3px;">
 							<u-button type="primary" text="额备" @click="openModelGroupAchieve(item)" size="mini"></u-button>
-							<u-button type="primary" text="移除" @click="openRemoveBtn(item)" size="mini" style="margin-left: 5px;"></u-button>
-							<u-button type="primary" text="查看学生" @click="viewGroupStudent(item)" style="margin-left: 5px;" size="mini"></u-button>
+							<u-button type="primary" text="移除" @click="openRemoveBtn(item)" size="mini" style="margin-left: 3px;"></u-button>
+							<u-button type="primary" text="查看学生" @click="viewGroupStudent(item)" style="margin-left: 3px;" size="mini"></u-button>
 						</view>
 					</view>
 				</view>
